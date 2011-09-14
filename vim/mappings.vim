@@ -10,8 +10,6 @@ imap <C-l> <ESC>
 " Save buffer (easier on the fingers)
 nmap <silent> <leader>w :w<CR>
 
-nmap <silent> <leader>e :Explore!<CR>
-
 " Toggle list mode
 nmap <silent> <leader>sw :set nolist!<CR>
 

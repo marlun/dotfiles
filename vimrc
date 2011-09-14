@@ -119,9 +119,10 @@ set smartcase
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " EXTERNAL FILES
 
-" All my mappings
+" All my mappings, auto commands and plugins settings
 runtime mappings.vim 
 runtime autocmd.vim 
+runtime plugins.vim 
 
 " Make % match more then just brackets
 runtime macros/matchit.vim 
