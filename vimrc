@@ -8,7 +8,6 @@
 " and can be downloaded from https://github.com/tpope/vim-pathogen
 "
 " For the loading of plugins to work pathogen needs to run first
-" commands in the correct order.
 call pathogen#infect()
 
 " Enable syntax highlighting and overrule with defaults
