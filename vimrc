@@ -16,7 +16,7 @@ syntax on
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
 
-" Lets add some nice colors. Vader is a color scheme created by me.
+" Lets add some nice colors.
 colorscheme leya
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
