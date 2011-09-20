@@ -27,3 +27,5 @@ map <d-3> :3tabnext<cr>
 imap <d-1> <c-o>:1tabnext<cr>
 imap <d-2> <c-o>:2tabnext<cr>
 imap <d-3> <c-o>:3tabnext<cr>
+nmap <c-tab> :tabnext<cr>
+nmap <c-s-tab> :tabprevious<cr>
