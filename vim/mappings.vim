@@ -7,6 +7,9 @@ nmap <silent> <C-l> :nohlsearch<CR>
 " In INSERT mode Ctrl-l goes into NORMAL mode
 imap <C-l> <ESC>
 
+" Makes it easier to close a buffer or exit vim
+nmap <silent> <leader>q :q<CR>
+
 " Save buffer (easier on the fingers)
 nmap <silent> <leader>w :w<CR>
 
