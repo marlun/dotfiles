@@ -1,0 +1,39 @@
+let g:snips_author = 'Martin Lundberg'
+snippet php
+	<?php
+	
+	
+snippet f
+	function ${1:name}(${2}) {
+		${3}
+	}
+snippet if
+	if (${1:condition}) {
+		{VISUAL}${2}
+	}
+snippet elseif
+	elseif (${1:condition}) {
+		${2}
+	}
+snippet else
+	else {
+		${2}
+	}
+snippet ife
+	if (${1:condition}) {
+		${2}
+	} else {
+		${3}
+	}
+snippet foreach
+	foreach (${1:$list} as ${2:$item}) {
+		{VISUAL}${3}
+	}
+snippet vd
+	var_dump(${1});${2:exit;}
+snippet array
+	array(${1});
+snippet class
+	class ${1:name} {
+		${2}
+	}

@@ -18,7 +18,8 @@ set guioptions-=e
 set fuopt+=maxhorz
 
 " Set the font to a big readable font
-set guifont=Monaco:h20
+"set guifont=Monaco:h20
+set guifont=Bitstream_Vera_Sans_Mono:h20
 
 " Some tab shortcuts
 map <d-1> :1tabnext<cr>
