@@ -46,8 +46,8 @@ set laststatus=2
 " %L = Number of files in the buffer
 " SyntasticStatuslineFlag is method made available by a plugin
 " fugitive#statusline is also a method made available by a plugin
-set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=[%l,%v][%p%%\ of\ %L]
-
+"set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=[%l,%v][%p%%\ of\ %L]
+ set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=%1*%{SyntasticStatuslineFlag()}%*[%l,%v][%p%%\ of\ %L]
 " set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=%1*%{SyntasticStatuslineFlag()}%*%{fugitive#statusline()}[%l,%v][%p%%\ of\ %L]
 
 " Allways show the mode that vim is in
