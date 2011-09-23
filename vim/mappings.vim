@@ -19,7 +19,7 @@ noremap ' `
 noremap ` '
 
 " Toggle list mode
-nmap <silent> <leader>sw :set nolist!<CR>
+nmap <silent> <leader>- :set nolist!<CR>
 
 " Show syntax highlighting groups for word under cursor
 nmap <C-P> :call <SID>SynStack()<CR>
