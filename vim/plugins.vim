@@ -22,3 +22,31 @@ let g:syntastic_auto_jump=1
 
 " Automatically open and close location list on error
 let g:syntastic_auto_loc_list=1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FuzzyFinder
+
+" FuzzyFinder's path to ctags
+if has("gui_running")
+	let g:fuf_buffertag_ctagsPath = '/usr/local/bin/ctags'
+endif
+
+" FuzzyFinder bufferlist
+map <leader>f :FufBuffer<cr>
+
+" FuzzyFinder buffter tag list
+map <leader>t :FufBufferTag<cr>
+
+" FuzzyFinder open file in project
+map <leader>o :FufCoverageFile<cr>
+
+" FuzzyFinder options
+if !exists('g:fuf_file_exclude')
+	let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
+endif
+if !exists('g:fuf_dir_exclude')
+	let g:fuf_dir_exclude = '\v(^|[/\\])\.(hg|git|bzr)($|[/\\])|tiny_mce.?|template_c|node_modules'
+endif
+if !exists('g:fuf_coveragefile_exclude')
+	let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
+endif
