@@ -11,4 +11,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Add default content when creating PHP files
 	autocmd BufNewFile *.php call setline(1, ['<?php', '', '']) | call setpos('.', [0, 3, 0, 0]) | startinsert
 
+	" Make vim see Vagrantfile as a ruby file
+	autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
+
 endif
