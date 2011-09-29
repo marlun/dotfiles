@@ -1,17 +1,9 @@
 let g:snips_author = 'Martin Lundberg'
 snippet if
-	{if (${1:condition})}
-		${2}
-	{/if}
+	{if (${1:condition})}${2}{/if}
 snippet else
-	{else}
-		${1}
+	{else}${1}
 snippet elseif
-	{elseif}
-		${1}
+	{elseif}${1}
 snippet ifelse
-	{if (${1:condition})}
-		${2}
-	{else}
-		${3}
-	{/if}
+	{if (${1:condition})}${2}{else}${3}{/if}
