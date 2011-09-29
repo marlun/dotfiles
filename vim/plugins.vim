@@ -50,3 +50,20 @@ endif
 if !exists('g:fuf_coveragefile_exclude')
 	let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
 endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tagbar
+
+" Toggle Tagbar
+map <leader>g :TagbarToggle<cr>
+
+" Only have the Tagbar open when you need it
+let g:tagbar_autoclose = 1
+
+" Remove the use of unicode arrows in tagbar
+let g:tagbar_usearrows = 0
+
+" Tagbar ctags command
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+
