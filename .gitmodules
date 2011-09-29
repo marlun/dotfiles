@@ -31,3 +31,6 @@
 [submodule "vim/bundle/xmledit"]
 	path = vim/bundle/xmledit
 	url = https://github.com/sukima/xmledit.git
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
