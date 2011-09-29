@@ -33,10 +33,10 @@ set title
 set laststatus=2
 
 " Make the statusline a lot more useful
-" 
+"
 " %f = Relative path to the current file
 " %m = Modified flag
-" %r = Readonly flag 
+" %r = Readonly flag
 " %w = Preview window flag
 " %Y = Type of file (vim, php, python)
 " &ff = File format (MS-DOS, unix, mac)
@@ -89,7 +89,7 @@ endif
 set backspace+=indent,eol,start
 
 " Disable line-wrapping
-set nowrap 
+set nowrap
 
 " Make a tab be 4 spaces both for read and when editing. Read about
 " 'softtabstop' to know what I mean.
@@ -108,6 +108,13 @@ set autoindent
 " Characters to use in 'list' mode
 set listchars=tab:▸\ ,trail:·,eol:¬
 
+" Use omnifunc feature if it exists for this filetype
+if has("autocmd") && exists("+omnifunc")
+	autocmd Filetype *
+	\	if &omnifunc == "" |
+	\		setlocal omnifunc=syntaxcomplete#Complete |
+	\	endif
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC
 
@@ -120,9 +127,9 @@ set smartcase
 " EXTERNAL FILES
 
 " All my mappings, auto commands and plugins settings
-runtime mappings.vim 
-runtime autocmd.vim 
-runtime plugins.vim 
+runtime mappings.vim
+runtime autocmd.vim
+runtime plugins.vim
 
 " Make % match more then just brackets
-runtime macros/matchit.vim 
+runtime macros/matchit.vim
