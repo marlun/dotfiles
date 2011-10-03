@@ -67,3 +67,12 @@ let g:tagbar_usearrows = 0
 " Tagbar ctags command
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
+let g:tagbar_type_php = {
+	\ 'ctagstype' : 'PHP',
+	\ 'kinds'     : [
+		\ 'd:constant definitions',
+		\ 'c:classes',
+		\ 'i:interfaces',
+		\ 'f:functions'
+	\ ]
+\ }
