@@ -74,6 +74,10 @@ hi Visual guifg=#FFFFFF guibg=#999999 gui=NONE ctermfg=white ctermbg=darkgray gu
 hi WarningMsg guifg=#FFFFFF guibg=#8B0000 gui=NONE ctermfg=white ctermbg=red cterm=NONE
 hi WildMenu guifg=#FFFFB6 guibg=NONE gui=NONE ctermfg=yellow ctermbg=NONE cterm=NONE
 
+" SVN
+hi diffRemoved guifg=#FF0000 guibg=NONE gui=NONE ctermfg=darkred ctermbg=NONE cterm=NONE
+hi diffAdd guifg=#008000 guibg=NONE gui=NONE ctermfg=darkgreen ctermbg=NONE cterm=NONE
+
 " Statusline
 hi link User1 Error
 
