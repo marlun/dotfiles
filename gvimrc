@@ -19,7 +19,10 @@ set fuopt+=maxhorz
 
 " Set the font to a big readable font
 "set guifont=Monaco:h20
-set guifont=Bitstream_Vera_Sans_Mono:h20
+set guifont=Menlo:h20
+
+" User a light colorscheme for macvim
+colorscheme leya
 
 " Some tab shortcuts
 map <d-1> :1tabnext<cr>
