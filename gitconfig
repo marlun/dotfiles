@@ -1,0 +1,10 @@
+[user]
+    name = Martin Lundberg
+    email = martin.lundberg@gmail.com
+[color]
+    ui = true
+[core]
+    excludesfile = /Users/marlun/.gitignore
+    editor = /Applications/MacVim.app/Contents/MacOS/Vim
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
