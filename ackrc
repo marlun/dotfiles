@@ -1,0 +1,7 @@
+--pager=less
+--ignore-dir=templates_c
+
+--type-set
+coffeescript=.coffee
+--type-set
+smarty=.tpl
