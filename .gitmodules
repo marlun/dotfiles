@@ -44,6 +44,6 @@
 [submodule "vim/bundle/ack"]
 	path = vim/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "vim/bundle/delimitmate"]
-	path = vim/bundle/delimitmate
-	url = https://github.com/Raimondi/delimitMate.git
+[submodule "vim/bundle/auto-pairs"]
+	path = vim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
