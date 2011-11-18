@@ -76,3 +76,9 @@ let g:tagbar_type_php = {
 		\ 'f:functions'
 	\ ]
 \ }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" snipMate
+
+let g:snipMate = {'no_match_completion_feedkeys_chars': "\<tab>" }
+
