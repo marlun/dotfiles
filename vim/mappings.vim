@@ -31,3 +31,7 @@ function! <SID>SynStack()
 	let s:ts = map(synstack(line('.'), col('.')), 'synIDtrans(v:val)')
 	echo map(s:ts, 'synIDattr(v:val, "name")')
 endfunc
+
+" Go to the end and add a semicolon
+imap <C-ENTER> <ESC>A;
+imap <C-S-ENTER> <ESC>o
