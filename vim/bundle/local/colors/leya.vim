@@ -48,7 +48,7 @@ hi FoldColumn guifg=#222222 guibg=#666666 gui=NONE ctermfg=16 ctermbg=darkgray c
 hi SignColumn guifg=#222222 guibg=#666666 gui=NONE ctermfg=16 ctermbg=gray cterm=NONE
 hi IncSearch guifg=#EEC900 guibg=#262626 gui=NONE ctermfg=lightyellow ctermbg=black cterm=NONE
 hi LineNr guifg=NONE guibg=#eee8d5 gui=NONE ctermfg=NONE ctermbg=254 cterm=NONE
-hi MatchParen guifg=#cb4b16 guibg=NONE gui=bold ctermfg=yellow ctermbg=NONE cterm=bold
+hi MatchParen guifg=#262626 guibg=#EEC900 gui=bold ctermfg=black ctermbg=darkyellow cterm=bold
 hi ModeMsg guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi MoreMsg guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi NonText guifg=#555555 guibg=NONE gui=NONE ctermfg=darkgray ctermbg=NONE cterm=NONE
@@ -89,7 +89,7 @@ hi link StringSpecial Special
 hi link phpComparison Normal
 hi link phpMemberSelector Normal
 hi link phpOperator Normal
-hi link phpParent Normal
+hi link phpParent Special
 hi link phpRelation Normal
 hi link phpSpecialChar StringSpecial
 hi link phpStorageClass Statement
@@ -113,6 +113,7 @@ hi link cssTagName Normal
 
 " CoffeeScript
 hi link coffeeAssignSymbols Normal
+hi link coffeeConstant Normal
 
 " Python
 hi link pythonEscape StringSpecial

@@ -100,13 +100,18 @@ hi link javaScriptNumber Number
 hi link javaScriptIdentifier Statement
 hi link javaScriptNull Type
 hi link javaScriptSpecial StringSpecial
+hi link javaScriptLabel StringSpecial
 
 " COFFEE
 "hi link coffeeDotAccess Normal
 "hi link coffeeAssignOp Normal
 "hi link coffeeExtendedOp Normal
+hi link coffeeObjAssign Special
+hi link coffeeConstant Normal
 hi link coffeeParen Normal
 hi link coffeeBracket Normal
+hi link coffeeKeyword Keyword
+hi link coffeeInterpDelim Special
 hi coffeeSpecialVar guifg=#DDDDDD guibg=NONE
 
 " CSS
@@ -129,3 +134,7 @@ hi link helpHyperTextJump Statement
 hi link htmlEndTag Normal
 hi link htmlH1 Normal
 hi link javaScript Normal
+
+" Diff
+hi diffRemoved guifg=#FF0000 guibg=NONE gui=NONE ctermfg=darkred ctermbg=NONE cterm=NONE
+hi diffAdded guifg=#008000 guibg=NONE gui=NONE ctermfg=darkgreen ctermbg=NONE cterm=NONE
