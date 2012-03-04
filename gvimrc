@@ -2,7 +2,7 @@
 autocmd BufWritePost ~/.gvimrc source ~/.gvimrc
 
 " Set default size
-set columns=80 lines=23
+set columns=80 lines=27
 
 " Remove Toolbar, scrollbars
 set guioptions-=m
