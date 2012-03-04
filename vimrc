@@ -17,7 +17,7 @@ syntax on
 filetype plugin indent on
 
 " Lets add some nice colors.
-colorscheme vader
+colorscheme leya
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " INTERFACE
