@@ -21,7 +21,7 @@ set fuopt+=maxhorz
 set guifont=Bitstream\ Vera\ Sans\ Mono:h18
 
 " User a light colorscheme for macvim
-colorscheme leya
+colorscheme darth
 
 " Some tab shortcuts
 map <d-1> :1tabnext<cr>
