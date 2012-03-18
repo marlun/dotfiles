@@ -35,7 +35,7 @@ hi Boolean guifg=#FCB1FF guibg=NONE gui=NONE ctermfg=magenta ctermbg=NONE cterm=
 hi Number guifg=#FCB1FF guibg=NONE gui=NONE ctermfg=magenta ctermbg=NONE cterm=NONE
 
 " UI
-hi ColorColumn guifg=NONE guibg=#8B0000 gui=NONE ctermfg=NONE ctermbg=darkred cterm=NONE
+hi ColorColumn guifg=NONE guibg=#222222 gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
 hi Cursor guifg=NONE guibg=NONE gui=REVERSE ctermfg=black ctermbg=white cterm=standout
 hi CursorColumn guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=black cterm=NONE
 hi CursorLine guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=black cterm=NONE
@@ -49,7 +49,7 @@ hi VertSplit guifg=#666666 guibg=#666666 gui=NONE ctermfg=darkgray ctermbg=darkg
 hi Folded guifg=#000000 guibg=#666666 gui=NONE ctermfg=16 ctermbg=darkgray cterm=NONE
 hi FoldColumn guifg=#222222 guibg=#666666 gui=NONE ctermfg=16 ctermbg=darkgray cterm=NONE
 hi SignColumn guifg=#222222 guibg=#666666 gui=NONE ctermfg=16 ctermbg=gray cterm=NONE
-hi IncSearch guifg=#262626 guibg=#FFFFFF gui=NONE ctermfg=black ctermbg=white cterm=NONE
+hi IncSearch guifg=#262626 guibg=#FFFFFF gui=NONE ctermfg=232 ctermbg=white cterm=NONE
 hi LineNr guifg=#333333 guibg=#BBBBBB gui=NONE ctermfg=16 ctermbg=gray cterm=NONE
 hi MatchParen guifg=#FFFFB6 guibg=NONE gui=bold ctermfg=yellow ctermbg=NONE cterm=bold
 hi ModeMsg guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
@@ -60,7 +60,7 @@ hi PmenuSel guifg=#111111 guibg=#FFFFAF gui=NONE ctermfg=16 ctermbg=yellow cterm
 hi PmenuSbar guifg=#cccccc guibg=#cccccc gui=NONE ctermfg=lightgray ctermbg=lightgray cterm=NONE
 hi PmenuThumb guifg=#777777 guibg=#777777 gui=NONE ctermfg=gray ctermbg=gray cterm=NONE
 hi Question guifg=#BCBCBC guibg=#262626 gui=NONE ctermfg=lightgray ctermbg=NONE cterm=NONE
-hi Search guifg=#262626 guibg=#FFFFB6 gui=NONE ctermfg=gray ctermbg=yellow cterm=NONE
+hi Search guifg=#262626 guibg=#FFFFB6 gui=NONE ctermfg=233 ctermbg=yellow cterm=NONE
 hi SpecialKey guifg=#555555 guibg=NONE gui=NONE ctermfg=darkgray ctermbg=NONE cterm=NONE
 hi SpellBad guifg=#FF0000 guibg=NONE gui=underline ctermfg=darkred ctermbg=NONE cterm=NONE
 hi SpellCap guifg=#FF0000 guibg=NONE gui=NONE ctermfg=darkred ctermbg=NONE cterm=NONE
