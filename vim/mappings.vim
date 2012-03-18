@@ -32,6 +32,10 @@ function! <SID>SynStack()
 	echo map(s:ts, 'synIDattr(v:val, "name")')
 endfunc
 
+
 " Go to the end and add a semicolon
 imap <C-ENTER> <ESC>A;
 imap <C-S-ENTER> <ESC>o
+
+" Same as <C-ENTER> but for use in vim through tmux and iTerm2
+imap 02P <ESC>A;
