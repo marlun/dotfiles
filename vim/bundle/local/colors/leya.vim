@@ -16,7 +16,7 @@ let colors_name="vader"
 
 " Top groups
 hi Comment guifg=#93a1a1 guibg=NONE gui=NONE ctermfg=245 ctermbg=NONE cterm=NONE
-hi Constant guifg=#859900 guibg=NONE gui=NONE ctermfg=64 ctermbg=NONE cterm=NONE
+hi Constant guifg=#7B9433 guibg=NONE gui=NONE ctermfg=64 ctermbg=NONE cterm=NONE
 hi Identifier guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi Statement guifg=#268bd2 guibg=NONE gui=NONE ctermfg=33 ctermbg=NONE cterm=NONE
 hi PreProc guifg=#cb4b16 guibg=NONE gui=NONE ctermfg=166 ctermbg=NONE cterm=NONE
@@ -32,8 +32,8 @@ hi Boolean guifg=#6c71c4 guibg=NONE gui=NONE ctermfg=magenta ctermbg=NONE cterm=
 hi Number guifg=#6c71c4 guibg=NONE gui=NONE ctermfg=magenta ctermbg=NONE cterm=NONE
 
 " UI
-hi ColorColumn guifg=NONE guibg=#8B0000 gui=NONE ctermfg=NONE ctermbg=darkred cterm=NONE
-hi Cursor guifg=NONE guibg=#002b36 gui=NONE ctermfg=black ctermbg=white cterm=NONE
+hi ColorColumn guifg=NONE guibg=#FBEECB gui=NONE ctermfg=NONE ctermbg=lightred cterm=NONE
+hi Cursor guifg=#FFFFFF guibg=#666666 gui=NONE ctermfg=black ctermbg=white cterm=NONE
 hi CursorColumn guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=black cterm=NONE
 hi CursorLine guifg=NONE guibg=#eee8d5 gui=NONE ctermfg=NONE ctermbg=254 cterm=NONE
 hi Directory guifg=#268bd2 guibg=NONE gui=NONE ctermfg=darkblue ctermbg=NONE cterm=NONE
@@ -48,15 +48,15 @@ hi FoldColumn guifg=#222222 guibg=#666666 gui=NONE ctermfg=16 ctermbg=darkgray c
 hi SignColumn guifg=#222222 guibg=#666666 gui=NONE ctermfg=16 ctermbg=gray cterm=NONE
 hi IncSearch guifg=#EEC900 guibg=#262626 gui=NONE ctermfg=lightyellow ctermbg=black cterm=NONE
 hi LineNr guifg=NONE guibg=#eee8d5 gui=NONE ctermfg=NONE ctermbg=254 cterm=NONE
-hi MatchParen guifg=#262626 guibg=#EEC900 gui=bold ctermfg=black ctermbg=darkyellow cterm=bold
+hi MatchParen guifg=#262626 guibg=#EEC900 gui=bold ctermfg=darkyellow ctermbg=NONE cterm=bold
 hi ModeMsg guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi MoreMsg guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi NonText guifg=#555555 guibg=NONE gui=NONE ctermfg=darkgray ctermbg=NONE cterm=NONE
 hi Normal guifg=#586e75 guibg=#fdf6e3 gui=NONE ctermfg=240 ctermbg=NONE cterm=NONE
-hi Pmenu guifg=#111111 guibg=#999999 gui=NONE ctermfg=16 ctermbg=darkgray cterm=NONE
-hi PmenuSel guifg=#111111 guibg=#FFFFAF gui=NONE ctermfg=16 ctermbg=yellow cterm=NONE
+hi Pmenu guifg=#111111 guibg=#999999 gui=NONE ctermfg=16 ctermbg=gray cterm=NONE
+hi PmenuSel guifg=#111111 guibg=#FFFFAF gui=NONE ctermfg=16 ctermbg=lightyellow cterm=NONE
 hi PmenuSbar guifg=#cccccc guibg=#cccccc gui=NONE ctermfg=lightgray ctermbg=lightgray cterm=NONE
-hi PmenuThumb guifg=#777777 guibg=#777777 gui=NONE ctermfg=gray ctermbg=gray cterm=NONE
+hi PmenuThumb guifg=#777777 guibg=#777777 gui=NONE ctermfg=darkgray ctermbg=darkgray cterm=NONE
 hi Question guifg=#BCBCBC guibg=#262626 gui=NONE ctermfg=black ctermbg=NONE cterm=NONE
 hi Search guifg=#262626 guibg=#EEC900 gui=NONE ctermfg=black ctermbg=lightyellow cterm=NONE
 hi SpecialKey guifg=#555555 guibg=NONE gui=NONE ctermfg=darkgray ctermbg=NONE cterm=NONE
@@ -89,7 +89,7 @@ hi link StringSpecial Special
 hi link phpComparison Normal
 hi link phpMemberSelector Normal
 hi link phpOperator Normal
-hi link phpParent Special
+hi link phpParent Normal
 hi link phpRelation Normal
 hi link phpSpecialChar StringSpecial
 hi link phpStorageClass Statement

@@ -36,7 +36,7 @@ hi Number guifg=#FCB1FF guibg=NONE gui=NONE ctermfg=magenta ctermbg=NONE cterm=N
 
 " UI
 hi ColorColumn guifg=NONE guibg=#222222 gui=NONE ctermfg=NONE ctermbg=234 cterm=NONE
-hi Cursor guifg=NONE guibg=NONE gui=REVERSE ctermfg=black ctermbg=white cterm=standout
+hi Cursor guifg=#555555 guibg=#EEEEEE gui=NONE ctermfg=black ctermbg=white cterm=standout
 hi CursorColumn guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=black cterm=NONE
 hi CursorLine guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=black cterm=NONE
 hi Directory guifg=#A5D6FB guibg=NONE gui=NONE ctermfg=darkblue ctermbg=NONE cterm=NONE
@@ -102,6 +102,7 @@ hi link javaScriptFunction Statement
 hi link javaScriptNumber Number
 hi link javaScriptIdentifier Statement
 hi link javaScriptNull Type
+hi link javaScriptExceptions Type
 hi link javaScriptSpecial StringSpecial
 hi link javaScriptLabel StringSpecial
 
