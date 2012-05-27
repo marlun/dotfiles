@@ -6,6 +6,7 @@
 [core]
     excludesfile = /Users/marlun/.gitignore
     editor = /Applications/MacVim.app/Contents/MacOS/Vim
+	pager = less -x4
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [merge]
