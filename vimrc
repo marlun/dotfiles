@@ -73,9 +73,6 @@ set hidden
 " Maintain more context around the cursor
 set scrolloff=3
 
-" Show a line on column 81
-set colorcolumn=81
-
 " Makes it possible to have different cursor types for different modes.
 " Works for iTerm2 not sure if it works anywhere else.
 if !has("gui_running")
