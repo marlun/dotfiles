@@ -14,4 +14,12 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Make vim see Vagrantfile as a ruby file
 	autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
+	" Use omnifunc feature if it exists for this filetype
+	if has("autocmd") && exists("+omnifunc")
+		autocmd Filetype *
+		\	if &omnifunc == "" |
+		\		setlocal omnifunc=syntaxcomplete#Complete |
+		\	endif
+	endif
+
 endif

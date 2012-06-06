@@ -1,8 +1,7 @@
-" VIM configuration file by Martin Lundberg
+" Vim configuration file by Martin Lundberg <martin.lundberg@gmail.com>
 "
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General
+" General ------------------------------------------------------------------ {{{
 
 " I use a tool called pathogen to manage my plugins. It's created by Tim Pope
 " and can be downloaded from https://github.com/tpope/vim-pathogen
@@ -19,8 +18,8 @@ filetype plugin indent on
 " Lets add some nice colors.
 colorscheme darth
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" INTERFACE
+" }}}
+" Interface ---------------------------------------------------------------- {{{
 
 " Don't redraw while executing macros, registers, etc.
 set lazyredraw
@@ -46,9 +45,9 @@ set laststatus=2
 " %L = Number of files in the buffer
 " SyntasticStatuslineFlag is method made available by a plugin
 " fugitive#statusline is also a method made available by a plugin
-"set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=[%l,%v][%p%%\ of\ %L]
- "set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=%1*%{SyntasticStatuslineFlag()}%*[%l,%v][%p%%\ of\ %L]
- set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=%1*%{SyntasticStatuslineFlag()}%*%{fugitive#statusline()}[%l,%v][%p%%\ of\ %L]
+" set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=[%l,%v][%p%%\ of\ %L]
+" set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=%1*%{SyntasticStatuslineFlag()}%*[%l,%v][%p%%\ of\ %L]
+set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=%1*%{SyntasticStatuslineFlag()}%*%{fugitive#statusline()}[%l,%v][%p%%\ of\ %L]
 
 " Allways show the mode that vim is in
 set showmode
@@ -87,8 +86,8 @@ else
 	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" EDITOR
+" }}}
+" Editor ------------------------------------------------------------------- {{{
 
 " In vi the backspace key could normally only delete the text inserted in the
 " current edit session. I want the backspace key to be able to remove
@@ -115,23 +114,16 @@ set autoindent
 " Characters to use in 'list' mode
 set listchars=tab:▸\ ,trail:·,eol:¬
 
-" Use omnifunc feature if it exists for this filetype
-if has("autocmd") && exists("+omnifunc")
-	autocmd Filetype *
-	\	if &omnifunc == "" |
-	\		setlocal omnifunc=syntaxcomplete#Complete |
-	\	endif
-endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MISC
+" }}}
+" Misc --------------------------------------------------------------------- {{{
 
 " To make it easier to search for things I make vim ignore case except when
 " the search pattern contains upper case characters
 set ignorecase
 set smartcase
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" EXTERNAL FILES
+" }}}
+" External fils ------------------------------------------------------------ {{{
 
 " All my mappings, auto commands and plugins settings
 runtime mappings.vim
