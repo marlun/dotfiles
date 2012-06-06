@@ -60,6 +60,6 @@
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/jslint"]
-	path = vim/bundle/jslint
-	url = https://github.com/hallettj/jslint.vim.git
+[submodule "vim/bundle/jshint"]
+	path = vim/bundle/jshint
+	url = https://github.com/wookiehangover/jshint.vim.git
