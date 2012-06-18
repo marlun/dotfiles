@@ -32,10 +32,19 @@ function! <SID>SynStack()
 	echo map(s:ts, 'synIDattr(v:val, "name")')
 endfunc
 
+" The second lines in the following mappings is for iTerm2 but for them to work
+" you need to create a mapping in iterm too so it sends the correct escape
+" sequences. Read more here:
+" https://groups.google.com/d/msg/iterm2-discuss/VEiCSc5LCIs/U5fqrwNFm88J
+
 " Go to the end and add a semicolon
 imap <C-ENTER> <ESC>A;
-imap <S-ENTER> <ESC>maA;<ESC>'aa
-imap <C-S-ENTER> <ESC>o
-
-" Same as <C-ENTER> but for use in vim through tmux and iTerm2
 imap 02P <ESC>A;
+
+" Add a semicolon without moving the cursor and leaving insert mode
+imap <S-ENTER> <ESC>maA;<ESC>'aa
+imap O2Q <ESC>maA;<ESC>'aa
+
+" Add a new line below current line and go to it
+imap <C-S-ENTER> <ESC>o
+imap O2R <ESC>o
