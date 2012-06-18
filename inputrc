@@ -1,0 +1,12 @@
+# When using TAB completion if there are more then one match
+# show them all instantly
+set show-all-if-ambiguous on
+
+# When using TAB completion ignore the case of the file. This
+# means 'doc<TAB>' can complete into 'Documents'
+set completion-ignore-case on
+
+# Since Alt-f and Alt-b doesn't work on OSX I've changed it
+# into Ctrl-f and Ctrl-b
+"": forward-word
+"": backward-word
