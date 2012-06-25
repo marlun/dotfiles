@@ -73,7 +73,7 @@ hi TabLineFill guifg=#555555 guibg=#AAAAAA gui=NONE ctermfg=NONE ctermbg=NONE ct
 hi TabLineSel guifg=#111111 guibg=#DDDDDD gui=bold ctermfg=NONE ctermbg=NONE cterm=NONE
 hi Title guifg=#C6C5FE guibg=NONE gui=NONE ctermfg=darkcyan guibg=NONE gui=NONE
 hi Visual guifg=#555555 guibg=#EEEEEE gui=NONE ctermfg=lightgray guibg=darkgray gui=NONE
-hi WarningMsg guifg=#FFFFFF guibg=#8B0000 gui=NONE ctermfg=NONE ctermbg=red cterm=NONE
+hi WarningMsg guifg=#FFFFFF guibg=#8B0000 gui=NONE ctermfg=232 ctermbg=red cterm=NONE
 hi WildMenu guifg=#FFFFB6 guibg=NONE gui=NONE ctermfg=yellow ctermbg=NONE cterm=NONE
 
 " Statusline
