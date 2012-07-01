@@ -14,6 +14,10 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Make vim see Vagrantfile as a ruby file
 	autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
+	" MAke vim see javascript template files as html
+	autocmd BufNewFile,BufRead *.jst setlocal syntax=jst
+	autocmd BufNewFile,BufRead *.jst setlocal filetype=jst
+
 	" Use omnifunc feature if it exists for this filetype
 	if has("autocmd") && exists("+omnifunc")
 		autocmd Filetype *
