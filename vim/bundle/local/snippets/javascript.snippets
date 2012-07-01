@@ -20,30 +20,46 @@ snippet else
 		${1}
 	}
 snippet bbm
-	Backbone.Model.extend({
+	var ${1:name} = Backbone.Model.extend({
 
-		${1}
+		${2}
 
-	});
+	})
+
+	module.exports = $1
 snippet bbc
-	Backbone.Collection.extend({
+	var ${1:name} = Backbone.Collection.extend({
 
-		${1}
+		${2}
 
-	});
+	})
+
+	module.exports = $1
 snippet bbv
-	Backbone.View.extend({
+	var ${1:name} = Backbone.View.extend({
 
-		${1}
+		${2}
 
-	});
+	})
+
+	module.exports = $1
 snippet bbr
-	Backbone.Router.extend({
+	var ${1:name} = Backbone.Router.extend({
 
-		${1}
+		${2}
 
-	});
+	})
+
+	module.exports = $1
 snippet iife
 	(function(${1}) {
 		${3}
 	}(${2}))
+snippet mod
+	var ${1:name} = function() {
+
+		${2}
+
+	}
+
+	module.exports = $1
