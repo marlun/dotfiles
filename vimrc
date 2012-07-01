@@ -18,6 +18,9 @@ filetype plugin indent on
 " Lets add some nice colors.
 colorscheme darth
 
+" Make the unnamed register the "* register
+set clipboard=unnamed
+
 " }}}
 " Interface ---------------------------------------------------------------- {{{
 
