@@ -1,6 +1,10 @@
 " More usable leader (easier to reach)
 let mapleader=' '
 
+" Add mappings to make it easier to edit .vimrc
+nnoremap <leader>0 :e ~/.vimrc<CR>
+nnoremap <leader>9 :source ~/.vimrc<CR>
+
 " In NORMAL mode Ctrl-l removes search highlights
 nmap <silent> <C-l> :nohlsearch<CR>
 
