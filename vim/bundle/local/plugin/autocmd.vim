@@ -17,6 +17,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd BufNewFile,BufRead *.jst setlocal syntax=jst
 	autocmd BufNewFile,BufRead *.jst setlocal filetype=jst
 
+	" Enable spellchecking in git commit messages
+	autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
+
 	" Use omnifunc feature if it exists for this filetype
 	if has("autocmd") && exists("+omnifunc")
 		autocmd Filetype *
