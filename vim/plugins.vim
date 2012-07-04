@@ -1,93 +1,67 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree
+" ================ NERDTree ==================
 
-" I only use the toggle feature of NERDCommenter
-map <silent> <leader>s :NERDTreeToggle<CR>
-
-" Tell NERDTree to close after opening a file
 let NERDTreeQuitOnOpen=1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDCommenter
+map <silent> <leader>ee :NERDTreeToggle<CR>
+map <silent> <leader>ef :NERDTreeFind<CR>
 
-" I only use the toggle feature of NERDCommenter
-map <silent> <Leader>e <plug>NERDCommenterToggle
+" ================ Syntastic ==================
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic
-
-" Jump to the first error
 let g:syntastic_auto_jump=1
-
-" Automatically open and close location list on error
 let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = {
+	\'mode': 'active',
+	\'active_filetypes': [],
+	\'passive_filetypes': ['javascript']
+\}
 
-" Don't run syntax check on javascript automatically
-let g:syntastic_mode_map = { 'mode': 'active',
-						   \ 'active_filetypes': [],
-						   \ 'passive_filetypes': ['javascript'] }
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FuzzyFinder
+" ================ FuzzyFinder ==================
 
 " FuzzyFinder's path to ctags
 if has("gui_running")
 	let g:fuf_buffertag_ctagsPath = '/usr/local/bin/ctags'
 endif
 
-" FuzzyFinder bufferlist
-map <leader>f :FufBuffer<cr>
-
-" FuzzyFinder buffter tag list
-map <leader>t :FufBufferTag<cr>
-
-" FuzzyFinder open file in project
-map <leader>o :FufCoverageFile<cr>
-
-" FuzzyFinder options
 if !exists('g:fuf_file_exclude')
-	let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
+	let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc|png|jpg|jpeg|gif)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
 endif
 if !exists('g:fuf_dir_exclude')
 	let g:fuf_dir_exclude = '\v(^|[/\\])\.(hg|git|bzr)($|[/\\])|tiny_mce.?|template_c|node_modules'
 endif
 if !exists('g:fuf_coveragefile_exclude')
-	let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
+	let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc|png|jpg|jpeg|gif)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
 endif
 
+map <leader>f :FufBuffer<cr>
+map <leader>t :FufBufferTag<cr>
+map <leader>o :FufCoverageFile<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tagbar
+" ================ TagBar ==================
 
-" Toggle Tagbar
-map <leader>g :TagbarToggle<cr>
-
-" Only have the Tagbar open when you need it
 let g:tagbar_autoclose = 1
-
-" Remove the use of unicode arrows in tagbar
 let g:tagbar_usearrows = 0
-
-" Tagbar ctags command
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-
 let g:tagbar_type_php = {
-	\ 'ctagstype' : 'PHP',
-	\ 'kinds'     : [
-		\ 'd:constant definitions',
-		\ 'c:classes',
-		\ 'i:interfaces',
-		\ 'f:functions'
-	\ ]
-\ }
+	\'ctagstype' : 'PHP',
+	\'kinds'     : [
+		\'d:constant definitions',
+		\'c:classes',
+		\'i:interfaces',
+		\'f:functions'
+	\]
+\}
 
+map <leader>l :TagbarToggle<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" snipMate
+" ================ snipMate ==================
 
 let g:snipMate = {'no_match_completion_feedkeys_chars': "\<tab>" }
 let g:snipMate.scope_aliases = { 'php': 'php,html' }
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" auto-pairs
+" ================ Auto-pairs ==================
+
 let g:AutoPairsShortcutFastWrap = '<C-S-J>'
+
+" ================ tComment ==================
+
+map <leader>c :TComment<cr>
