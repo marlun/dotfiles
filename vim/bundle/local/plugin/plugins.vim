@@ -27,9 +27,9 @@ map <silent> <leader>ef :NERDTreeFind<CR>
 let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = {
-	\'mode': 'active',
-	\'active_filetypes': [],
-	\'passive_filetypes': ['javascript']
+\	'mode': 'active',
+\	'active_filetypes': [],
+\	'passive_filetypes': ['javascript']
 \}
 
 " ================ FuzzyFinder ==================
@@ -59,12 +59,12 @@ let g:tagbar_autoclose = 1
 let g:tagbar_usearrows = 0
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:tagbar_type_php = {
-	\'ctagstype' : 'PHP',
-	\'kinds'     : [
-		\'d:constant definitions',
-		\'c:classes',
-		\'i:interfaces',
-		\'f:functions'
+\	'ctagstype' : 'PHP',
+\	'kinds'     : [
+	\	'd:constant definitions',
+	\	'c:classes',
+	\	'i:interfaces',
+	\	'f:functions'
 	\]
 \}
 
