@@ -1,3 +1,20 @@
+" ================ General ==================
+
+runtime macros/matchit.vim
+
+" ================ snipMate ==================
+
+let g:snipMate = {'no_match_completion_feedkeys_chars': "\<tab>" }
+let g:snipMate.scope_aliases = { 'php': 'php,html' }
+
+" ================ Auto-pairs ==================
+
+let g:AutoPairsShortcutFastWrap = '<C-S-J>'
+
+" ================ tComment ==================
+
+map <leader>c :TComment<cr>
+
 " ================ NERDTree ==================
 
 let NERDTreeQuitOnOpen=1
@@ -52,16 +69,3 @@ let g:tagbar_type_php = {
 \}
 
 map <leader>l :TagbarToggle<cr>
-
-" ================ snipMate ==================
-
-let g:snipMate = {'no_match_completion_feedkeys_chars': "\<tab>" }
-let g:snipMate.scope_aliases = { 'php': 'php,html' }
-
-" ================ Auto-pairs ==================
-
-let g:AutoPairsShortcutFastWrap = '<C-S-J>'
-
-" ================ tComment ==================
-
-map <leader>c :TComment<cr>

@@ -1,31 +1,28 @@
 " Vim configuration file by Martin Lundberg <martin.lundberg@gmail.com>
-"
 
-" General ------------------------------------------------------------------ {{{
+" ========================= General ========================= {{{
 
-" I use a tool called pathogen to manage my plugins. It's created by Tim Pope
-" and can be downloaded from https://github.com/tpope/vim-pathogen
-"
-" For the loading of plugins to work pathogen needs to run first
+runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
+call pathogen#helptags()
 
-" Enable syntax highlighting and overrule with defaults
+" Enable syntax highlighting and choose colorscheme
 syntax on
+colorscheme darth
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
 
-" Lets add some nice colors.
-colorscheme darth
-
 " Make the unnamed register the "* register
 set clipboard=unnamed
 
+" To make it easier to search for things I make vim ignore case except when
+" the search pattern contains upper case characters
+set ignorecase
+set smartcase
+
 " }}}
 " Interface ---------------------------------------------------------------- {{{
-
-" Don't redraw while executing macros, registers, etc.
-set lazyredraw
 
 " Makes vim change the title of the window so it's possible to see if the file
 " has been modified, is readonly, etc.
@@ -57,6 +54,9 @@ set showmode
 
 " Show partial commands as you type them.
 set showcmd
+
+" Don't redraw while executing macros, registers, etc.
+set lazyredraw
 
 " Complete to the longest common string and list matches
 set wildmode=list:longest
@@ -118,20 +118,3 @@ set autoindent
 set listchars=tab:▸\ ,trail:·,eol:¬
 
 " }}}
-" Misc --------------------------------------------------------------------- {{{
-
-" To make it easier to search for things I make vim ignore case except when
-" the search pattern contains upper case characters
-set ignorecase
-set smartcase
-
-" }}}
-" External fils ------------------------------------------------------------ {{{
-
-" All my mappings, auto commands and plugins settings
-runtime mappings.vim
-runtime autocmd.vim
-runtime plugins.vim
-
-" Make % match more then just brackets
-runtime macros/matchit.vim
