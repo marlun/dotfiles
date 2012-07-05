@@ -17,11 +17,6 @@ nmap <silent> <leader>q :q<CR>
 " Save buffer (easier on the fingers)
 nmap <silent> <leader>w :w<CR>
 
-" Swap ` and ' because I use ` more often but on a swedish keyboard layouts
-" you have to hit <space> after ` for it to become `a instead of à
-noremap ' `
-noremap ` '
-
 " Toggle list mode
 nmap <silent> <leader>- :set nolist!<CR>
 
