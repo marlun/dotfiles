@@ -19,8 +19,8 @@ map <leader>c :TComment<cr>
 
 let NERDTreeQuitOnOpen=1
 
-map <silent> <leader>ee :NERDTreeToggle<CR>
-map <silent> <leader>ef :NERDTreeFind<CR>
+map <silent> <leader>e :NERDTreeToggle<CR>
+map <silent> <leader>s :NERDTreeFind<CR>
 
 " ================ Syntastic ==================
 
