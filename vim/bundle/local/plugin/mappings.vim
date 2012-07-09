@@ -41,8 +41,8 @@ imap <C-ENTER> <ESC>A;
 imap 02P <ESC>A;
 
 " Add a semicolon without moving the cursor and leaving insert mode
-imap <S-ENTER> <ESC>maA;<ESC>'aa
-imap O2Q <ESC>maA;<ESC>'aa
+imap <S-ENTER> <ESC>maA;<ESC>`aa
+imap O2Q <ESC>maA;<ESC>`aa
 
 " Add a new line below current line and go to it
 imap <C-S-ENTER> <ESC>o
