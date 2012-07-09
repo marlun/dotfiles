@@ -20,6 +20,9 @@ set clipboard=unnamed
 set ignorecase
 set smartcase
 
+" Add correct words which is not in the default spell file here
+set spellfile=~/.vim/bundle/local/spell/sv.utf-8.add
+
 " }}}
 " Interface ---------------------------------------------------------------- {{{
 
