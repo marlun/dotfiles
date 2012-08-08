@@ -3,6 +3,26 @@ snippet php
 	<?php
 	
 	${1}
+snippet script
+	// Description:
+	//
+	// ${1}
+
+	// Show all PHP errors
+	ini_set('display_errors', 1);
+	error_reporting(-1);
+
+	// Dependencies
+	${2}
+
+	// Hack for testability (won't run main if required)
+	if (count(debug_backtrace()) == 0) {
+		main();
+	}
+
+	function main() {
+		${3}
+	}
 snippet f
 	function ${1:name}(${2}) {
 		${3}
@@ -29,6 +49,10 @@ snippet foreach
 	foreach (${1:$list} as ${2:$item}) {
 		{VISUAL}${3}
 	}
+snippet while
+	while (${1:condition}) {
+		${2}
+	}
 snippet vd
 	var_dump({VISUAL}${1}); ${2:exit;}
 snippet array
@@ -37,3 +61,5 @@ snippet class
 	class ${1:name} {
 		${2}
 	}
+snippet rq
+	require_once('${1}');${2}
