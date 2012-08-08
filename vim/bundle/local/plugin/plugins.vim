@@ -10,44 +10,48 @@ let g:snipMate.scope_aliases = { 'php': 'php,html' }
 " ================ Auto-pairs ==================
 
 let g:AutoPairsShortcutFastWrap = '<C-S-J>'
+let g:AutoPairsFlyMode = 1
 
 " ================ tComment ==================
 
-map <leader>c :TComment<cr>
+map <silent> <leader>e :TComment<cr>
 
 " ================ NERDTree ==================
 
 let NERDTreeQuitOnOpen=1
 
-map <silent> <leader>e :NERDTreeToggle<CR>
-map <silent> <leader>s :NERDTreeFind<CR>
+map <silent> <leader>s :NERDTreeToggle<CR>
 
 " ================ Syntastic ==================
 
 let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = {
-\	'mode': 'active',
-\	'active_filetypes': [],
-\	'passive_filetypes': ['javascript']
-\}
+
+" ================ AutoComplPop ==================
+
+let g:acp_behaviorXmlOmniLength = -1
+let g:acp_behaviorHtmlOmniLength = -1
 
 " ================ FuzzyFinder ==================
+
+let g:fuf_modesDisable = ['mrucmd']
+
+autocmd BufNewFile,BufRead *.js let g:fuf_buffertag_ctagsPath = '/usr/local/bin/jsctags'
 
 " FuzzyFinder's path to ctags
 if has("gui_running")
 	let g:fuf_buffertag_ctagsPath = '/usr/local/bin/ctags'
 endif
 
-if !exists('g:fuf_file_exclude')
+" if !exists('g:fuf_file_exclude')
 	let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc|png|jpg|jpeg|gif)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
-endif
-if !exists('g:fuf_dir_exclude')
+" endif
+" if !exists('g:fuf_dir_exclude')
 	let g:fuf_dir_exclude = '\v(^|[/\\])\.(hg|git|bzr)($|[/\\])|tiny_mce.?|template_c|node_modules'
-endif
-if !exists('g:fuf_coveragefile_exclude')
+" endif
+" if !exists('g:fuf_coveragefile_exclude')
 	let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc|png|jpg|jpeg|gif)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
-endif
+" endif
 
 map <leader>f :FufBuffer<cr>
 map <leader>t :FufBufferTag<cr>
