@@ -1,1 +1,4 @@
-/*jshint asi:true es5:true */
+{
+	"asi": true,
+	"es5": true
+}
