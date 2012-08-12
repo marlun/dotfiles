@@ -15,6 +15,7 @@ let g:AutoPairsFlyMode = 1
 " ================ tComment ==================
 
 map <silent> <leader>e :TComment<cr>
+let g:tcomment_types = {'javascript':'//%s'}
 
 " ================ NERDTree ==================
 
