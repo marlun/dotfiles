@@ -60,3 +60,6 @@
 [submodule "vim/bundle/tcomment"]
 	path = vim/bundle/tcomment
 	url = https://github.com/tomtom/tcomment_vim.git
+[submodule "vim/bundle/vimregex"]
+	path = vim/bundle/vimregex
+	url = https://github.com/Raimondi/VimRegEx.vim.git
