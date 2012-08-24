@@ -117,11 +117,7 @@ set smarttab
 set autoindent
 
 " Characters to use in 'list' mode
-if version > 700
-	set listchars=tab:▸\ ,trail:·,eol:¬
-else
-	set listchars=tab:>-,trail:-
-endif
+set listchars=tab:▸\ ,trail:·,eol:¬
 
 " }}}
 
