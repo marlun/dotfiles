@@ -119,6 +119,9 @@ set autoindent
 " Characters to use in 'list' mode
 set listchars=tab:▸\ ,trail:·,eol:¬
 
+" Treat all numbers as decimal numbers
+set nrformats=
+
 " }}}
 
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ |
