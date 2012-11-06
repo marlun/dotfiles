@@ -63,3 +63,6 @@
 [submodule "vim/bundle/vimregex"]
 	path = vim/bundle/vimregex
 	url = https://github.com/Raimondi/VimRegEx.vim.git
+[submodule "vim/bundle/eunuch"]
+	path = vim/bundle/eunuch
+	url = https://github.com/tpope/vim-eunuch.git
