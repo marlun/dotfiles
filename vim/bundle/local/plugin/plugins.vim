@@ -5,7 +5,7 @@ runtime macros/matchit.vim
 " ================ snipMate ==================
 
 let g:snipMate = {'no_match_completion_feedkeys_chars': "\<tab>" }
-let g:snipMate.scope_aliases = { 'php': 'php,html' }
+let g:snipMate.scope_aliases = { 'php': 'php' }
 
 " ================ Auto-pairs ==================
 
