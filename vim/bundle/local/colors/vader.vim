@@ -92,6 +92,7 @@ hi link phpStorageClass Statement
 hi link phpStructure Statement
 hi link phpVarSelector Normal
 hi link phpFunctions Type
+hi link phpSpecialFunction Type
 hi link phpInclude phpFunctions
 
 " JavaScript
