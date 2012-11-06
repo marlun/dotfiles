@@ -1,5 +1,6 @@
 --pager=less
 --ignore-dir=templates_c
+--ignore-dir=node_modules
 
 --type-set
 coffeescript=.coffee
