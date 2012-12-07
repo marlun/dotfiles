@@ -1,4 +1,3 @@
-setlocal iskeyword+=$
 nmap <silent> K :silent !open http://php.net/<C-R><C-W><CR>
 
 " Compile current files
