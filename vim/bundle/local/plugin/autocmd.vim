@@ -23,6 +23,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Enable spellchecking in git commit messages
 	autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 
+	" Make sure editing crontab works in OS X
+	autocmd FileType crontab set nobackup nowritebackup
+
 	" Use omnifunc feature if it exists for this filetype
 	if has("autocmd") && exists("+omnifunc")
 		autocmd Filetype *
