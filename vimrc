@@ -49,7 +49,8 @@ set laststatus=2
 " fugitive#statusline is also a method made available by a plugin
 " set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=[%l,%v][%p%%\ of\ %L]
 " set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=%1*%{SyntasticStatuslineFlag()}%*[%l,%v][%p%%\ of\ %L]
-set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=%1*%{SyntasticStatuslineFlag()}%*%{fugitive#statusline()}[%l,%v][%p%%\ of\ %L]
+" set statusline=%f\ %m%r%w\ [%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}]\%=%1*%{SyntasticStatuslineFlag()}%*%{fugitive#statusline()}[%l,%v][%p%%\ of\ %L]
+set statusline=%f\ %m%r%w\%=%1*%{SyntasticStatuslineFlag()}%*%{fugitive#statusline()}[%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}][%l:%v][%p%%\ of\ %L]
 
 " Allways show the mode that vim is in
 set showmode
