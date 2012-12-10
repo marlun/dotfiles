@@ -56,3 +56,12 @@
 [submodule "vim/bundle/tcomment"]
 	path = vim/bundle/tcomment
 	url = https://github.com/tomtom/tcomment_vim.git
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "vim/bundle/autocomplpop"]
+	path = vim/bundle/autocomplpop
+	url = git://github.com/vim-scripts/AutoComplPop.git
+[submodule "vim/bundle/matchtag"]
+	path = vim/bundle/matchtag
+	url = git://github.com/gregsexton/MatchTag.git
