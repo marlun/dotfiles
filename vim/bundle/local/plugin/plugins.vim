@@ -2,6 +2,13 @@
 
 runtime macros/matchit.vim
 
+" ================ UltiSnips ==================
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories = ["snips"]
+let g:UltiSnipsNoPythonWarning = 1
+
 " ================ snipMate ==================
 
 let g:snipMate = {'no_match_completion_feedkeys_chars': "\<tab>" }
