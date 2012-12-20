@@ -16,7 +16,7 @@ let colors_name="vader"
 
 " Top groups
 hi Comment guifg=#93a1a1 guibg=NONE gui=NONE ctermfg=245 ctermbg=NONE cterm=NONE
-hi Constant guifg=#7B9433 guibg=NONE gui=NONE ctermfg=64 ctermbg=NONE cterm=NONE
+hi Constant guifg=#528323 guibg=NONE gui=NONE ctermfg=64 ctermbg=NONE cterm=NONE
 hi Identifier guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi Statement guifg=#268bd2 guibg=NONE gui=NONE ctermfg=33 ctermbg=NONE cterm=NONE
 hi PreProc guifg=#cb4b16 guibg=NONE gui=NONE ctermfg=166 ctermbg=NONE cterm=NONE
@@ -52,7 +52,7 @@ hi MatchParen guifg=#262626 guibg=#EEC900 gui=bold ctermfg=darkyellow ctermbg=NO
 hi ModeMsg guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi MoreMsg guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 hi NonText guifg=#555555 guibg=NONE gui=NONE ctermfg=darkgray ctermbg=NONE cterm=NONE
-hi Normal guifg=#586e75 guibg=#fdf6e3 gui=NONE ctermfg=240 ctermbg=NONE cterm=NONE
+hi Normal guifg=#444444 guibg=#fdf6e3 gui=NONE ctermfg=240 ctermbg=NONE cterm=NONE
 hi Pmenu guifg=#111111 guibg=#999999 gui=NONE ctermfg=16 ctermbg=gray cterm=NONE
 hi PmenuSel guifg=#111111 guibg=#FFFFAF gui=NONE ctermfg=16 ctermbg=lightyellow cterm=NONE
 hi PmenuSbar guifg=#cccccc guibg=#cccccc gui=NONE ctermfg=lightgray ctermbg=lightgray cterm=NONE
