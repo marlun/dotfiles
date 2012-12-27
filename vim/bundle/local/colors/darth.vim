@@ -143,3 +143,6 @@ hi link javaScript Normal
 " Diff
 hi diffRemoved guifg=#FF0000 guibg=NONE gui=NONE ctermfg=darkred ctermbg=NONE cterm=NONE
 hi diffAdded guifg=#008000 guibg=NONE gui=NONE ctermfg=darkgreen ctermbg=NONE cterm=NONE
+
+" CtrlP
+hi link CtrlPMatch Search

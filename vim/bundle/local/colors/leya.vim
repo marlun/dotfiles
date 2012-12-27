@@ -128,6 +128,10 @@ hi link vimParenSep Normal
 hi link helpHyperTextJump Statement
 
 " HTML
-hi link htmlEndTag Statement
 hi link htmlH1 Normal
 hi link javaScript Normal
+hi link htmlTag Normal
+hi link htmlEndTag Normal
+
+" CtrlP
+hi link CtrlPMatch Search
