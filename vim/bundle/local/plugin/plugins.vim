@@ -2,6 +2,14 @@
 
 runtime macros/matchit.vim
 
+" ================ CtrlP ==================
+let g:ctrlp_map = ''
+let g:ctrlp_extensions = ['buffertag']
+let g:ctrlp_working_path_mode = 0
+nnoremap <leader>o :CtrlP<cr>
+nnoremap <leader>f :CtrlPBuffer<cr>
+nnoremap <leader>t :CtrlPBufTag<cr>
+
 " ================ UltiSnips ==================
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -61,9 +69,9 @@ endif
 	let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc|png|jpg|jpeg|gif)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
 " endif
 
-map <leader>f :FufBuffer<cr>
-map <leader>t :FufBufferTag<cr>
-map <leader>o :FufCoverageFile<cr>
+" map <leader>f :FufBuffer<cr>
+" map <leader>t :FufBufferTag<cr>
+" map <leader>o :FufCoverageFile<cr>
 
 " ================ TagBar ==================
 
