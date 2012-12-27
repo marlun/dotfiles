@@ -9,6 +9,9 @@ call pathogen#infect()
 syntax on
 colorscheme darth
 
+" Don't highlight very long lines
+set synmaxcol=512
+
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
 
