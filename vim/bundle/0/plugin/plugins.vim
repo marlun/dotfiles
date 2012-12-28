@@ -6,7 +6,7 @@ runtime macros/matchit.vim
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsSnippetDirectories = ["snips"]
+let g:UltiSnipsSnippetDirectories = ["snippets"]
 let g:UltiSnipsNoPythonWarning = 1
 
 " ================ snipMate ==================
