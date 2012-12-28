@@ -2,14 +2,6 @@
 
 runtime macros/matchit.vim
 
-" ================ CtrlP ==================
-let g:ctrlp_map = ''
-let g:ctrlp_extensions = ['buffertag']
-let g:ctrlp_working_path_mode = 0
-nnoremap <leader>o :CtrlP<cr>
-nnoremap <leader>f :CtrlPBuffer<cr>
-nnoremap <leader>t :CtrlPBufTag<cr>
-
 " ================ UltiSnips ==================
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -18,60 +10,41 @@ let g:UltiSnipsSnippetDirectories = ["snips"]
 let g:UltiSnipsNoPythonWarning = 1
 
 " ================ snipMate ==================
-
 let g:snipMate = {'no_match_completion_feedkeys_chars': "\<tab>" }
 let g:snipMate.scope_aliases = { 'php': 'php' }
 
 " ================ Auto-pairs ==================
-
 let g:AutoPairsShortcutFastWrap = '<C-S-J>'
 let g:AutoPairsFlyMode = 1
 
 " ================ tComment ==================
-
 map <silent> <leader>e :TComment<cr>
 let g:tcomment_types = {'javascript':'//%s'}
 
 " ================ NERDTree ==================
-
 let NERDTreeQuitOnOpen=1
 
 map <silent> <leader>s :NERDTreeToggle<CR>
 
 " ================ Syntastic ==================
-
 let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
 
 " ================ AutoComplPop ==================
-
 let g:acp_behaviorXmlOmniLength = -1
 let g:acp_behaviorHtmlOmniLength = -1
 
 " ================ FuzzyFinder ==================
-
-let g:fuf_modesDisable = ['mrucmd']
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc|png|jpg|jpeg|gif)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
+let g:fuf_dir_exclude = '\v(^|[/\\])\.(hg|git|bzr)($|[/\\])|tiny_mce.?|template_c|node_modules'
+let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc|png|jpg|jpeg|gif)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
 
 autocmd BufNewFile,BufRead *.js let g:fuf_buffertag_ctagsPath = '/usr/local/bin/jsctags'
 
-" FuzzyFinder's path to ctags
-if has("gui_running")
-	let g:fuf_buffertag_ctagsPath = '/usr/local/bin/ctags'
-endif
-
-" if !exists('g:fuf_file_exclude')
-	let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc|png|jpg|jpeg|gif)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
-" endif
-" if !exists('g:fuf_dir_exclude')
-	let g:fuf_dir_exclude = '\v(^|[/\\])\.(hg|git|bzr)($|[/\\])|tiny_mce.?|template_c|node_modules'
-" endif
-" if !exists('g:fuf_coveragefile_exclude')
-	let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po]|pyc|png|jpg|jpeg|gif)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|.*/tiny_mce.?/.*|.*template_c.*|node_modules'
-" endif
-
-" map <leader>f :FufBuffer<cr>
-" map <leader>t :FufBufferTag<cr>
-" map <leader>o :FufCoverageFile<cr>
+map <leader>f :FufBuffer<cr>
+map <leader>t :FufBufferTag<cr>
+map <leader>o :FufCoverageFile<cr>
+map <leader>r :FufMruFile<cr>
 
 " ================ TagBar ==================
 

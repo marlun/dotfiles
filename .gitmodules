@@ -19,11 +19,11 @@
 	ignore = untracked
 [submodule "vim/bundle/fuzzyfinder"]
 	path = vim/bundle/fuzzyfinder
-	url = https://github.com/vim-scripts/FuzzyFinder.git
+	url = git://github.com/vim-scripts/FuzzyFinder.git
 	ignore = untracked
 [submodule "vim/bundle/L9"]
 	path = vim/bundle/L9
-	url = https://github.com/vim-scripts/L9.git
+	url = git://github.com/vim-scripts/L9.git
 	ignore = untracked
 [submodule "vim/bundle/xmledit"]
 	path = vim/bundle/xmledit
@@ -59,12 +59,10 @@
 [submodule "vim/bundle/autocomplpop"]
 	path = vim/bundle/autocomplpop
 	url = git://github.com/vim-scripts/AutoComplPop.git
+	ignore = untracked
 [submodule "vim/bundle/matchtag"]
 	path = vim/bundle/matchtag
 	url = git://github.com/gregsexton/MatchTag.git
-[submodule "vim/bundle/ctrlp"]
-	path = vim/bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule "vim/bundle/html5"]
 	path = vim/bundle/html5
 	url = git://github.com/othree/html5.vim.git
