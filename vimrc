@@ -128,7 +128,6 @@ set nrformats=
 
 " }}}
 " Misc ------------------------------------------------------------------- {{{
-let g:fuf_modesDisable = ['mrucmd']
 
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ |
 \	diffthis | wincmd p | diffthis
