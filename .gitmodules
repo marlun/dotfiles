@@ -79,3 +79,12 @@
 	path = vim/bundle/visualstar
 	url = git://github.com/thinca/vim-visualstar.git
 	ignore = untracked
+[submodule "vim/bundle/scriptease"]
+	path = vim/bundle/scriptease
+	url = git://github.com/tpope/vim-scriptease.git
+[submodule "vim/bundle/todo"]
+	path = vim/bundle/todo
+	url = git://github.com/neochrome/todo.vim.git
+[submodule "vim/bundle/phplocalvarcheck"]
+	path = vim/bundle/phplocalvarcheck
+	url = git://github.com/vim-scripts/php_localvarcheck.vim.git
