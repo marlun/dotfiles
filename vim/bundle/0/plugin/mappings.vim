@@ -5,7 +5,7 @@ let mapleader=' '
 nnoremap Y y$
 
 " In NORMAL mode Ctrl-l removes search highlights
-nnoremap <silent> <C-[> :nohlsearch<CR>
+nnoremap <silent> <c-l> :nohlsearch<CR>
 
 " In INSERT mode Ctrl-l goes into NORMAL mode
 " imap <C-l> <ESC>
