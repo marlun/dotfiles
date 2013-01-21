@@ -23,7 +23,7 @@ hi PreProc guifg=#cb4b16 guibg=NONE gui=NONE ctermfg=166 ctermbg=NONE cterm=NONE
 hi Type guifg=#2aa198 guibg=NONE gui=NONE ctermfg=37 ctermbg=NONE cterm=NONE
 hi Special guifg=#b58900 guibg=NONE gui=NONE ctermfg=136 ctermbg=NONE cterm=NONE
 hi Underlined guifg=NONE guibg=NONE gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
-hi Ignore guifg=#fdf6e3 guibg=NONE gui=NONE ctermfg=230 ctermbg=NONE cterm=NONE
+hi Ignore guifg=#93a1a1 guibg=NONE gui=NONE ctermfg=245 ctermbg=NONE cterm=NONE
 hi Error guifg=#FFFFFF guibg=#FF0000 gui=NONE ctermfg=white ctermbg=darkred cterm=NONE
 hi Todo guifg=#cb4b16 guibg=NONE gui=NONE ctermfg=166 ctermbg=NONE cterm=NONE
 
@@ -98,6 +98,7 @@ hi link phpVarSelector Normal
 hi link phpFunctions Type
 hi link phpInclude phpFunctions
 hi link phpDefine Statement
+hi link PhpLocalVarCheckError Comment
 
 " JavaScript
 hi link javaScriptFunction Statement
@@ -133,5 +134,7 @@ hi link javaScript Normal
 hi link htmlTag Normal
 hi link htmlEndTag Normal
 
-" CtrlP
-hi link CtrlPMatch Search
+" Todo
+hi link TodoItemAdditionalText Normal
+hi link TodoItemDone Comment
+hi link TodoItem Type

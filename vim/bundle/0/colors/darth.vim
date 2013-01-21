@@ -138,6 +138,7 @@ hi link helpHyperTextJump Statement
 " HTML
 hi link htmlEndTag Normal
 hi link htmlH1 Normal
+hi link htmlItalic Special
 hi link javaScript Normal
 
 " Diff
