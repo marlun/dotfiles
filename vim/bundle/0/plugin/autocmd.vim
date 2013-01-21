@@ -26,6 +26,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Make sure editing crontab works in OS X
 	autocmd FileType crontab set nobackup nowritebackup
 
+	" Make sure editing crontab works in OS X
+	autocmd FileType todo noremap <cr> :TodoToggle<cr>
+
 	" Use omnifunc feature if it exists for this filetype
 	if has("autocmd") && exists("+omnifunc")
 		autocmd Filetype *
