@@ -1,23 +1,26 @@
 " More usable leader (easier to reach)
 let mapleader=' '
 
+" Make Y behave like C and D
+nnoremap Y y$
+
 " In NORMAL mode Ctrl-l removes search highlights
-nmap <silent> <C-l> :nohlsearch<CR>
+nnoremap <silent> <C-[> :nohlsearch<CR>
 
 " In INSERT mode Ctrl-l goes into NORMAL mode
-imap <C-l> <ESC>
+" imap <C-l> <ESC>
 
 " Makes it easier to close a buffer or exit vim
-nmap <silent> <leader>q :q<CR>
+nnoremap <silent> <leader>q :close<CR>
 
 " Save buffer (easier on the fingers)
-nmap <silent> <leader>w :w<CR>
+nnoremap <silent> <leader>w :w<CR>
 
 " Toggle list mode
-nmap <silent> <leader>- :set nolist!<CR>
+nnoremap <silent> <leader>- :set nolist!<CR>
 
 " Show syntax highlighting groups for word under cursor
-nmap <C-P> :call <SID>SynStack()<CR>
+nnoremap <C-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
 	if !exists("*synstack")
 		return
@@ -33,13 +36,13 @@ endfunc
 " https://groups.google.com/d/msg/iterm2-discuss/VEiCSc5LCIs/U5fqrwNFm88J
 
 " Go to the end and add a semicolon
-imap <C-ENTER> <ESC>A;
-imap 02P <ESC>A;
+inoremap <C-ENTER> <ESC>A;
+inoremap 02P <ESC>A;
 
 " Add a semicolon without moving the cursor and leaving insert mode
-imap <S-ENTER> <ESC>maA;<ESC>`aa
-imap O2Q <ESC>maA;<ESC>`aa
+inoremap <C-S-ENTER> <ESC>maA;<ESC>`aa
+inoremap O2R <ESC>maA;<ESC>`aa
 
 " Add a new line below current line and go to it
-imap <C-S-ENTER> <ESC>o
-imap O2R <ESC>o
+inoremap <S-ENTER> <ESC>o
+inoremap O2Q <ESC>o
