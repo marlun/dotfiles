@@ -88,3 +88,6 @@
 [submodule "vim/bundle/phplocalvarcheck"]
 	path = vim/bundle/phplocalvarcheck
 	url = git://github.com/vim-scripts/php_localvarcheck.vim.git
+[submodule "vim/bundle/jinja"]
+	path = vim/bundle/jinja
+	url = git://github.com/lepture/vim-jinja.git
