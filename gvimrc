@@ -18,7 +18,7 @@ set guioptions-=e
 set fuopt+=maxhorz
 
 " Set the font to a big readable font
-set guifont=Monaco:h20
+set guifont=Source\ Code\ Pro:h14
 
 " User a light colorscheme for macvim
 colorscheme leya
