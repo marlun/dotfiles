@@ -13,7 +13,6 @@ Bundle 'gmarik/vundle'
 
 " Plugins
 Bundle 'L9'
-Bundle 'Auto-Pairs'
 Bundle 'fugitive.vim'
 Bundle 'FuzzyFinder'
 Bundle 'Gundo'
@@ -28,6 +27,7 @@ Bundle 'trailing-whitespace'
 Bundle 'xmledit'
 Bundle 'dahu/LearnVim'
 Bundle 'jesseschalken/list-text-object'
+Bundle 'jiangmiao/auto-pairs'
 Bundle 'lepture/vim-jinja'
 Bundle 'marlun/vim-marlun'
 Bundle 'marlun/vim-starwars'
@@ -290,10 +290,6 @@ nnoremap <leader>u :GundoToggle<cr>
 
 " Neocomplcache
 let g:neocomplcache_enable_at_startup = 1
-
-" AutoComplPop
-" let g:acp_behaviorXmlOmniLength = -1
-" let g:acp_behaviorHtmlOmniLength = -1
 
 " }}}
 " vim: tw=80 foldmethod=marker
