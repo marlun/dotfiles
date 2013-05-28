@@ -13,30 +13,37 @@ Bundle 'gmarik/vundle'
 
 " Plugins
 Bundle 'L9'
-Bundle 'fugitive.vim'
 Bundle 'FuzzyFinder'
-Bundle 'Gundo'
-Bundle 'MatchTag'
-Bundle 'surround.vim'
-Bundle 'Syntastic'
-Bundle 'Tagbar'
-Bundle 'UltiSnips'
-Bundle 'neocomplcache'
-Bundle 'tComment'
-Bundle 'trailing-whitespace'
-Bundle 'xmledit'
+Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'dahu/LearnVim'
 Bundle 'jesseschalken/list-text-object'
 Bundle 'jiangmiao/auto-pairs'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'lepture/vim-jinja'
 Bundle 'marlun/vim-marlun'
 Bundle 'marlun/vim-starwars'
+Bundle 'marlun/vim-do'
+Bundle 'majutsushi/tagbar'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'mintplant/vim-literate-coffeescript'
 Bundle 'neochrome/todo.vim'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/vimproc'
+Bundle 'SirVer/ultisnips'
+Bundle 'sjl/gundo.vim'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-scriptease'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-repeat'
+Bundle 'sukima/xmledit'
+Bundle 'vim-scripts/RelOps'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
@@ -46,7 +53,12 @@ filetype plugin indent on
 
 " Enable syntax highlighting and choose colorscheme
 syntax on
-colorscheme darth
+
+if has("gui_running")
+	colorscheme leya
+else
+	colorscheme leya
+endif
 
 " Make the unnamed register the "* register
 set clipboard=unnamed
@@ -58,6 +70,11 @@ set directory=~/tmp,/var/tmp,/tmp
 " the search pattern contains upper case characters
 set ignorecase
 set smartcase
+
+" Improve command-line completion by expanding on first TAB and showing
+" 'wildmenu'
+" set wildmenu
+set wildmode=list:longest,full
 
 " }}}
 " Interface ---------------------------------------------------------------- {{{
@@ -79,7 +96,7 @@ set showcmd
 set laststatus=2
 
 "" Make the statusline a lot more useful
-set statusline=%f\ %m%r%w%=[%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}][%l,%v][%p%%\ of\ %L]
+set statusline=%f\ %m%r%w%=[%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}][%l,%v]
 
 " Don't highlight very long lines
 set synmaxcol=512
@@ -87,17 +104,13 @@ set synmaxcol=512
 " Don't redraw while executing macros, registers, etc.
 set lazyredraw
 
-" Complete to the longest common string and list matches
-set wildmode=list:longest
-
 " Change the way vim splits windows. I like the new windows to the right
-set splitright
+" set splitright
+" set splitbelow
 
-" Highlight search matches
+" Highlight search matches and use incremental search
 set hlsearch
-
-" Maintain more context around the cursor
-set scrolloff=3
+set incsearch
 
 " Makes it possible to have different cursor types for different modes.
 if exists('$TMUX')
@@ -121,9 +134,10 @@ set nowrap
 
 " Make a tab be 4 spaces both for read and when editing. Read about
 " 'softtabstop' to know what I mean. Set indentation to the same.
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+let s:tabwidth = 4
+let &tabstop = s:tabwidth
+let &softtabstop = s:tabwidth
+let &shiftwidth = s:tabwidth
 
 " Tab in front of a line inserts blanks according to 'shiftwidth'
 set smarttab
@@ -144,12 +158,19 @@ let mapleader=' '
 
 inoremap <C-l> <ESC>
 nnoremap <silent> <c-l> :nohlsearch<CR>
-nnoremap <silent> <leader>q :close<CR>
-nnoremap <silent> <leader>w :w<CR>
+nnoremap <silent> <leader>q :quit<CR>
+nnoremap <silent> <leader>w :write<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
+
+" Tab navigation
+nnoremap <C-j> :tabnext<CR>
+nnoremap <C-k> :tabprevious<CR>
 
 " Make Y behave like C and D
 nnoremap Y y$
+
+" UPPERCASE the word before the cursor
+:inoremap ~~ <ESC>bgUiw`]a
 
 " Show syntax highlighting groups for word under cursor
 nnoremap <C-P> :call <SID>SynStack()<CR>
@@ -179,6 +200,11 @@ inoremap O2R <ESC>maA;<ESC>`aa
 inoremap <S-ENTER> <ESC>o
 inoremap O2Q <ESC>o
 
+" Open the word under the cursor in OSX dictionary
+if has('mac')
+	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
+endif
+
 " }}}
 " Automatic commands ------------------------------------------------------- {{{
 
@@ -200,7 +226,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd BufRead,BufNewFile CSS setlocal iskeyword+=-
 
 	" Make vim see Vagrantfile as a ruby file
-	autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
+	autocmd BufRead,BufNewFile Vagrantfile setlocal filetype=ruby
 
 	" Make vim see javascript template files as html
 	autocmd BufNewFile,BufRead *.jst setlocal filetype=jst
@@ -210,6 +236,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	" Enable spellchecking in git commit messages
 	autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
+
+	" Set textwidth to 80 when editing branch descriptions
+	autocmd BufNewFile,BufRead BRANCH_DESCRIPTION setlocal textwidth=80
 
 	" Make sure editing crontab works in OS X
 	autocmd FileType crontab set nobackup nowritebackup
@@ -225,6 +254,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" PLUGINS
 	autocmd BufRead,BufNewFile */bjudovinn/* let g:syntastic_php_checkers=['php']
 	autocmd BufNewFile,BufRead *.js let g:fuf_buffertag_ctagsPath = '/usr/local/bin/jsctags'
+	autocmd BufLeave *.js let g:fuf_buffertag_ctagsPath = 'ctags'
 	autocmd FileType todo noremap <cr> :TodoToggle<cr>
 
 endif
@@ -236,13 +266,14 @@ endif
 runtime macros/matchit.vim
 
 " tComment
-map <silent> <leader>e :TComment<cr>
-let g:tcomment_types = {'javascript':'//%s'}
+map <silent> <leader>c :TComment<cr>
+let g:tcomment_types = {'javascript':'//%s','asm':'#%s'}
 
 " Auto-pairs
 let g:AutoPairsShortcutFastWrap = '<C-S-F>'
 let g:AutoPairsShortcutBackInsert = '<C-S-B>'
 let g:AutoPairsFlyMode = 1
+let g:AutoPairsCenterLine = 0
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -253,6 +284,7 @@ let g:UltiSnipsNoPythonWarning = 1
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
+let NERDTreeHijackNetrw=1
 map <silent> <leader>s :NERDTreeToggle<CR>
 
 " Syntastic
@@ -263,6 +295,8 @@ let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
 " FuzzyFinder
 let g:fuf_modesDisable = ['mrucmd']
 let g:fuf_coveragefile_globPatterns = ['**/*']
+let g:fuf_buffertag__css='--language-force=css'
+" call l9#defineVariableDefault('g:fuf_buffertag__css' , '--language-force=css --css-types=f')
 
 map <leader>f :FufBuffer<cr>
 map <leader>t :FufBufferTag<cr>
@@ -282,6 +316,14 @@ let g:tagbar_type_php = {
 	\	'f:functions'
 	\]
 \}
+let g:tagbar_type_css = {
+\	'ctagstype' : 'Css',
+\	'kinds'     : [
+	\	'c:classes',
+	\	's:selectors',
+	\	'i:identities'
+	\]
+\}
 
 map <leader>l :TagbarToggle<cr>
 
@@ -290,6 +332,11 @@ nnoremap <leader>u :GundoToggle<cr>
 
 " Neocomplcache
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_fuzzy_completion = 1
+let g:neocomplcache_fuzzy_completion_start_length = 3
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_auto_select = 1
+
 
 " }}}
 " vim: tw=80 foldmethod=marker
