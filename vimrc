@@ -44,6 +44,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
 Bundle 'sukima/xmledit'
 Bundle 'vim-scripts/RelOps'
+Bundle 'vim-scripts/ZoomWin'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
