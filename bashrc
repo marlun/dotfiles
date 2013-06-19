@@ -29,8 +29,11 @@ if [ -d "$HOME/Bin" ]; then
 	export PATH="$HOME/Bin:$PATH"
 fi
 
+source /usr/local/etc/bash_completion.d/git-completion.bash
+source /usr/local/etc/bash_completion.d/git-prompt.sh
+
 # Load .bashrc if available
-if [ -f ~/.bashrc ]; then
+if [ -f ~/.bashrc_local ]; then
 	source ~/.bashrc_local
 fi
 
