@@ -191,7 +191,7 @@ endfunc
 
 " Go to the end and add a semicolon
 inoremap <C-ENTER> <ESC>A;
-inoremap 02P <ESC>A;
+inoremap O2P <ESC>A;
 
 " Add a semicolon without moving the cursor and leaving insert mode
 inoremap <C-S-ENTER> <ESC>maA;<ESC>`aa
@@ -305,6 +305,7 @@ map <leader>o :FufCoverageFile<cr>
 map <leader>r :FufMruFile<cr>
 
 " TagBar
+let g:tagbar_left = 1
 let g:tagbar_autoclose = 1
 let g:tagbar_usearrows = 0
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
@@ -332,11 +333,11 @@ map <leader>l :TagbarToggle<cr>
 nnoremap <leader>u :GundoToggle<cr>
 
 " Neocomplcache
-let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_fuzzy_completion = 1
 let g:neocomplcache_fuzzy_completion_start_length = 3
 let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_auto_select = 1
+" let g:neocomplcache_enable_auto_select = 1
 
 
 " }}}
