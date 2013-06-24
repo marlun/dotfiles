@@ -29,6 +29,7 @@ if [ -d "$HOME/Bin" ]; then
 	export PATH="$HOME/Bin:$PATH"
 fi
 
+# Bash completion
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 
