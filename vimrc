@@ -300,6 +300,7 @@ let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
 let g:fuf_modesDisable = ['mrucmd']
 let g:fuf_coveragefile_globPatterns = ['**/*']
 let g:fuf_buffertag__css='--language-force=css'
+set wildignore+=node_modules/**
 " call l9#defineVariableDefault('g:fuf_buffertag__css' , '--language-force=css --css-types=f')
 
 map <leader>f :FufBuffer<cr>
