@@ -18,21 +18,16 @@ Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'dahu/LearnVim'
 Bundle 'jesseschalken/list-text-object'
 Bundle 'jiangmiao/auto-pairs'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'lepture/vim-jinja'
 Bundle 'marlun/vim-marlun'
 Bundle 'marlun/vim-starwars'
-Bundle 'marlun/vim-do'
 Bundle 'majutsushi/tagbar'
 Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'mintplant/vim-literate-coffeescript'
 Bundle 'neochrome/todo.vim'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/vimproc'
 Bundle 'SirVer/ultisnips'
 Bundle 'sjl/gundo.vim'
 Bundle 'tomtom/tcomment_vim'
@@ -40,11 +35,16 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-scriptease'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
 Bundle 'sukima/xmledit'
-Bundle 'vim-scripts/RelOps'
 Bundle 'vim-scripts/ZoomWin'
+" Bundle 'marlun/vim-do'
+" Bundle 'kchmck/vim-coffee-script'
+" Bundle 'mintplant/vim-literate-coffeescript'
+" Bundle 'tpope/vim-abolish'
+" Bundle 'vim-scripts/RelOps'
+" Bundle 'Shougo/neocomplcache'
+" Bundle 'Shougo/vimproc'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
@@ -54,12 +54,7 @@ filetype plugin indent on
 
 " Enable syntax highlighting and choose colorscheme
 syntax on
-
-if has("gui_running")
-	colorscheme leya
-else
-	colorscheme leya
-endif
+colorscheme leya
 
 " Make the unnamed register the "* register
 set clipboard=unnamed
@@ -76,6 +71,9 @@ set smartcase
 " 'wildmenu'
 " set wildmenu
 set wildmode=list:longest,full
+
+" Do upward search for tags file
+set tags=./tags;,tags;
 
 " }}}
 " Interface ---------------------------------------------------------------- {{{
@@ -151,6 +149,11 @@ set listchars=tab:▸\ ,trail:·,eol:¬
 
 " Treat all numbers as decimal numbers
 set nrformats=
+
+" Where it makes sense, remove comment leader when joining lines
+if v:version >= 704
+	set formatoptions+=j
+endif
 
 " }}}
 " Mappings ---------------------------------------------------------------- {{{

@@ -14,11 +14,14 @@ set guioptions-=rlb
 " Use the default tab UI
 set guioptions-=e
 
+" Don't use GUI dialogs
+set guioptions+=c
+
 " Fullscreen should fill the screen horizontally
 set fuopt+=maxhorz
 
 " Set the font to a big readable font
-set guifont=Source\ Code\ Pro:h18
+set guifont=Source\ Code\ Pro:h16
 
 " User a light colorscheme for macvim
 colorscheme leya
