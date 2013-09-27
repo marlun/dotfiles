@@ -95,7 +95,7 @@ set showcmd
 set laststatus=2
 
 "" Make the statusline a lot more useful
-set statusline=%f\ %m%r%w%=[%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}][%l,%v]
+set statusline=%f\ %m%r%w%=%{fugitive#statusline()}[%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}][%l,%v]
 
 " Don't highlight very long lines
 set synmaxcol=512
