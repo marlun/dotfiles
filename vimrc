@@ -56,6 +56,9 @@ filetype plugin indent on
 syntax on
 colorscheme leya
 
+" Make sure vim uses UTF-8
+set encoding=utf-8
+
 " Make the unnamed register the "* register
 set clipboard=unnamed
 
