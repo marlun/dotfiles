@@ -78,6 +78,10 @@ set wildmode=list:longest,full
 " Do upward search for tags file
 set tags=./tags;,tags;
 
+" Try safe (:h secure) source of project specific .vimrc file
+set exrc
+set secure
+
 " }}}
 " Interface ---------------------------------------------------------------- {{{
 
@@ -221,10 +225,6 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	" Auto-source config files when changed
 	autocmd BufWritePost .vimrc source %
-
-	" If the folder you open up vim in has a config.vim, source it. This is used
-	" to have project specific vim settings.
-	autocmd VimEnter * if filereadable('config.vim') | source config.vim | endif
 
 	" Add default content when creating PHP files
 	autocmd BufNewFile *.php call setline(1, ['<?php', '', '']) | call setpos('.', [0, 3, 0, 0]) | startinsert
