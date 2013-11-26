@@ -38,13 +38,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'sukima/xmledit'
 Bundle 'vim-scripts/ZoomWin'
-" Bundle 'marlun/vim-do'
-" Bundle 'kchmck/vim-coffee-script'
-" Bundle 'mintplant/vim-literate-coffeescript'
-" Bundle 'tpope/vim-abolish'
-" Bundle 'vim-scripts/RelOps'
-" Bundle 'Shougo/neocomplcache'
-" Bundle 'Shougo/vimproc'
+Bundle 'Shougo/neocomplete'
+Bundle 'Shougo/vimproc'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
@@ -341,11 +336,15 @@ nnoremap <leader>u :GundoToggle<cr>
 
 " Neocomplcache
 " let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_fuzzy_completion = 1
-let g:neocomplcache_fuzzy_completion_start_length = 3
-let g:neocomplcache_enable_smart_case = 1
+" let g:neocomplcache_enable_fuzzy_completion = 1
+" let g:neocomplcache_fuzzy_completion_start_length = 3
+" let g:neocomplcache_enable_smart_case = 1
 " let g:neocomplcache_enable_auto_select = 1
 
+" Neocomplete
+if has('lua')
+	let g:neocomplete#enable_at_startup = 1
+endif
 
 " }}}
 " vim: tw=80 foldmethod=marker
