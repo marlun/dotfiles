@@ -334,16 +334,11 @@ map <leader>l :TagbarToggle<cr>
 " Gundo
 nnoremap <leader>u :GundoToggle<cr>
 
-" Neocomplcache
-" let g:neocomplcache_enable_at_startup = 1
-" let g:neocomplcache_enable_fuzzy_completion = 1
-" let g:neocomplcache_fuzzy_completion_start_length = 3
-" let g:neocomplcache_enable_smart_case = 1
-" let g:neocomplcache_enable_auto_select = 1
-
 " Neocomplete
 if has('lua')
 	let g:neocomplete#enable_at_startup = 1
+	let g:neocomplete#enable_smart_case = 1
+	let g:neocomplete#enable_auto_select = 1
 endif
 
 " }}}
