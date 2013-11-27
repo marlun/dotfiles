@@ -12,6 +12,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Plugins
+Bundle 'git@github.com:marlun/vim-marlun.git'
+Bundle 'git@github.com:marlun/vim-starwars.git'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'bronson/vim-trailing-whitespace'
@@ -19,8 +21,6 @@ Bundle 'dahu/LearnVim'
 Bundle 'jesseschalken/list-text-object'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'lepture/vim-jinja'
-Bundle 'marlun/vim-marlun'
-Bundle 'marlun/vim-starwars'
 Bundle 'majutsushi/tagbar'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'neochrome/todo.vim'
