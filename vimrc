@@ -40,6 +40,7 @@ Bundle 'sukima/xmledit'
 Bundle 'vim-scripts/ZoomWin'
 Bundle 'Shougo/neocomplete'
 Bundle 'Shougo/vimproc'
+Bundle 'shawncplus/phpcomplete.vim'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
