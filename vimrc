@@ -23,7 +23,6 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'neochrome/todo.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'SirVer/ultisnips'
 Bundle 'sjl/gundo.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-fugitive'
@@ -34,6 +33,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'vim-scripts/ZoomWin'
 Bundle 'Shougo/neocomplete'
 Bundle 'Shougo/vimproc'
+Bundle 'SirVer/ultisnips'
 Bundle 'sukima/xmledit'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
@@ -174,9 +174,6 @@ nnoremap <C-k> :tabprevious<CR>
 
 " Make Y behave like C and D
 nnoremap Y y$
-
-" UPPERCASE the word before the cursor
-:inoremap ~~ <ESC>bgUiw`]a
 
 " Show syntax highlighting groups for word under cursor
 nnoremap <C-P> :call <SID>SynStack()<CR>
@@ -337,8 +334,11 @@ nnoremap <leader>u :GundoToggle<cr>
 " Neocomplete
 if has('lua')
 	let g:neocomplete#enable_at_startup = 1
+	let g:neocomplete#use_vimproc = 1
 	let g:neocomplete#enable_smart_case = 1
 	let g:neocomplete#enable_auto_select = 1
+	let g:neocomplete#max_list = 10
+	let g:neocomplete#auto_completion_start_length = 3
 endif
 
 " }}}
