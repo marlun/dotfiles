@@ -77,6 +77,10 @@ set tags=./tags;,tags;
 set exrc
 set secure
 
+" Add swedish as a recognized language when spellchecking
+set spelllang=en,sv
+
+
 " }}}
 " Interface ---------------------------------------------------------------- {{{
 
@@ -157,6 +161,28 @@ if v:version >= 704
 	set formatoptions+=j
 endif
 
+" Use ag to grep if available
+if executable('ag')
+	set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+" }}}
+" Functions --------------------------------------------------------------- {{{
+
+fun! GoogleSearch()
+	exec "silent !open http://www.google.com/search?q=" . expand("<cword>")
+	redraw!
+endfun
+
+fun! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+	let s:ts = map(synstack(line('.'), col('.')), 'synIDtrans(v:val)')
+	echo map(s:ts, 'synIDattr(v:val, "name")')
+endfun
+
 " }}}
 " Mappings ---------------------------------------------------------------- {{{
 
@@ -175,17 +201,6 @@ nnoremap <C-k> :tabprevious<CR>
 " Make Y behave like C and D
 nnoremap Y y$
 
-" Show syntax highlighting groups for word under cursor
-nnoremap <C-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-	if !exists("*synstack")
-		return
-	endif
-	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-	let s:ts = map(synstack(line('.'), col('.')), 'synIDtrans(v:val)')
-	echo map(s:ts, 'synIDattr(v:val, "name")')
-endfunc
-
 " The second lines in the following mappings is for iTerm2 but for them to work
 " you need to create a mapping in iterm too because it sends the correct escape
 " sequences. Read more here:
@@ -203,10 +218,19 @@ inoremap O2R <ESC>maA;<ESC>`aa
 inoremap <S-ENTER> <ESC>o
 inoremap O2Q <ESC>o
 
+" TODO Add a mapping for command-enter which adds a semicolon to the end and a
+" line below and go to it.
+
 " Open the word under the cursor in OSX dictionary
 if has('mac')
 	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
 endif
+
+" Show syntax highlighting groups for word under cursor
+nnoremap <C-P> :call <SID>SynStack()<CR>
+
+" Google search for the keyword under the cursor
+nmap <leader>g :call GoogleSearch()<CR>
 
 " }}}
 " Automatic commands ------------------------------------------------------- {{{
