@@ -218,8 +218,9 @@ inoremap O2R <ESC>maA;<ESC>`aa
 inoremap <S-ENTER> <ESC>o
 inoremap O2Q <ESC>o
 
-" TODO Add a mapping for command-enter which adds a semicolon to the end and a
-" line below and go to it.
+" Add a semicolon to the end and a new line below and go to it
+inoremap <D-ENTER> <ESC>A;<CR>
+inoremap O2S <ESC>A;<CR>
 
 " Open the word under the cursor in OSX dictionary
 if has('mac')
