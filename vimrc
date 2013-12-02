@@ -305,6 +305,7 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetDirectories = ["snippets"]
 let g:UltiSnipsNoPythonWarning = 1
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snippets"
 
 " NERDTree
 let NERDTreeQuitOnOpen=1
