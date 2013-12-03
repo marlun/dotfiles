@@ -100,8 +100,11 @@ set showcmd
 " Always show a statusline
 set laststatus=2
 
-"" Make the statusline a lot more useful
+" Make the statusline a lot more useful
 set statusline=%f\ %m%r%w%=%{fugitive#statusline()}[%Y,\ %{&ff},\ %{(&fenc==\"\"?&enc:&fenc)}][%l,%v]
+
+" Tell vim to use all abbrevations when showing messages
+set shortmess+=a
 
 " Don't highlight very long lines
 set synmaxcol=512
