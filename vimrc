@@ -37,9 +37,6 @@ Bundle 'SirVer/ultisnips'
 Bundle 'sukima/xmledit'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
-" Bundle 'shawncplus/phpcomplete.vim'
-"Bundle 'majutsushi/tagbar'
-"Bundle 'lepture/vim-jinja'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
