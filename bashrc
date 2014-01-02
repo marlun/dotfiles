@@ -1,5 +1,4 @@
 # Change the prompt (adds git branch to the prompt)
-# export PS1="\u@\h:\w\$(__git_ps1)$ "
 export PS1="\w\$(__git_ps1)$ "
 
 # Git bash prompt settings
