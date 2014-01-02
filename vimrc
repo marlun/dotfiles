@@ -21,7 +21,6 @@ Bundle 'jesseschalken/list-text-object'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'neochrome/todo.vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
 Bundle 'tomtom/tcomment_vim'
@@ -37,6 +36,8 @@ Bundle 'SirVer/ultisnips'
 Bundle 'sukima/xmledit'
 Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'mintplant/vim-literate-coffeescript'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
@@ -201,6 +202,8 @@ nnoremap <C-k> :tabprevious<CR>
 " Make Y behave like C and D
 nnoremap Y y$
 
+nnoremap <leader>f :find 
+
 " The second lines in the following mappings is for iTerm2 but for them to work
 " you need to create a mapping in iterm too because it sends the correct escape
 " sequences. Read more here:
@@ -289,9 +292,12 @@ endif
 "  Vim default
 runtime macros/matchit.vim
 
+" Netrw
+map <silent> <leader>s :e .<CR>
+
 " tComment
 map <silent> <leader>c :TComment<cr>
-let g:tcomment_types = {'javascript':'//%s','asm':'#%s'}
+let g:tcomment_types = {'javascript':'//%s','asm':'#%s','litcoffee':'#%s'}
 
 " Auto-pairs
 let g:AutoPairsShortcutFastWrap = '<C-S-F>'
@@ -308,9 +314,9 @@ let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snippets"
 
 " NERDTree
-let NERDTreeQuitOnOpen=1
-let NERDTreeHijackNetrw=1
-map <silent> <leader>s :NERDTreeToggle<CR>
+" let NERDTreeQuitOnOpen=1
+" let NERDTreeHijackNetrw=1
+" map <silent> <leader>s :NERDTreeToggle<CR>
 
 " Syntastic
 let g:syntastic_auto_jump=1
@@ -325,9 +331,9 @@ let g:fuf_buffertag__php='--php-kinds=f'
 set wildignore+=node_modules/**
 " call l9#defineVariableDefault('g:fuf_buffertag__css' , '--language-force=css --css-types=f')
 
-map <leader>f :FufBuffer<cr>
+map <leader>o :FufBuffer<cr>
 map <leader>t :FufBufferTag<cr>
-map <leader>o :FufCoverageFile<cr>
+" map <leader>o :FufCoverageFile<cr>
 map <leader>r :FufMruFile<cr>
 
 " TagBar
@@ -369,4 +375,4 @@ if has('lua')
 endif
 
 " }}}
-" vim: tw=80 foldmethod=marker
+" vim: foldmethod=marker
