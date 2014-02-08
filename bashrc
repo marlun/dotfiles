@@ -29,11 +29,22 @@ if [ -d "$HOME/Bin" ]; then
 fi
 
 # Bash completion
+if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+	. $(brew --prefix)/share/bash-completion/bash_completion
+fi
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
+source /usr/local/etc/bash_completion.d/npm
+source /usr/local/etc/bash_completion.d/hub.bash_completion.sh
+
+alias git=hub
+
+# Useless crap
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	alias faceoff="curl -sS asciiface.zeke.xxx | pbcopy"
+fi
 
 # Load .bashrc if available
 if [ -f ~/.bashrc_local ]; then
 	source ~/.bashrc_local
 fi
-
