@@ -1,2 +1,8 @@
-tiny_mce
 tags
+templates_c
+tiny_mce
+node_modules
+simpletest
+*.ico
+*.gif
+*.png
