@@ -22,6 +22,9 @@ export EDITOR=vim				# Set the default editor to vim
 export CLICOLOR='Yes'			# Colors in ls
 export LESS="-R"				# Colors in LESS
 
+# Fixes problems with TMUX overwriting stuff and colors looking weird
+[ -n "$TMUX"  ] && export TERM=screen-256color
+
 # Setup PATH
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:$PATH
 if [ -d "$HOME/Bin" ]; then
