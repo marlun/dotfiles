@@ -14,30 +14,21 @@ Bundle 'gmarik/vundle'
 " Plugins
 Bundle 'git@github.com:marlun/vim-marlun.git'
 Bundle 'git@github.com:marlun/vim-starwars.git'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'jesseschalken/list-text-object'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'neochrome/todo.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'sjl/gundo.vim'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-scriptease'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'vim-scripts/ZoomWin'
+Bundle 'tpope/vim-vinegar'
+Bundle 'tpope/vim-commentary'
+Bundle 'scrooloose/syntastic'
+Bundle 'SirVer/ultisnips'
+Bundle 'jiangmiao/auto-pairs'
+Bundle 'kien/ctrlp.vim'
 Bundle 'Shougo/neocomplete'
 Bundle 'Shougo/vimproc'
-Bundle 'SirVer/ultisnips'
 Bundle 'sukima/xmledit'
-Bundle 'othree/html5.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'mintplant/vim-literate-coffeescript'
+Bundle 'neochrome/todo.vim'
+Bundle 'vim-scripts/diffchanges.vim'
+Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'wellle/targets.vim'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
@@ -60,13 +51,15 @@ set directory=~/tmp,/var/tmp,/tmp
 
 " To make it easier to search for things I make vim ignore case except when
 " the search pattern contains upper case characters
-set ignorecase
-set smartcase
+set ignorecase smartcase
 
 " Improve command-line completion by expanding on first TAB and showing
 " 'wildmenu'
 " set wildmenu
 set wildmode=list:longest,full
+
+" Ignore some things by default
+set wildignore+=*/node_modules/*
 
 " Do upward search for tags file
 set tags=./tags;,tags;
@@ -78,6 +71,8 @@ set secure
 " Add swedish as a recognized language when spellchecking
 set spelllang=en,sv
 
+" TODO Read more about this
+" set ttimeoutlen=100
 
 " }}}
 " Interface ---------------------------------------------------------------- {{{
@@ -99,7 +94,15 @@ set showcmd
 set laststatus=2
 
 " Make the statusline a lot more useful
-set statusline=%f\ %m%r%w%=%{fugitive#statusline()}[%Y/%{&ff}/%{(&fenc==\"\"?&enc:&fenc)}][%v,%l/%L]
+set statusline=%f " Filename
+set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
+set statusline+=%= " Switch to right side
+set statusline+=[
+set statusline+=%Y " File type
+set statusline+=/%{&ff} " File format
+set statusline+=/%{(&fenc==\"\"?&enc:&fenc)} " File encoding
+set statusline+=]
+set statusline+=[%v,%l/%L] " Cursor position
 
 " Tell vim to use all abbrevations when showing messages
 set shortmess+=a
@@ -170,42 +173,39 @@ endif
 " }}}
 " Functions --------------------------------------------------------------- {{{
 
-fun! GoogleSearch()
-	exec "silent !open http://www.google.com/search?q=" . expand("<cword>")
-	redraw!
-endfun
-
-fun! <SID>SynStack()
-	if !exists("*synstack")
-		return
-	endif
-	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-	let s:ts = map(synstack(line('.'), col('.')), 'synIDtrans(v:val)')
-	echo map(s:ts, 'synIDattr(v:val, "name")')
-endfun
+" Empty
 
 " }}}
 " Mappings ---------------------------------------------------------------- {{{
 
+" Best damn mapleader in the world: SPACE!
 let mapleader=' '
 
 inoremap <C-l> <ESC>
 nnoremap <silent> <c-l> :nohlsearch<CR>
 nnoremap <silent> <leader>q :quit<CR>
 nnoremap <silent> <leader>w :write<CR>
+nnoremap <silent> <leader>W :write !sudo tee %<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
-
-" Tab navigation
-nnoremap <C-j> :tabnext<CR>
-nnoremap <C-k> :tabprevious<CR>
 
 " Make Y behave like C and D
 nnoremap Y y$
 
-nnoremap <leader>f :find 
+" Uppercase the current word in insert mode
+inoremap <c-^> <ESC>vbUgi
+
+" Make it easier to use ] and [ on swedish keyboard
+" TODO Make this work in more places
+nnoremap å ]
+nnoremap Å [
+
+" Open the word under the cursor in OSX dictionary
+if has('mac')
+	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
+endif
 
 " The second lines in the following mappings is for iTerm2 but for them to work
-" you need to create a mapping in iterm too because it sends the correct escape
+" you need to create a mapping in iterm too so that it sends the correct escape
 " sequences. Read more here:
 " https://groups.google.com/d/msg/iterm2-discuss/VEiCSc5LCIs/U5fqrwNFm88J
 
@@ -224,17 +224,6 @@ inoremap O2Q <ESC>o
 " Add a semicolon to the end and a new line below and go to it
 inoremap <D-ENTER> <ESC>A;<CR>
 inoremap O2S <ESC>A;<CR>
-
-" Open the word under the cursor in OSX dictionary
-if has('mac')
-	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
-endif
-
-" Show syntax highlighting groups for word under cursor
-nnoremap <C-P> :call <SID>SynStack()<CR>
-
-" Google search for the keyword under the cursor
-nmap <leader>g :call GoogleSearch()<CR>
 
 " }}}
 " Automatic commands ------------------------------------------------------- {{{
@@ -270,40 +259,78 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Make sure editing crontab works in OS X
 	autocmd FileType crontab set nobackup nowritebackup
 
-	" Use omnifunc feature if it exists for this filetype
-	if has("autocmd") && exists("+omnifunc")
-		autocmd Filetype *
-		\	if &omnifunc == "" |
-		\		setlocal omnifunc=syntaxcomplete#Complete |
-		\	endif
-	endif
+	" autocmd BufRead,BufNewFile */bjudovinn/* let g:syntastic_php_checkers=['php']
+	" autocmd FileType todo noremap <cr> :TodoToggle<cr>
 
-	" PLUGINS
-	autocmd BufRead,BufNewFile */bjudovinn/* let g:syntastic_php_checkers=['php']
-	autocmd BufNewFile,BufRead *.js let g:fuf_buffertag_ctagsPath = '/usr/local/bin/jsctags'
-	autocmd BufLeave *.js let g:fuf_buffertag_ctagsPath = 'ctags'
-	autocmd FileType todo noremap <cr> :TodoToggle<cr>
+	" No need to completion in my TODO files
+	autocmd FileType TODO NeoCompleteLock
 
 endif
 
 " }}}
 " Plugin configurations ------------------------------------------------------- {{{
 
-"  Vim default
+" Matchit plugin comes with vim (see :e $VIMRUNTIME/macros/matchit.txt)
 runtime macros/matchit.vim
+
+" Matchparen comes with vim but I don't like it so the following line disables it
+let loaded_matchparen = 1
 
 " Netrw
 map <silent> <leader>s :e .<CR>
-
-" tComment
-map <silent> <leader>c :TComment<cr>
-let g:tcomment_types = {'javascript':'//%s','asm':'#%s','litcoffee':'#%s'}
+let g:netrw_hide = 1
 
 " Auto-pairs
 let g:AutoPairsShortcutFastWrap = '<C-S-F>'
 let g:AutoPairsShortcutBackInsert = '<C-S-B>'
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsCenterLine = 0
+
+" Syntastic
+let g:syntastic_auto_jump=2
+let g:syntastic_auto_loc_list=1
+let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
+let g:syntastic_html_tidy_blocklevel_tags = ['a']
+
+" Neocomplete
+if has('lua')
+	" let g:neocomplete#enable_cursor_hold_i = 1
+	let g:neocomplete#enable_at_startup = 1
+	let g:neocomplete#use_vimproc = 1
+	let g:neocomplete#enable_smart_case = 1
+	let g:neocomplete#enable_auto_select = 1
+	let g:neocomplete#max_list = 10
+	let g:neocomplete#auto_completion_start_length = 3
+endif
+
+" CtrlP
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_files = 100
+let g:ctrlp_extensions = ['tag']
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|smarty\|tiny_mce'
+
+" \ 'php' : '-f --erlang-types=drmf',
+let g:ctrlp_buftag_types = {
+\ 'php' : '--php-types=f',
+\ 'javascript' : {
+  \ 'bin': 'jsctags',
+  \ 'args': '-f -',
+  \ },
+\ }
+
+" let g:ctrlp_buffer_func = {
+" \ 'enter': 'Function_Name_1',
+" \ 'exit':  'Function_Name_2',
+" \}
+
+" if executable('ag')
+" 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" endif
+
+map <leader>l :CtrlPBuffer<cr>
+map <leader>t :CtrlPBufTag<cr>
+map <leader>r :CtrlPMRU<cr>
+map <leader>o :CtrlP<cr>
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -313,66 +340,6 @@ let g:UltiSnipsSnippetDirectories = ["snippets"]
 let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snippets"
 
-" NERDTree
-" let NERDTreeQuitOnOpen=1
-" let NERDTreeHijackNetrw=1
-" map <silent> <leader>s :NERDTreeToggle<CR>
-
-" Syntastic
-let g:syntastic_auto_jump=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
-
-" FuzzyFinder
-let g:fuf_modesDisable = ['mrucmd']
-let g:fuf_coveragefile_globPatterns = ['**/*']
-let g:fuf_buffertag__css='--language-force=css'
-let g:fuf_buffertag__php='--php-kinds=f'
-set wildignore+=node_modules/**
-" call l9#defineVariableDefault('g:fuf_buffertag__css' , '--language-force=css --css-types=f')
-
-map <leader>o :FufBuffer<cr>
-map <leader>t :FufBufferTag<cr>
-" map <leader>o :FufCoverageFile<cr>
-map <leader>r :FufMruFile<cr>
-
-" TagBar
-let g:tagbar_left = 1
-let g:tagbar_autoclose = 1
-let g:tagbar_usearrows = 0
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-let g:tagbar_type_php = {
-\	'ctagstype' : 'PHP',
-\	'kinds'     : [
-	\	'd:constant definitions',
-	\	'c:classes',
-	\	'i:interfaces',
-	\	'f:functions'
-	\]
-\}
-let g:tagbar_type_css = {
-\	'ctagstype' : 'Css',
-\	'kinds'     : [
-	\	'c:classes',
-	\	's:selectors',
-	\	'i:identities'
-	\]
-\}
-
-map <leader>l :TagbarToggle<cr>
-
-" Gundo
-nnoremap <leader>u :GundoToggle<cr>
-
-" Neocomplete
-if has('lua')
-	let g:neocomplete#enable_at_startup = 1
-	let g:neocomplete#use_vimproc = 1
-	let g:neocomplete#enable_smart_case = 1
-	let g:neocomplete#enable_auto_select = 0
-	let g:neocomplete#max_list = 10
-	let g:neocomplete#auto_completion_start_length = 3
-endif
-
 " }}}
+
 " vim: foldmethod=marker
