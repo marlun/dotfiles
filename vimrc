@@ -181,7 +181,6 @@ endif
 " Best damn mapleader in the world: SPACE!
 let mapleader=' '
 
-inoremap <C-l> <ESC>
 nnoremap <silent> <c-l> :nohlsearch<CR>
 nnoremap <silent> <leader>q :quit<CR>
 nnoremap <silent> <leader>w :write<CR>
@@ -196,8 +195,8 @@ inoremap <c-^> <ESC>vbUgi
 
 " Make it easier to use ] and [ on swedish keyboard
 " TODO Make this work in more places
-nnoremap å ]
-nnoremap Å [
+map å ]
+map ä [
 
 " Open the word under the cursor in OSX dictionary
 if has('mac')
