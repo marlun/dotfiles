@@ -193,10 +193,19 @@ nnoremap Y y$
 " Uppercase the current word in insert mode
 inoremap <c-^> <ESC>vbUgi
 
-" Make it easier to use ] and [ on swedish keyboard
-" TODO Make this work in more places
+" On Swedish keyboards the [ and ] keys are not as easy to press as on
+" american layouts and if you want to prsss the Ctrl-], Ctrl-[ and Ctrl-\
+" you'll have to press the following combinations:
+"
+" Ctrl-] = Ctrl-å
+" Ctrl-[ = Ctrl-ä
+" Ctrl-\ = Ctrl-ö
+"
+" To make it more saner (I think) I also map the swedish keys to their
+" corresponding keys without the ctrl key.
 map å ]
 map ä [
+map ö \
 
 " Open the word under the cursor in OSX dictionary
 if has('mac')
