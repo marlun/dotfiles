@@ -176,7 +176,26 @@ endif
 " }}}
 " Functions --------------------------------------------------------------- {{{
 
-" Empty
+function! ToggleWrap()
+	if &wrap
+		if exists("g:toggle_wrap_tw")
+			let &textwidth = g:toggle_wrap_tw
+		endif
+		setlocal nowrap
+		nunmap <buffer> k
+		nunmap <buffer> j
+		nunmap <buffer> 0
+		nunmap <buffer> $
+	else
+		let g:toggle_wrap_tw = &textwidth
+		set textwidth=0
+		setlocal wrap linebreak nolist
+		noremap <buffer> <silent> k gk
+		noremap <buffer> <silent> j gj
+		noremap <buffer> <silent> 0 g0
+		noremap <buffer> <silent> $ g$
+	endif
+endfunction
 
 " }}}
 " Mappings ---------------------------------------------------------------- {{{
@@ -209,6 +228,9 @@ inoremap <c-^> <ESC>vbUgi
 map å ]
 map ä [
 map ö \
+
+" Make it easier to work with wrapped text
+noremap <silent> \w :call ToggleWrap()<CR>
 
 " Open the word under the cursor in OSX dictionary
 if has('mac')
