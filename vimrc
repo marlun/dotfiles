@@ -18,6 +18,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-vinegar'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-scriptease'
 Bundle 'scrooloose/syntastic'
 Bundle 'SirVer/ultisnips'
 Bundle 'jiangmiao/auto-pairs'
@@ -29,6 +30,8 @@ Bundle 'neochrome/todo.vim'
 Bundle 'vim-scripts/diffchanges.vim'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'wellle/targets.vim'
+Bundle 'regedarek/ZoomWin'
+Bundle 'AndrewRadev/splitjoin.vim'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
