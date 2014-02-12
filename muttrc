@@ -1,0 +1,231 @@
+# Mutt configuration file Martin Lundberg
+
+source ~/.mutt/vars
+
+# Paths ----------------------------------------------------------------------
+set folder           = ~/.mail               # mailbox location
+set alias_file       = ~/.mutt/alias         # where to store aliases
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set certificate_file = ~/.mutt/certificates  # where to store certs
+set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
+set tmpdir           = ~/.mutt/temp          # where to keep temp files
+set signature        = ~/.mutt/sig           # my signature file
+
+# Account settings ------------------------------------------------------------
+set spoolfile = "+$my_mailbox/INBOX"
+set mbox      = "+$my_mailbox/archive"
+set postponed = "+$my_mailbox/drafts"
+
+# = is replaced with $folder (see above)
+mailboxes =/martinlundberg/INBOX =/martinlundberg/vim-dev-list =/martinlundberg/vim-list =/martinlundberg/mutt-users-list
+
+alternates $my_alternate
+
+# SMTP setup with msmtp -------------------------------------------------------
+set from     = $my_email
+set sendmail = "/usr/local/bin/msmtp -a $my_mailbox"
+set sendmail_wait = 0
+unset record
+
+# Header Options --------------------------------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# Basic Options --------------------------------------------------------------
+source $alias_file		 # source alias file for tab-completion
+set wait_key = no        # shut up, mutt
+set mbox_type = Maildir  # mailbox type
+set timeout = 3          # idle time before scanning
+set mail_check = 0       # minimum time between scans
+unset move               # gmail does that
+set delete               # don't ask, just do
+unset confirmappend      # don't ask, just do!
+set quit                 # don't ask, just do!!
+unset mark_old           # read/new is good enough for me
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+
+set index_format = "[%Z]  %(%a %Y-%m-%d %R)  %-20.20F  %s"
+set sort = threads                         # like gmail
+set sort_aux = last-date-received  # like gmail
+set uncollapse_jump         # don't collapse on an unread message
+set collapse_unread = no	# Don't collapse on when there's unread messages
+
+set pager_index_lines = 8 # number of index lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+set realname = "Martin Lundberg"     # who am i?
+set fast_reply                       # skip to compose when replying
+set envelope_from                    # which from?
+set sig_dashes                       # dashes before sig
+set edit_headers                     # show headers when composing
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+set followup_to
+set honor_followup_to=yes
+
+# Work signature
+send-hook "~f $my_alternate" 'set signature=~/.mutt/work.signature'
+
+# Tried doing something fancy fot github mails since they end up looking very
+# bad on github.com if you hard wrap them at 80 characters.
+# send-hook "~t github.com" 'set editor="vim +startinsert +\'$?^-- $?-1\' +\'set tw=0\' +FixWhitespace +\'normal O\'"'
+
+# Start editing e-mail instantly in vim
+# set editor="vim +startinsert +'$?^-- $?-1' +FixWhitespace +'normal O'"
+set editor="vim +FixWhitespace +'normal }'"
+
+# Viewing attachments
+bind attach <return> view-mailcap
+
+# Searching OS X contacts
+set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+
+# Open html mails in lynx (see ~/.mutt/mailcap)
+auto_view text/html
+
+# Bindings & Macros ----------------------------------------------------------
+bind index gg first-entry
+bind index G last-entry
+bind index R group-reply
+#bind index <tab>    sync-mailbox
+#bind index <space>  collapse-thread
+bind index p recall-message
+bind index N search-opposite
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply
+bind pager N search-opposite
+bind editor <Tab> complete-query
+bind editor \cT    complete
+bind compose p postpone-message
+bind index * toggle-new
+
+# Search using notmuch
+macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
+
+# Ctrl-R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+# Sync email
+macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+# Save attachments in ~/Downloads
+macro attach W "<save-entry><kill-line>~/Downloads/<enter>"
+macro attach E "<save-entry><kill-line>~/Downloads/<enter>"
+
+# Mailing lists ---------------------------------------------------------------
+subscribe mutt-users@mutt.org
+subscribe vim@vim.org
+subscribe vim@googlegroups.com
+subscribe vim-dev@vim.org
+subscribe vim_dev@googlegroups.com
+
+# Theme ----------------------------------------------------------------------
+# color <object> <foreground> <background> [pattern]
+
+# Default color definitions
+color hdrdefault color241 color230
+color normal color232 color230
+color signature color62 color230
+color indicator color232 color220
+color attachment color232 green
+color error color231 color196
+color message color232 color230
+color search brightwhite magenta
+color status white color33
+color tree color33 color230
+color tilde color130 color230
+color bold color130 color230
+color markers brightcyan color230
+
+## Colours for items in the index
+color index color232 color119 ~N
+color index color232 color230 ~O
+color index brightyellow color230 ~F
+color index color232 color62 ~T
+color index color231 color196 ~D
+mono index bold ~N
+mono index bold ~F
+mono index bold ~T
+mono index bold ~D
+
+## Highlights inside the body of a message.
+
+## URLs
+color body color27 color230 "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+color body color27 color230 "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono body bold "(http|ftp|news|telnet|finger)://[^ \"\t\r\n]*"
+mono body bold "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+## Email addresses.
+color body color27 color230 "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+## Header
+color header color241 color230 "^from:"
+color header color241 color230 "^to:"
+color header color241 color230 "^cc:"
+color header color241 color230 "^date:"
+color header yellow color230 "^newsgroups:"
+color header yellow color230 "^reply-to:"
+color header color30 color230 "^subject:"
+color header red color230 "^x-spam-rule:"
+color header green color230 "^x-mailer:"
+color header yellow color230 "^message-id:"
+color header yellow color230 "^Organization:"
+color header yellow color230 "^Organisation:"
+color header yellow color230 "^User-Agent:"
+color header yellow color230 "^message-id: .*pine"
+color header yellow color230 "^X-Fnord:"
+color header yellow color230 "^X-WebTV-Stationery:"
+
+color header red color230 "^x-spam-rule:"
+color header green color230 "^x-mailer:"
+color header yellow color230 "^message-id:"
+color header yellow color230 "^Organization:"
+color header yellow color230 "^Organisation:"
+color header yellow color230 "^User-Agent:"
+color header yellow color230 "^message-id: .*pine"
+color header yellow color230 "^X-Fnord:"
+color header yellow color230 "^X-WebTV-Stationery:"
+color header yellow color230 "^X-Message-Flag:"
+color header yellow color230 "^X-Spam-Status:"
+color header yellow color230 "^X-SpamProbe:"
+color header red color230 "^X-SpamProbe: SPAM"
+
+## Coloring quoted text - coloring the first 7 levels:
+color quoted color57 color230
+color quoted1 color88 color230
+color quoted2 color62 color230
+color quoted3 green color230
+color quoted4 cyan color230
+color quoted5 yellow color230
+color quoted6 red color230
+color quoted7 green color230
+
+## Colour definitions when on a mono screen
+mono bold bold
+mono underline underline
+mono indicator reverse
