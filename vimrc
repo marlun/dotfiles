@@ -22,7 +22,8 @@ Bundle 'tpope/vim-scriptease'
 Bundle 'scrooloose/syntastic'
 Bundle 'SirVer/ultisnips'
 Bundle 'jiangmiao/auto-pairs'
-Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/L9'
+Bundle 'vim-scripts/FuzzyFinder'
 Bundle 'Shougo/neocomplete'
 Bundle 'Shougo/vimproc'
 Bundle 'sukima/xmledit'
@@ -62,7 +63,7 @@ set ignorecase smartcase
 set wildmode=list:longest,full
 
 " Ignore some things by default
-set wildignore+=*/node_modules/*
+set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*
 
 " Do upward search for tags file
 set tags=./tags;,tags;
@@ -146,7 +147,7 @@ set nowrap
 
 " Make a tab be 4 spaces both for read and when editing. Read about
 " 'softtabstop' to know what I mean. Set indentation to the same.
-let s:tabwidth = 4
+let s:tabwidth = 2
 let &tabstop = s:tabwidth
 let &softtabstop = s:tabwidth
 let &shiftwidth = s:tabwidth
@@ -309,9 +310,6 @@ endif
 " Matchit plugin comes with vim (see :e $VIMRUNTIME/macros/matchit.txt)
 runtime macros/matchit.vim
 
-" Matchparen comes with vim but I don't like it so the following line disables it
-let loaded_matchparen = 1
-
 " Netrw
 map <silent> <leader>s :e .<CR>
 let g:netrw_hide = 1
@@ -339,35 +337,6 @@ if has('lua')
 	let g:neocomplete#auto_completion_start_length = 3
 endif
 
-" CtrlP
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_max_files = 100
-let g:ctrlp_extensions = ['tag']
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|smarty\|tiny_mce'
-
-" \ 'php' : '-f --erlang-types=drmf',
-let g:ctrlp_buftag_types = {
-\ 'php' : '--php-types=f',
-\ 'javascript' : {
-  \ 'bin': 'jsctags',
-  \ 'args': '-f -',
-  \ },
-\ }
-
-" let g:ctrlp_buffer_func = {
-" \ 'enter': 'Function_Name_1',
-" \ 'exit':  'Function_Name_2',
-" \}
-
-" if executable('ag')
-" 	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" endif
-
-map <leader>l :CtrlPBuffer<cr>
-map <leader>t :CtrlPBufTag<cr>
-map <leader>r :CtrlPMRU<cr>
-map <leader>o :CtrlP<cr>
-
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -375,6 +344,17 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetDirectories = ["snippets"]
 let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snippets"
+
+" FuzzyFinder
+let g:fuf_modesDisable = ['mrucmd']
+let g:fuf_coveragefile_globPatterns = ['**/*']
+let g:fuf_buffertag__css='--language-force=css'
+let g:fuf_buffertag__php='--php-kinds=f'
+
+map <leader>l :FufBuffer<cr>
+map <leader>t :FufBufferTag<cr>
+map <leader>o :FufCoverageFile<cr>
+map <leader>r :FufMruFile<cr>
 
 " }}}
 
