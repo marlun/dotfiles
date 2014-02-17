@@ -113,6 +113,8 @@ bind pager gg top
 bind pager G  bottom
 bind pager R  group-reply
 bind pager N search-opposite
+bind pager \cu previous-page
+bind pager \cd next-page
 bind editor <Tab> complete-query
 bind editor \cT    complete
 bind compose p postpone-message
