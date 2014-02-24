@@ -205,9 +205,9 @@ endfunction
 let mapleader=' '
 
 nnoremap <silent> <c-l> :nohlsearch<CR>
-nnoremap <silent> <leader>q :quit<CR>
-nnoremap <silent> <leader>w :write<CR>
-nnoremap <silent> <leader>W :write !sudo tee %<CR>
+nnoremap <silent> <leader>q <NOP>
+nnoremap <silent> <leader>w <NOP>
+" nnoremap <silent> <leader>W :write !sudo tee %<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
 
 " Make Y behave like C and D
@@ -282,13 +282,13 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd BufNewFile,BufRead *.jst setlocal filetype=jst
 
 	" Set textwidth for README file to 80 chars
-	autocmd BufNewFile,BufRead README setlocal textwidth=80
+	autocmd BufNewFile,BufRead README setlocal textwidth=78
 
 	" Enable spellchecking in git commit messages
 	autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 
 	" Set textwidth to 80 when editing branch descriptions
-	autocmd BufNewFile,BufRead BRANCH_DESCRIPTION setlocal textwidth=80
+	autocmd BufNewFile,BufRead BRANCH_DESCRIPTION setlocal textwidth=78
 
 	" Make sure editing crontab works in OS X
 	autocmd FileType crontab set nobackup nowritebackup
