@@ -1,17 +1,17 @@
 [user]
-    name = Martin Lundberg
-    email = martin.lundberg@gmail.com
+	name = Martin Lundberg
+	email = martin.lundberg@gmail.com
 [color]
-    ui = true
+	ui = true
 [core]
-    excludesfile = /Users/marlun/.gitignore
+	excludesfile = /Users/marlun/.gitignore
 	editor = /usr/local/bin/vim
 	pager = less -x4
 	whitespace = cr-at-eol
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [merge]
-    tool = vimdiff
+	tool = vimdiff
 [push]
 	default = simple
 [difftool "Kaleidoscope"]
