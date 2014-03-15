@@ -30,9 +30,9 @@ Bundle 'sukima/xmledit'
 Bundle 'neochrome/todo.vim'
 Bundle 'vim-scripts/diffchanges.vim'
 Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'wellle/targets.vim'
 Bundle 'regedarek/ZoomWin'
 Bundle 'AndrewRadev/splitjoin.vim'
+Bundle 'vimwiki/vimwik'
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
@@ -304,6 +304,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	" Don't want to fly around when writing e-mails
 	autocmd FileType MAIL let g:AutoPairsFlyMode = 0
+	autocmd FileType VIMWIKI setlocal tw=78
 
 endif
 
@@ -358,6 +359,10 @@ map <leader>l :FufBuffer<cr>
 map <leader>t :FufBufferTag<cr>
 map <leader>o :FufCoverageFile<cr>
 map <leader>r :FufMruFile<cr>
+
+" VimWiki
+let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_table_mappings = 0
 
 " }}}
 
