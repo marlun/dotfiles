@@ -1,6 +1,6 @@
 " Vim configuration file by Martin Lundberg <martin.lundberg@gmail.com>
 
-" Vundle ------------------------------------------------------------------- {{{
+" Plugins ------------------------------------------------------------------- {{{
 
 set nocompatible
 filetype off
@@ -63,7 +63,7 @@ set ignorecase smartcase
 set wildmode=list:longest,full
 
 " Ignore some things by default
-set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*
+set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
 
 " Do upward search for tags file
 set tags=./tags;,tags;
@@ -199,7 +199,10 @@ function! ToggleWrap()
 endfunction
 
 " }}}
-" Mappings ---------------------------------------------------------------- {{{
+" Mappings & Abbrevations ------------------------------------------------ {{{
+
+" Stupid fingers
+iabbrev paied paid
 
 " Best damn mapleader in the world: SPACE!
 let mapleader=' '
