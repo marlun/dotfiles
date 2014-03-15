@@ -21,6 +21,7 @@ shopt -s expand_aliases			# Make alises available in all shells
 export EDITOR=vim				# Set the default editor to vim
 export CLICOLOR='Yes'			# Colors in ls
 export LESS="-R"				# Colors in LESS
+export MANWIDTH=78
 
 # Fixes problems with TMUX overwriting stuff and colors looking weird
 [ -n "$TMUX"  ] && export TERM=screen-256color
