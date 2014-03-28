@@ -166,7 +166,7 @@ color markers brightcyan color230
 ## Colours for items in the index
 color index color232 color119 ~N
 color index color232 color230 ~O
-color index brightyellow color230 ~F
+color index color130 color230 ~F
 color index color232 color62 ~T
 color index color231 color196 ~D
 mono index bold ~N
