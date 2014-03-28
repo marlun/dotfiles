@@ -346,9 +346,9 @@ endif
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsSnippetDirectories = ["snippets"]
+let g:UltiSnipsSnippetDirectories = ["snips"]
 let g:UltiSnipsNoPythonWarning = 1
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snippets"
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
 
 " FuzzyFinder
 let g:fuf_modesDisable = ['mrucmd']
