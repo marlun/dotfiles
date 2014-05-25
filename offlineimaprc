@@ -23,7 +23,8 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 [Repository MartinLundberg-Remote]
 maxconnections = 2
 type = Gmail
-cert_fingerprint = 89091347184d41768bfc0da9fad94bfe882dd358
+# cert_fingerprint = 89091347184d41768bfc0da9fad94bfe882dd358
+sslcacertfile = ~/.mutt/Equifax_Secure_CA.cert
 remoteuser = martin.lundberg@gmail.com
 remotepasseval = get_keychain_pass(account="martin.lundberg@gmail.com", server="imap.gmail.com")
 realdelete = no
