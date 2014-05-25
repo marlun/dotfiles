@@ -19,6 +19,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-scriptease'
+Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'jiangmiao/auto-pairs'
@@ -76,6 +77,9 @@ set secure
 " Add swedish as a recognized language when spellchecking
 set spelllang=en,sv
 
+" When encrypting any file, use the much stronger blowfish algorithm
+set cryptmethod=blowfish
+
 " TODO Read more about this
 " set ttimeoutlen=100
 
@@ -102,7 +106,8 @@ set laststatus=2
 set statusline=%f " Filename
 set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
 set statusline+=%= " Switch to right side
-set statusline+=[
+set statusline+=%{fugitive#head()}
+set statusline+=\ [
 set statusline+=%Y " File type
 set statusline+=/%{&ff} " File format
 set statusline+=/%{(&fenc==\"\"?&enc:&fenc)} " File encoding
@@ -297,9 +302,6 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Make sure editing crontab works in OS X
 	autocmd FileType crontab set nobackup nowritebackup
 
-	" autocmd BufRead,BufNewFile */bjudovinn/* let g:syntastic_php_checkers=['php']
-	" autocmd FileType todo noremap <cr> :TodoToggle<cr>
-
 	" No need to completion in my TODO files
 	autocmd FileType TODO NeoCompleteLock
 
@@ -307,6 +309,8 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd FileType MAIL let g:AutoPairsFlyMode = 0
 	autocmd FileType VIMWIKI setlocal tw=78
 
+	" Up security for encrypted files
+	autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
 endif
 
 " }}}
