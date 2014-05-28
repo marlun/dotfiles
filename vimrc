@@ -12,8 +12,8 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 
 " Plugins
-Plugin 'git@github.com:marlun/vim-marlun.git'
-Plugin 'git@github.com:marlun/vim-starwars.git'
+Plugin 'marlun/vim-marlun.git'
+Plugin 'marlun/vim-starwars.git'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-vinegar'
