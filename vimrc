@@ -182,7 +182,7 @@ endif
 
 " Use ag to grep if available
 if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor
+	set grepprg=ag\ --nogroup\ --nocolor\ --column
 endif
 
 " }}}
