@@ -47,8 +47,10 @@ syntax on
 
 " Load my own colorscheme if available but fallback
 " to one that comes with vim
-if findfile('colors/leya.vim', &rtp) != ''
+if has('mac') && findfile('colors/leya.vim', &rtp) != ''
 	colorscheme leya
+elseif findfile('colors/darth.vim', &rtp) != ''
+	colorscheme darth
 else
 	colorscheme delek
 endif
@@ -334,7 +336,7 @@ let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
 let g:syntastic_html_tidy_blocklevel_tags = ['a']
 
 " Neocomplete
-if has('lua')
+if has('lua') && has('patch-7.3.885')
 	" let g:neocomplete#enable_cursor_hold_i = 1
 	let g:neocomplete#enable_at_startup = 1
 	let g:neocomplete#use_vimproc = 1
