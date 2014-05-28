@@ -25,8 +25,6 @@ Plugin 'SirVer/ultisnips'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-scripts/L9'
 Plugin 'vim-scripts/FuzzyFinder'
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/vimproc'
 Plugin 'sukima/xmledit'
 Plugin 'neochrome/todo.vim'
 Plugin 'vim-scripts/diffchanges.vim'
@@ -35,6 +33,11 @@ Plugin 'regedarek/ZoomWin'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'vimwiki/vimwiki'
 Plugin 'sjl/gundo.vim'
+
+if has('lua') && has('patch-7.3.885')
+	Plugin 'Shougo/neocomplete'
+	Plugin 'Shougo/vimproc'
+endif
 
 " Enable filetype detection with plugin and indent support
 filetype plugin indent on
@@ -336,15 +339,12 @@ let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
 let g:syntastic_html_tidy_blocklevel_tags = ['a']
 
 " Neocomplete
-if has('lua') && has('patch-7.3.885')
-	" let g:neocomplete#enable_cursor_hold_i = 1
-	let g:neocomplete#enable_at_startup = 1
-	let g:neocomplete#use_vimproc = 1
-	let g:neocomplete#enable_smart_case = 1
-	let g:neocomplete#enable_auto_select = 1
-	let g:neocomplete#max_list = 10
-	let g:neocomplete#auto_completion_start_length = 3
-endif
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#use_vimproc = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#max_list = 10
+let g:neocomplete#auto_completion_start_length = 3
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<tab>"
