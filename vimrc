@@ -44,7 +44,14 @@ filetype plugin indent on
 
 " Enable syntax highlighting and choose colorscheme
 syntax on
-colorscheme leya
+
+" Load my own colorscheme if available but fallback
+" to one that comes with vim
+if findfile('colors/leya.vim', &rtp) != ''
+	colorscheme leya
+else
+	colorscheme delek
+endif
 
 " Make sure vim uses UTF-8
 set encoding=utf-8
@@ -59,9 +66,9 @@ set directory=~/tmp,/var/tmp,/tmp
 " the search pattern contains upper case characters
 set ignorecase smartcase
 
-" Improve command-line completion by expanding on first TAB and showing
-" 'wildmenu'
-" set wildmenu
+" Improve command-line tab-completion by listing all matches and complete
+" till longest common string
+" TODO: Read more about 'wildmenu'
 set wildmode=list:longest,full
 
 " Ignore some things by default
@@ -80,15 +87,8 @@ set spelllang=en,sv
 " When encrypting any file, use the much stronger blowfish algorithm
 set cryptmethod=blowfish
 
-" TODO Read more about this
-" set ttimeoutlen=100
-
 " }}}
 " Interface ---------------------------------------------------------------- {{{
-
-" Makes vim change the title of the window so it's possible to see if the file
-" has been modified, is readonly, etc.
-set title
 
 " Allow putting buffers in the background
 set hidden
@@ -102,23 +102,11 @@ set showcmd
 " Always show a statusline
 set laststatus=2
 
-" Make the statusline a lot more useful
-set statusline=%f " Filename
-set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
-set statusline+=%= " Switch to right side
-set statusline+=%{fugitive#head()}
-set statusline+=\ [
-set statusline+=%Y " File type
-set statusline+=/%{&ff} " File format
-set statusline+=/%{(&fenc==\"\"?&enc:&fenc)} " File encoding
-set statusline+=]
-set statusline+=[%v,%l/%L] " Cursor position
-
 " Tell vim to use all abbrevations when showing messages
 set shortmess+=a
 
 " Don't highlight very long lines
-set synmaxcol=512
+set synmaxcol=256
 
 " Don't redraw while executing macros, registers, etc.
 set lazyredraw
@@ -130,6 +118,18 @@ set splitbelow
 " Highlight search matches and use incremental search
 set hlsearch
 set incsearch
+
+" Make the statusline a lot more useful
+set statusline=%f " Filename
+set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
+set statusline+=%= " Switch to right side
+silent set statusline+=%{fugitive#head()}
+set statusline+=\ [
+set statusline+=%Y " File type
+set statusline+=/%{&ff} " File format
+set statusline+=/%{(&fenc==\"\"?&enc:&fenc)} " File encoding
+set statusline+=]
+set statusline+=[%v,%l/%L] " Cursor position
 
 " Makes it possible to have different cursor types for different modes.
 if exists('$TMUX')
@@ -214,16 +214,19 @@ iabbrev paied paid
 let mapleader=' '
 
 nnoremap <silent> <c-l> :nohlsearch<CR>
-nnoremap <silent> <leader>q <NOP>
-nnoremap <silent> <leader>w <NOP>
-" nnoremap <silent> <leader>W :write !sudo tee %<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
-
-" Make Y behave like C and D
-nnoremap Y y$
+nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
 
 " Uppercase the current word in insert mode
 inoremap <c-^> <ESC>vbUgi
+
+" Make it easier to work with wrapped text
+noremap <silent> \w :call ToggleWrap()<CR>
+
+" Open the word under the cursor in OSX dictionary
+if has('mac')
+	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
+endif
 
 " On Swedish keyboards the [ and ] keys are not as easy to press as on
 " american layouts and if you want to prsss the Ctrl-], Ctrl-[ and Ctrl-\
@@ -238,14 +241,6 @@ inoremap <c-^> <ESC>vbUgi
 map å ]
 map ä [
 map ö \
-
-" Make it easier to work with wrapped text
-noremap <silent> \w :call ToggleWrap()<CR>
-
-" Open the word under the cursor in OSX dictionary
-if has('mac')
-	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
-endif
 
 " The second lines in the following mappings is for iTerm2 but for them to work
 " you need to create a mapping in iterm too so that it sends the correct escape
@@ -299,8 +294,8 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Set textwidth to 80 when editing branch descriptions
 	autocmd BufNewFile,BufRead BRANCH_DESCRIPTION setlocal textwidth=78
 
-	" Make sure editing crontab works in OS X
-	autocmd FileType crontab set nobackup nowritebackup
+	" Up security for encrypted files
+	autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
 
 	" No need to completion in my TODO files
 	autocmd FileType TODO NeoCompleteLock
@@ -309,8 +304,11 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd FileType MAIL let g:AutoPairsFlyMode = 0
 	autocmd FileType VIMWIKI setlocal tw=78
 
-	" Up security for encrypted files
-	autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
+	" Make sure editing crontab works in OS X
+	if has('mac')
+		autocmd FileType crontab set nobackup nowritebackup
+	endif
+
 endif
 
 " }}}
