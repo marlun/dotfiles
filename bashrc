@@ -36,3 +36,11 @@ fi
 if [ -f ~/.bashrc_local ]; then
 	source ~/.bashrc_local
 fi
+
+# Load files for bash-completion
+for file in /usr/local/etc/bash_completion.d/* ; do
+	source "$file"
+done
+
+# Bash-completion for homebrew
+source $(brew --repository)/Library/Contributions/brew_bash_completion.sh
