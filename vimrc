@@ -37,6 +37,8 @@ Plugin 'sjl/gundo.vim'
 if has('lua') && has('patch-7.3.885')
 	Plugin 'Shougo/neocomplete'
 	Plugin 'Shougo/vimproc'
+else
+	Plugin 'Shougo/neocomplcache.vim'
 endif
 
 " Enable filetype detection with plugin and indent support
@@ -168,6 +170,10 @@ set smarttab
 
 " Copy the indent from the current line when starting a new
 set autoindent
+
+" We're fast and don't need to wait a whole second for a mapping
+" or a key code
+set timeoutlen=500
 
 " Characters to use in 'list' mode
 set listchars=tab:▸\ ,trail:·,eol:¬
@@ -366,9 +372,9 @@ map <leader>o :FufCoverageFile<cr>
 map <leader>r :FufMruFile<cr>
 
 " VimWiki
+let g:vimwiki_list = [{'path': '~/Sync/vimwiki/'}]
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_table_mappings = 0
-
 " }}}
 
 " vim: foldmethod=marker
