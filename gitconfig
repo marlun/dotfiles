@@ -24,3 +24,5 @@
 [i18n]
 	commitEncoding = utf8
 	logOutputEncoding = utf-8
+[credential]
+	helper = osxkeychain
