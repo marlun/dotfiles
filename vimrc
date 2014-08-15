@@ -361,6 +361,7 @@ let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
 
 " FuzzyFinder
+let g:fuf_patternSeparator = ' '
 let g:fuf_modesDisable = ['mrucmd']
 let g:fuf_coveragefile_globPatterns = ['**/*']
 let g:fuf_buffertag__css='--language-force=css'
@@ -375,6 +376,7 @@ map <leader>r :FufMruFile<cr>
 let g:vimwiki_list = [{'path': '~/Sync/vimwiki/'}]
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_table_mappings = 0
+
 " }}}
 
 " vim: foldmethod=marker
