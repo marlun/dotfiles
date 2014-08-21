@@ -350,7 +350,6 @@ let g:syntastic_html_tidy_blocklevel_tags = ['a']
 
 " Neocomplete
 let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_cursor_hold_i = 1
 let g:neocomplete#use_vimproc = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 1
