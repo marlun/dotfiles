@@ -44,3 +44,9 @@ done
 
 # Bash-completion for homebrew
 source $(brew --repository)/Library/Contributions/brew_bash_completion.sh
+
+# Z - fast browsing in terminal. Works by remembering the folders you
+# visit the most and then let you write part of folders to go there
+# instantly. `z wp-c` would probably go to the 'wp-content' folder you
+# visit the most.
+. `brew --prefix`/etc/profile.d/z.sh
