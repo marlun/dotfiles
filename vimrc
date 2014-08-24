@@ -33,6 +33,7 @@ Plugin 'regedarek/ZoomWin'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'vimwiki/vimwiki'
 Plugin 'sjl/gundo.vim'
+Plugin 'tommcdo/vim-exchange'
 
 if has('lua') && has('patch-7.3.885')
 	Plugin 'Shougo/neocomplete'
