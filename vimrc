@@ -313,9 +313,6 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Up security for encrypted files
 	autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
 
-	" No need to completion in my TODO files
-	autocmd FileType TODO NeoCompleteLock
-
 	" Don't want to fly around when writing e-mails
 	autocmd FileType MAIL let g:AutoPairsFlyMode = 0
 	autocmd FileType VIMWIKI setlocal tw=78
