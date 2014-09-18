@@ -12,13 +12,9 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [merge]
 	tool = vimdiff
+	conflictstyle = diff3
 [push]
 	default = simple
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
 [pull]
 	rebase = true
 [i18n]
@@ -26,3 +22,5 @@
 	logOutputEncoding = utf-8
 [credential]
 	helper = osxkeychain
+[mergetool]
+	prompt = false
