@@ -12,7 +12,6 @@ export HISTSIZE=1000000			# Number of commands to remember (500)
 export HISTCONTROL=ignoredups	# Ignore duplicate commands
 export HISTIGNORE='ls:bg:fg:history' # Commands which will be ignored
 export HISTTIMEFORMAT='%F %T '	# Full date time format in history
-# export PROMPT_COMMAND='history -a' # Save each line a I execute it
 shopt -s histappend				# Append don't overwrite
 shopt -s cmdhist				# One command per line
 shopt -s expand_aliases			# Make alises available in all shells
