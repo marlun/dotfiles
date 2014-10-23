@@ -20,6 +20,8 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-scriptease'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-dispatch'
+Plugin 'afternoon/vim-phpunit'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 Plugin 'jiangmiao/auto-pairs'
@@ -54,7 +56,7 @@ syntax on
 " Load my own colorscheme if available but fallback
 " to one that comes with vim
 if has('mac') && findfile('colors/leya.vim', &rtp) != ''
-	colorscheme leya
+	colorscheme darth
 elseif findfile('colors/darth.vim', &rtp) != ''
 	colorscheme darth
 else
