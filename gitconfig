@@ -1,26 +1,26 @@
 [user]
 	name = Martin Lundberg
 	email = martin.lundberg@gmail.com
-[color]
-	ui = true
 [core]
 	excludesfile = /Users/marlun/.gitignore
 	editor = /usr/local/bin/vim
 	pager = less -x4
 	whitespace = cr-at-eol
-[alias]
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-[merge]
-	tool = vimdiff
-	conflictstyle = diff3
 [push]
 	default = simple
 [pull]
 	rebase = true
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
 [i18n]
 	commitEncoding = utf8
 	logOutputEncoding = utf-8
 [credential]
 	helper = osxkeychain
-[mergetool]
-	prompt = false
+[color]
+	ui = true
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
