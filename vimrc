@@ -24,7 +24,8 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'afternoon/vim-phpunit'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jiangmiao/auto-pairs'
+Plugin 'Raimondi/delimitMate'
 Plugin 'vim-scripts/L9'
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'sukima/xmledit'
@@ -337,10 +338,11 @@ map <silent> <leader>s :e .<CR>
 let g:netrw_hide = 1
 
 " Auto-pairs
-let g:AutoPairsShortcutFastWrap = '<C-S-F>'
-let g:AutoPairsShortcutBackInsert = '<C-S-B>'
-let g:AutoPairsFlyMode = 1
-let g:AutoPairsCenterLine = 0
+" let g:AutoPairsShortcutFastWrap = '<C-S-F>'
+" let g:AutoPairsShortcutBackInsert = '<C-S-B>'
+" let g:AutoPairsFlyMode = 1
+" let g:AutoPairsCenterLine = 0
+let delimitMate_expand_cr = 1
 
 " Syntastic
 let g:syntastic_auto_jump=2
