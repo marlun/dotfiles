@@ -24,19 +24,16 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'afternoon/vim-phpunit'
 Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
-" Plugin 'jiangmiao/auto-pairs'
-Plugin 'Raimondi/delimitMate'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-scripts/L9'
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'sukima/xmledit'
-Plugin 'neochrome/todo.vim'
 Plugin 'vim-scripts/diffchanges.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'regedarek/ZoomWin'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'vimwiki/vimwiki'
 Plugin 'sjl/gundo.vim'
-Plugin 'tommcdo/vim-exchange'
 
 if has('lua') && has('patch-7.3.885')
 	Plugin 'Shougo/neocomplete'
@@ -338,11 +335,10 @@ map <silent> <leader>s :e .<CR>
 let g:netrw_hide = 1
 
 " Auto-pairs
-" let g:AutoPairsShortcutFastWrap = '<C-S-F>'
-" let g:AutoPairsShortcutBackInsert = '<C-S-B>'
-" let g:AutoPairsFlyMode = 1
-" let g:AutoPairsCenterLine = 0
-let delimitMate_expand_cr = 1
+let g:AutoPairsShortcutFastWrap = '<C-S-F>'
+let g:AutoPairsShortcutBackInsert = '<C-S-B>'
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsCenterLine = 0
 
 " Syntastic
 let g:syntastic_auto_jump=2
