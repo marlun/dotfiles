@@ -322,6 +322,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 		autocmd FileType crontab set nobackup nowritebackup
 	endif
 
+	" Add smarty gettext tags to surround
+	autocmd FileType smarty let b:surround_103 = "{t}\r{/t}"
+
 endif
 
 " }}}
