@@ -53,7 +53,7 @@ syntax on
 " Load my own colorscheme if available but fallback
 " to one that comes with vim
 if has('mac') && findfile('colors/leya.vim', &rtp) != ''
-	colorscheme darth
+	colorscheme leya
 elseif findfile('colors/darth.vim', &rtp) != ''
 	colorscheme darth
 else
