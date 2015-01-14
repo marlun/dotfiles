@@ -325,6 +325,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Add smarty gettext tags to surround
 	autocmd FileType smarty let b:surround_103 = "{t}\r{/t}"
 
+	" PHP
+	autocmd FileType PHP let b:commentary_format = '// %s'
+
 endif
 
 " }}}
