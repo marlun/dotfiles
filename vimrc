@@ -351,7 +351,7 @@ let g:syntastic_auto_jump=2
 let g:syntastic_auto_loc_list=1
 let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
 let g:syntastic_html_tidy_blocklevel_tags = ['a']
-let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['eslint']
 
 " Neocomplete
 let g:neocomplete#enable_at_startup = 1
