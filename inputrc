@@ -8,8 +8,3 @@ set completion-ignore-case on
 
 # Add / after symlinked directories on TAB completion
 set mark-symlinked-directories on
-
-# Since Alt-f and Alt-b doesn't work on OSX I've changed it
-# into Ctrl-f and Ctrl-b
-"": forward-word
-"": backward-word
