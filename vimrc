@@ -83,6 +83,9 @@ set ignorecase smartcase
 " TODO: Read more about 'wildmenu'
 set wildmode=list:longest,full
 
+" Ignore case when completing file names and directories
+set wildignorecase
+
 " Ignore some things by default
 set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
 
