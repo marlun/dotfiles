@@ -385,7 +385,10 @@ map <leader>o :FufCoverageFile<cr>
 map <leader>r :FufMruFile<cr>
 
 " VimWiki
-let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
+let g:vimwiki_list = [{
+			\ 'path': '~/Documents/VimWiki/',
+			\ 'syntax': 'markdown',
+			\ 'ext': '.md'}]
 let g:vimwiki_hl_cb_checked = 1
 let g:vimwiki_table_mappings = 0
 
