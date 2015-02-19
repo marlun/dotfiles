@@ -195,9 +195,9 @@ if v:version >= 704
 endif
 
 " Use ag to grep if available
-if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor\ --column
-endif
+" if executable('ag')
+" 	set grepprg=ag\ --nogroup\ --nocolor\ --column
+" endif
 
 " }}}
 " Functions --------------------------------------------------------------- {{{
