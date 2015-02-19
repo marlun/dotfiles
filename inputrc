@@ -8,3 +8,6 @@ set completion-ignore-case on
 
 # Add / after symlinked directories on TAB completion
 set mark-symlinked-directories on
+
+# Didn't get this to work, not sure if I understand
+set skip-completed-text on
