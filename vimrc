@@ -126,10 +126,6 @@ set synmaxcol=256
 " Don't redraw while executing macros, registers, etc.
 set lazyredraw
 
-" Change the way vim splits windows. I like the new windows to the right
-set splitright
-set splitbelow
-
 " Highlight search matches and use incremental search
 set hlsearch
 set incsearch
