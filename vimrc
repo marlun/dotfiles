@@ -253,9 +253,9 @@ endif
 "
 " To make it more saner (I think) I also map the swedish keys to their
 " corresponding keys without the ctrl key.
-map å ]
-map ä [
-map ö \
+noremap å ]
+noremap ä [
+noremap ö \
 
 " The second lines in the following mappings is for iTerm2 but for them to work
 " you need to create a mapping in iterm too so that it sends the correct escape
@@ -376,8 +376,8 @@ let g:fuf_buffertag__css='--language-force=css'
 let g:fuf_buffertag__php='--php-kinds=f'
 
 map <leader>l :FufBuffer<cr>
-map <leader>t :FufBufferTag<cr>
 map <leader>o :FufCoverageFile<cr>
+map <leader>t :FufBufferTag<cr>
 map <leader>r :FufMruFile<cr>
 
 " VimWiki
