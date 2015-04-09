@@ -10,8 +10,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
-Plug 'troydm/zoomwintab.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'troydm/zoomwintab.vim'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'pgdouyon/vim-accio'
@@ -230,9 +230,9 @@ endif
 "
 " To make it more saner (I think) I also map the swedish keys to their
 " corresponding keys without the ctrl key.
-" nnoremap å ]
-" nnoremap ä [
-" nnoremap ö \
+nnoremap å ]
+nnoremap ä [
+nnoremap ö \
 
 " The second lines in the following mappings is for iTerm2 but for them to work
 " you need to create a mapping in iterm too so that it sends the correct escape
@@ -263,7 +263,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 	let autocommands_loaded = 1
 
 	" Auto-source config files when changed
-	autocmd BufWritePost .vimrc source %
+	autocmd BufWritePost .nvimrc source %
 
 	" Add default content when creating PHP files
 	autocmd BufNewFile *.php call setline(1, ['<?php', '', '']) | call setpos('.', [0, 3, 0, 0]) | startinsert
@@ -308,9 +308,13 @@ endif
 " Matchit plugin comes with vim (see :e $VIMRUNTIME/macros/matchit.txt)
 runtime macros/matchit.vim
 
-" Netrw
-map <silent> <leader>s :e .<CR>
-let g:netrw_hide = 1
+" VimWiki
+let g:vimwiki_list = [{
+			\ 'path': '~/Documents/VimWiki/',
+			\ 'syntax': 'markdown',
+			\ 'ext': '.md'}]
+let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_table_mappings = 0
 
 " Auto-pairs
 let g:AutoPairsFlyMode = 1
@@ -352,14 +356,6 @@ let g:AutoPairsShortcutBackInsert = ''
 " map <leader>o :FufCoverageFile<cr>
 " map <leader>t :FufBufferTag<cr>
 " map <leader>r :FufMruFile<cr>
-
-" VimWiki
-let g:vimwiki_list = [{
-			\ 'path': '~/Documents/VimWiki/',
-			\ 'syntax': 'markdown',
-			\ 'ext': '.md'}]
-let g:vimwiki_hl_cb_checked = 1
-let g:vimwiki_table_mappings = 0
 
 " }}}
 
