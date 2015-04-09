@@ -10,33 +10,17 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
-Plug 'regedarek/ZoomWin'
+Plug 'troydm/zoomwintab.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'pgdouyon/vim-accio'
+" Plugin 'bronson/vim-trailing-whitespace'
+" Plugin 'tpope/vim-scriptease'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
-
-" Plugins
-" Plugin 'tpope/vim-scriptease'
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'tpope/vim-dispatch'
-" Plugin 'tpope/vim-obsession'
-" Plugin 'afternoon/vim-phpunit'
-" Plugin 'scrooloose/syntastic'
-" Plugin 'SirVer/ultisnips'
-" Plugin 'vim-scripts/L9'
-" Plugin 'vim-scripts/FuzzyFinder'
-" Plugin 'bronson/vim-trailing-whitespace'
-" Plugin 'AndrewRadev/splitjoin.vim'
-" Plugin 'sjl/gundo.vim'
-
-" if has('lua') && has('patch-7.3.885')
-" 	Plugin 'Shougo/neocomplete'
-" 	Plugin 'Shougo/vimproc'
-" else
-" 	Plugin 'Shougo/neocomplcache.vim'
-" endif
 
 " }}}
 " General ------------------------------------------------------------------ {{{
@@ -228,6 +212,9 @@ inoremap <c-^> <ESC>vbUgi
 " Make it easier to work with wrapped text
 noremap <silent> \w :call ToggleWrap()<CR>
 
+nnoremap <leader>o :find<SPACE>
+nnoremap <leader>l :buffers<CR>:buffer<SPACE>
+
 " Open the word under the cursor in OSX dictionary
 if has('mac')
 	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
@@ -243,9 +230,9 @@ endif
 "
 " To make it more saner (I think) I also map the swedish keys to their
 " corresponding keys without the ctrl key.
-noremap å ]
-noremap ä [
-noremap ö \
+" nnoremap å ]
+" nnoremap ä [
+" nnoremap ö \
 
 " The second lines in the following mappings is for iTerm2 but for them to work
 " you need to create a mapping in iterm too so that it sends the correct escape
@@ -325,11 +312,11 @@ runtime macros/matchit.vim
 map <silent> <leader>s :e .<CR>
 let g:netrw_hide = 1
 
-" " Auto-pairs
-" let g:AutoPairsShortcutFastWrap = '<C-S-F>'
-" let g:AutoPairsShortcutBackInsert = '<C-S-B>'
-" let g:AutoPairsFlyMode = 1
-" let g:AutoPairsCenterLine = 0
+" Auto-pairs
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsCenterLine = 0
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutBackInsert = ''
 
 " " Syntastic
 " let g:syntastic_auto_jump=2
@@ -367,12 +354,12 @@ let g:netrw_hide = 1
 " map <leader>r :FufMruFile<cr>
 
 " VimWiki
-" let g:vimwiki_list = [{
-" 			\ 'path': '~/Documents/VimWiki/',
-" 			\ 'syntax': 'markdown',
-" 			\ 'ext': '.md'}]
-" let g:vimwiki_hl_cb_checked = 1
-" let g:vimwiki_table_mappings = 0
+let g:vimwiki_list = [{
+			\ 'path': '~/Documents/VimWiki/',
+			\ 'syntax': 'markdown',
+			\ 'ext': '.md'}]
+let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_table_mappings = 0
 
 " }}}
 
