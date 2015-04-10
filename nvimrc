@@ -15,10 +15,10 @@ Plug 'troydm/zoomwintab.vim'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'pgdouyon/vim-accio'
-" Plugin 'bronson/vim-trailing-whitespace'
-" Plugin 'tpope/vim-scriptease'
-" Plugin 'SirVer/ultisnips'
-" Plugin 'AndrewRadev/splitjoin.vim'
+Plug 'bronson/vim-trailing-whitespace'
+" Plug 'tpope/vim-scriptease'
+" Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'SirVer/ultisnips'
 
 call plug#end()
 
