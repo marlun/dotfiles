@@ -15,6 +15,7 @@ Plug 'troydm/zoomwintab.vim'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'pgdouyon/vim-accio'
+Plug 'pgdouyon/vim-niffler'
 Plug 'bronson/vim-trailing-whitespace'
 " Plug 'tpope/vim-scriptease'
 " Plug 'AndrewRadev/splitjoin.vim'
