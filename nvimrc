@@ -10,16 +10,16 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
-Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-scriptease'
+Plug 'bronson/vim-trailing-whitespace'
 Plug 'troydm/zoomwintab.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'pgdouyon/vim-accio'
 Plug 'pgdouyon/vim-niffler'
-Plug 'bronson/vim-trailing-whitespace'
-" Plug 'tpope/vim-scriptease'
-" Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -329,6 +329,14 @@ let g:AutoPairsCenterLine = 0
 let g:AutoPairsShortcutFastWrap = ''
 let g:AutoPairsShortcutBackInsert = ''
 
+" UltiSnips
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories = ["snips"]
+let g:UltiSnipsNoPythonWarning = 1
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
+
 " " Syntastic
 " let g:syntastic_auto_jump=2
 " let g:syntastic_auto_loc_list=1
@@ -343,14 +351,6 @@ let g:AutoPairsShortcutBackInsert = ''
 " let g:neocomplete#enable_auto_select = 1
 " let g:neocomplete#max_list = 10
 " let g:neocomplete#auto_completion_start_length = 3
-
-" " UltiSnips
-" let g:UltiSnipsExpandTrigger = "<tab>"
-" let g:UltiSnipsJumpForwardTrigger = "<tab>"
-" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-" let g:UltiSnipsSnippetDirectories = ["snips"]
-" let g:UltiSnipsNoPythonWarning = 1
-" let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
 
 " " FuzzyFinder
 " let g:fuf_patternSeparator = ' '
