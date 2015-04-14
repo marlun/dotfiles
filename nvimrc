@@ -337,6 +337,12 @@ let g:UltiSnipsSnippetDirectories = ["snips"]
 let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
 
+" Niffler
+map <leader>l :NifflerBuffer<cr>
+map <leader>o :Niffler .<cr>
+map <leader>t :NifflerTags %<cr>
+map <leader>r :NifflerMRU<cr>
+
 " " Syntastic
 " let g:syntastic_auto_jump=2
 " let g:syntastic_auto_loc_list=1
