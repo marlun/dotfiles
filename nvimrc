@@ -217,9 +217,9 @@ nnoremap <leader>o :find<SPACE>
 nnoremap <leader>l :buffers<CR>:buffer<SPACE>
 
 " Open the word under the cursor in OSX dictionary
-if has('mac')
-	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
-endif
+" if has('mac')
+" 	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
+" endif
 
 " On Swedish keyboards the [ and ] keys are not as easy to press as on
 " american layouts and if you want to prsss the Ctrl-], Ctrl-[ and Ctrl-\
@@ -338,6 +338,8 @@ let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
 
 " Niffler
+let g:niffler_ignore_extensions = ['gif', 'jpg', 'png']
+let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c']
 map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
