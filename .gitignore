@@ -1,5 +1,8 @@
+*.swp
+nvim/.netrwhist
+nvim/bundle
+nvim/autoload
+nvim/spell/*.spl
+tags
 vim/.netrwhist
 vim/bundle
-nvim/bundle
-*.swp
-tags
