@@ -16,10 +16,10 @@ Plug 'troydm/zoomwintab.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'pgdouyon/vim-accio'
+Plug 'vimwiki/vimwiki', { 'for': ['vimwiki'], 'branch': 'dev' }
+Plug 'pgdouyon/vim-accio', { 'for': ['php'] }
 Plug 'pgdouyon/vim-niffler'
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips', { 'for': ['php', 'javascript'] }
 
 call plug#end()
 
