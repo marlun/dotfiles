@@ -11,15 +11,16 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-fugitive'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'troydm/zoomwintab.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
-Plug 'vimwiki/vimwiki', { 'for': ['vimwiki'], 'branch': 'dev' }
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'pgdouyon/vim-accio', { 'for': ['php'] }
 Plug 'pgdouyon/vim-niffler'
-Plug 'SirVer/ultisnips', { 'for': ['php', 'javascript'] }
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -109,7 +110,7 @@ set incsearch
 set statusline=%f " Filename
 set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
 set statusline+=%= " Switch to right side
-"silent set statusline+=%{fugitive#head()}
+set statusline+=%{fugitive#head()}
 set statusline+=\ [
 set statusline+=%Y " File type
 set statusline+=/%{&ff} " File format
