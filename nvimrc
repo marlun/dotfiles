@@ -13,7 +13,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-fugitive'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'troydm/zoomwintab.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
@@ -150,10 +149,6 @@ set smarttab
 
 " Copy the indent from the current line when starting a new
 set autoindent
-
-" We're fast and don't need to wait a whole second for a mapping
-" or a key code
-set timeoutlen=500
 
 " Characters to use in 'list' mode
 set listchars=tab:▸\ ,trail:·,eol:¬
