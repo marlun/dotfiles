@@ -157,6 +157,9 @@ set listchars=tab:▸\ ,trail:·,eol:¬
 " Treat all numbers as decimal numbers
 set nrformats=
 
+" Remove tags file from word completion
+set complete-=t
+
 " Where it makes sense, remove comment leader when joining lines
 if v:version >= 704
 	set formatoptions+=j
