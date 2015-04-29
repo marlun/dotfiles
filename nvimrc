@@ -20,6 +20,7 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'pgdouyon/vim-accio', { 'for': ['php'] }
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
