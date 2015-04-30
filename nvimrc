@@ -17,7 +17,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'pgdouyon/vim-accio', { 'for': ['php'] }
+Plug 'pgdouyon/vim-accio', { 'for': ['php', 'c'] }
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
@@ -335,7 +335,7 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetDirectories = ["snips"]
 let g:UltiSnipsNoPythonWarning = 1
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
+let g:UltiSnipsSnippetsDir = g:plug_home . "/vim-marlun/snips"
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png']
@@ -344,33 +344,6 @@ map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
 map <leader>r :NifflerMRU<cr>
-
-" " Syntastic
-" let g:syntastic_auto_jump=2
-" let g:syntastic_auto_loc_list=1
-" let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
-" let g:syntastic_html_tidy_blocklevel_tags = ['a']
-" let g:syntastic_html_tidy_quiet_messages = { "level": "warnings"  }
-
-" " Neocomplete
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#use_vimproc = 1
-" let g:neocomplete#enable_smart_case = 1
-" let g:neocomplete#enable_auto_select = 1
-" let g:neocomplete#max_list = 10
-" let g:neocomplete#auto_completion_start_length = 3
-
-" " FuzzyFinder
-" let g:fuf_patternSeparator = ' '
-" let g:fuf_modesDisable = ['mrucmd']
-" let g:fuf_coveragefile_globPatterns = ['**/*']
-" let g:fuf_buffertag__css='--language-force=css'
-" let g:fuf_buffertag__php='--php-kinds=f'
-
-" map <leader>l :FufBuffer<cr>
-" map <leader>o :FufCoverageFile<cr>
-" map <leader>t :FufBufferTag<cr>
-" map <leader>r :FufMruFile<cr>
 
 " }}}
 
