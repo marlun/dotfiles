@@ -272,6 +272,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Auto-source config files when changed
 	autocmd BufWritePost .nvimrc source %
 
+	" Auto-source colorscheme when changed
+	autocmd BufWritePost leya.vim source %
+
 	" Add default content when creating PHP files
 	autocmd BufNewFile *.php call setline(1, ['<?php', '', '']) | call setpos('.', [0, 3, 0, 0]) | startinsert
 
