@@ -194,20 +194,6 @@ function! ToggleWrap()
 	endif
 endfunction
 
-" Zoom / Restore window.
-function! s:ZoomToggle() abort
-    if exists('t:zoomed') && t:zoomed
-        execute t:zoom_winrestcmd
-        let t:zoomed = 0
-    else
-        let t:zoom_winrestcmd = winrestcmd()
-        resize
-        vertical resize
-        let t:zoomed = 1
-    endif
-endfunction
-command! ZoomToggle call s:ZoomToggle()
-
 " }}}
 " Mappings & Abbrevations ------------------------------------------------ {{{
 
@@ -229,9 +215,6 @@ noremap <silent> \w :call ToggleWrap()<CR>
 
 nnoremap <leader>o :find<SPACE>
 nnoremap <leader>l :buffers<CR>:buffer<SPACE>
-
-" Zoom / Restore windows (function above)
-nnoremap <silent> <C-W>o :ZoomToggle<CR>
 
 " Open the word under the cursor in OSX dictionary
 " if has('mac')
