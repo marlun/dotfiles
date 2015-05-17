@@ -57,9 +57,10 @@ set directory=~/tmp,/var/tmp,/tmp
 " the search pattern contains upper case characters
 set ignorecase smartcase
 
+set wildmenu
+
 " Improve command-line tab-completion by listing all matches and complete
 " till longest common string
-" TODO: Read more about 'wildmenu'
 set wildmode=list:longest,full
 
 " Ignore case when completing file names and directories
@@ -157,8 +158,12 @@ set listchars=tab:▸\ ,trail:·,eol:¬
 " Treat all numbers as decimal numbers
 set nrformats=
 
-" Remove tags file from word completion
+" Remove tags file from word completion because it was slow for me
 set complete-=t
+
+" Remove searching included file because the way it's implemented can by very
+" slow (vim-sensible)
+set complete-=i
 
 " Where it makes sense, remove comment leader when joining lines
 if v:version >= 704
