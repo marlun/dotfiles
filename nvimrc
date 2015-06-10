@@ -21,6 +21,7 @@ Plug 'pgdouyon/vim-accio', { 'for': ['php', 'c'] }
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'Shougo/deoplete.nvim'
 
 call plug#end()
 
@@ -352,6 +353,9 @@ map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
 map <leader>r :NifflerMRU<cr>
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 
 " }}}
 
