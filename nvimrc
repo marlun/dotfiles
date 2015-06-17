@@ -159,6 +159,9 @@ set listchars=tab:▸\ ,trail:·,eol:¬
 " Treat all numbers as decimal numbers
 set nrformats=
 
+" Select the first item in the completion popup by default
+set completeopt+=noinsert
+
 " Remove tags file from word completion because it was slow for me
 set complete-=t
 
