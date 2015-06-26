@@ -22,6 +22,7 @@ Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Shougo/deoplete.nvim'
+Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
@@ -58,6 +59,7 @@ set directory=~/tmp,/var/tmp,/tmp
 " the search pattern contains upper case characters
 set ignorecase smartcase
 
+" Enable an improved (?) command completion menu
 set wildmenu
 
 " Improve command-line tab-completion by listing all matches and complete
@@ -351,7 +353,7 @@ let g:UltiSnipsSnippetsDir = g:plug_home . "/vim-marlun/snips"
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png']
-let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c']
+let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor']
 map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
@@ -359,6 +361,19 @@ map <leader>r :NifflerMRU<cr>
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_completion_start_length = 3
+let g:deoplete#enable_smart_case = 1
+
+" Gutentags
+let g:gutentags_define_advanced_commands = 1
+
+" vim-sneak
+nmap \ <Plug>Sneak_s
+nmap Ö <Plug>Sneak_S
+xmap \ <Plug>Sneak_s
+xmap Ö <Plug>Sneak_S
+omap \ <Plug>Sneak_s
+omap Ö <Plug>Sneak_S
 
 " }}}
 
