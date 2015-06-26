@@ -23,6 +23,7 @@ Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Shougo/deoplete.nvim'
 Plug 'justinmk/vim-sneak'
+Plug 'Shougo/echodoc'
 
 call plug#end()
 
@@ -89,7 +90,7 @@ set spelllang=en,sv
 set hidden
 
 " Allways show the mode that vim is in
-set showmode
+set noshowmode
 
 " Show partial commands as you type them.
 set showcmd
@@ -374,6 +375,9 @@ xmap \ <Plug>Sneak_s
 xmap Ö <Plug>Sneak_S
 omap \ <Plug>Sneak_s
 omap Ö <Plug>Sneak_S
+
+" Echodoc
+let g:echodoc_enable_at_startup = 1
 
 " }}}
 
