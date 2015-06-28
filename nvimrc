@@ -71,7 +71,7 @@ set wildmode=full
 set wildignorecase
 
 " Ignore some things by default
-set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
+set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*,*/lib/*
 
 " Do upward search for tags file
 set tags=./tags;,tags;
@@ -162,8 +162,8 @@ set autoindent
 " Characters to use in 'list' mode
 set listchars=tab:▸\ ,trail:·,eol:¬,space:·
 
-" Treat all numbers as decimal numbers
-set nrformats=
+" Ctrl-A over 07 incmrements to 08
+set nrformats-=octal
 
 " Select the first item in the completion popup by default
 set completeopt+=noinsert
@@ -361,6 +361,7 @@ let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor']
 map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
+map <leader>T :NifflerTags<cr>
 map <leader>r :NifflerMRU<cr>
 
 " Deoplete
