@@ -65,7 +65,7 @@ set wildmenu
 
 " Improve command-line tab-completion by listing all matches and complete
 " till longest common string
-set wildmode=list:longest,full
+set wildmode=full
 
 " Ignore case when completing file names and directories
 set wildignorecase
@@ -100,6 +100,9 @@ set laststatus=2
 
 " Tell vim to use all abbrevations when showing messages
 set shortmess+=a
+
+" Don't show insert completion messages
+set shortmess+=c
 
 " Don't highlight very long lines
 set synmaxcol=256
@@ -157,7 +160,7 @@ set smarttab
 set autoindent
 
 " Characters to use in 'list' mode
-set listchars=tab:▸\ ,trail:·,eol:¬
+set listchars=tab:▸\ ,trail:·,eol:¬,space:·
 
 " Treat all numbers as decimal numbers
 set nrformats=
