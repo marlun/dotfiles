@@ -24,6 +24,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'Shougo/deoplete.nvim'
 Plug 'justinmk/vim-sneak'
 Plug 'Shougo/echodoc'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
 
 call plug#end()
 
@@ -166,7 +168,7 @@ set listchars=tab:▸\ ,trail:·,eol:¬,space:·
 set nrformats-=octal
 
 " Select the first item in the completion popup by default
-set completeopt+=noinsert
+" set completeopt+=noinsert
 
 " Remove tags file from word completion because it was slow for me
 set complete-=t
@@ -365,9 +367,12 @@ map <leader>T :NifflerTags<cr>
 map <leader>r :NifflerMRU<cr>
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_completion_start_length = 3
+let g:deoplete#enable_at_startup = 0
+let g:deoplete#enable_ignore_case = 0
 let g:deoplete#enable_smart_case = 1
+
+" Echodoc
+let g:echodoc_enable_at_startup = 1
 
 " Gutentags
 let g:gutentags_define_advanced_commands = 1
@@ -380,8 +385,9 @@ xmap Ö <Plug>Sneak_S
 omap \ <Plug>Sneak_s
 omap Ö <Plug>Sneak_S
 
-" Echodoc
-let g:echodoc_enable_at_startup = 1
+" vim-notes
+let g:notes_directories = ['~/Documents/Notes']
+let g:notes_suffix = '.txt'
 
 " }}}
 
