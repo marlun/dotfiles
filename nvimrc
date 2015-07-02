@@ -21,7 +21,7 @@ Plug 'pgdouyon/vim-accio', { 'for': ['php', 'c'] }
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'for': ['php'] }
 Plug 'justinmk/vim-sneak'
 Plug 'Shougo/echodoc'
 Plug 'xolox/vim-misc'
@@ -168,7 +168,7 @@ set listchars=tab:▸\ ,trail:·,eol:¬,space:·
 set nrformats-=octal
 
 " Select the first item in the completion popup by default
-" set completeopt+=noinsert
+set completeopt+=noinsert
 
 " Remove tags file from word completion because it was slow for me
 set complete-=t
@@ -367,7 +367,7 @@ map <leader>T :NifflerTags<cr>
 map <leader>r :NifflerMRU<cr>
 
 " Deoplete
-let g:deoplete#enable_at_startup = 0
+let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 0
 let g:deoplete#enable_smart_case = 1
 
