@@ -88,33 +88,21 @@ set spelllang=en,sv
 " }}}
 " Interface ---------------------------------------------------------------- {{{
 
-" Allow putting buffers in the background
 set hidden
-
-" Allways show the mode that vim is in
 set noshowmode
-
-" Show partial commands as you type them.
-set showcmd
-
-" Always show a statusline
-set laststatus=2
-
-" Tell vim to use all abbrevations when showing messages
-set shortmess+=a
-
-" Don't show insert completion messages
-set shortmess+=c
-
-" Don't highlight very long lines
-set synmaxcol=256
-
-" Don't redraw while executing macros, registers, etc.
-set lazyredraw
-
-" Highlight search matches and use incremental search
 set hlsearch
 set incsearch
+set laststatus=2
+" set showcmd
+
+" Tell vim to use all abbrevations when showing messages and also hide insert
+" completion messages
+set shortmess+=a
+set shortmess+=c
+
+" Don't redraw while executing macros, registers, etc.
+" TODO: Describe why we need this instead
+set lazyredraw
 
 " Make the statusline a lot more useful
 set statusline=%f " Filename
@@ -127,6 +115,11 @@ set statusline+=/%{&ff} " File format
 set statusline+=/%{(&fenc==\"\"?&enc:&fenc)} " File encoding
 set statusline+=]
 set statusline+=[%v,%l/%L] " Cursor position
+
+" Used in for example neosnippets
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 " Makes it possible to have different cursor types for different modes.
 if exists('$TMUX')
@@ -388,6 +381,7 @@ omap Ö <Plug>Sneak_S
 " vim-notes
 let g:notes_directories = ['~/Documents/Notes']
 let g:notes_suffix = '.txt'
+let g:notes_smart_quotes = 0
 
 " }}}
 
