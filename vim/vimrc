@@ -356,7 +356,7 @@ let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#max_list = 10
 let g:neocomplete#auto_completion_start_length = 3
 
-" FuzzyFinder
+" Niflfer
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png']
 let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor']
 map <leader>l :NifflerBuffer<cr>
