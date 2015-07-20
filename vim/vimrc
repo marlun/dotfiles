@@ -4,8 +4,8 @@
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'marlun/vim-marlun'
-Plug 'marlun/vim-starwars'
+Plug 'git@github.com:marlun/vim-marlun.git'
+Plug 'git@github.com:marlun/vim-starwars.git'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
