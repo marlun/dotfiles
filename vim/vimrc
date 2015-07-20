@@ -2,48 +2,39 @@
 
 " Plugins ------------------------------------------------------------------- {{{
 
-set nocompatible
-filetype off
+call plug#begin('~/.vim/bundle')
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" Vundle has to manage itself (REQUIRED)
-Plugin 'gmarik/vundle'
-
-" Plugins
-Plugin 'marlun/vim-marlun.git'
-Plugin 'marlun/vim-starwars.git'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-scriptease'
-Plugin 'tpope/vim-fugitive'
-" Plugin 'tpope/vim-dispatch'
-" Plugin 'tpope/vim-obsession'
-" Plugin 'afternoon/vim-phpunit'
-Plugin 'scrooloose/syntastic'
-Plugin 'SirVer/ultisnips'
-Plugin 'jiangmiao/auto-pairs'
-" Plugin 'vim-scripts/L9'
-" Plugin 'vim-scripts/FuzzyFinder'
-Plugin 'sukima/xmledit'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'regedarek/ZoomWin'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'vimwiki/vimwiki'
-Plugin 'sjl/gundo.vim'
+Plug 'marlun/vim-marlun'
+Plug 'marlun/vim-starwars'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-fugitive'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
+Plug 'pgdouyon/vim-niffler'
+Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'Shougo/echodoc'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'regedarek/ZoomWin'
 
 if has('lua') && has('patch-7.3.885')
-	Plugin 'Shougo/neocomplete'
-	Plugin 'Shougo/vimproc'
+	Plug 'Shougo/neocomplete'
+	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 else
-	Plugin 'Shougo/neocomplcache.vim'
+	Plug 'Shougo/neocomplcache.vim'
 endif
 
-" Enable filetype detection with plugin and indent support
-filetype plugin indent on
+" Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+
+call plug#end()
 
 " }}}
 " General ------------------------------------------------------------------ {{{
@@ -78,15 +69,10 @@ set directory=~/tmp,/var/tmp,/tmp
 " the search pattern contains upper case characters
 set ignorecase smartcase
 
-" Improve command-line tab-completion by listing all matches and complete
-" till longest common string
-" TODO: Read more about 'wildmenu'
-set wildmode=list:longest,full
-
-" Ignore case when completing file names and directories
+" Enable an improved command completion menu
+set wildmenu
+set wildmode=full
 set wildignorecase
-
-" Ignore some things by default
 set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
 
 " Do upward search for tags file
@@ -99,9 +85,6 @@ set secure
 " Add swedish as a recognized language when spellchecking
 set spelllang=en,sv
 
-" When encrypting any file, use the much stronger blowfish algorithm
-set cryptmethod=blowfish
-
 " }}}
 " Interface ---------------------------------------------------------------- {{{
 
@@ -109,7 +92,7 @@ set cryptmethod=blowfish
 set hidden
 
 " Allways show the mode that vim is in
-set showmode
+set noshowmode
 
 " Show partial commands as you type them.
 set showcmd
@@ -180,10 +163,10 @@ set autoindent
 set timeoutlen=500
 
 " Characters to use in 'list' mode
-set listchars=tab:▸\ ,trail:·,eol:¬
+set listchars=tab:▸\ ,trail:·,eol:¬,space:·
 
-" Treat all numbers as decimal numbers
-set nrformats=
+" Ctrl-A over 07 incmrements to 08
+set nrformats-=octal
 
 " Where it makes sense, remove comment leader when joining lines
 if v:version >= 704
@@ -253,9 +236,15 @@ endif
 "
 " To make it more saner (I think) I also map the swedish keys to their
 " corresponding keys without the ctrl key.
-noremap å ]
-noremap ä [
-noremap ö \
+nmap å ]
+nmap ä [
+nmap ö \
+omap å ]
+omap ä [
+omap ö \
+xmap å ]
+xmap ä [
+xmap ö \
 
 " The second lines in the following mappings is for iTerm2 but for them to work
 " you need to create a mapping in iterm too so that it sends the correct escape
@@ -287,6 +276,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	" Auto-source config files when changed
 	autocmd BufWritePost .vimrc source %
+
+	" Auto-source colorscheme when changed
+	autocmd BufWritePost leya.vim source %
 
 	" Add default content when creating PHP files
 	autocmd BufNewFile *.php call setline(1, ['<?php', '', '']) | call setpos('.', [0, 3, 0, 0]) | startinsert
@@ -335,10 +327,6 @@ endif
 " Matchit plugin comes with vim (see :e $VIMRUNTIME/macros/matchit.txt)
 runtime macros/matchit.vim
 
-" Netrw
-map <silent> <leader>s :e .<CR>
-let g:netrw_hide = 1
-
 " Auto-pairs
 let g:AutoPairsShortcutFastWrap = '<C-S-F>'
 let g:AutoPairsShortcutBackInsert = '<C-S-B>'
@@ -352,14 +340,6 @@ let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
 let g:syntastic_html_tidy_blocklevel_tags = ['a']
 let g:syntastic_html_tidy_quiet_messages = { "level": "warnings"  }
 
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#use_vimproc = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#max_list = 10
-let g:neocomplete#auto_completion_start_length = 3
-
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -368,25 +348,37 @@ let g:UltiSnipsSnippetDirectories = ["snips"]
 let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
 
-" FuzzyFinder
-let g:fuf_patternSeparator = ' '
-let g:fuf_modesDisable = ['mrucmd']
-let g:fuf_coveragefile_globPatterns = ['**/*']
-let g:fuf_buffertag__css='--language-force=css'
-let g:fuf_buffertag__php='--php-kinds=f'
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#use_vimproc = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#max_list = 10
+let g:neocomplete#auto_completion_start_length = 3
 
-map <leader>l :FufBuffer<cr>
-map <leader>o :FufCoverageFile<cr>
-map <leader>t :FufBufferTag<cr>
-map <leader>r :FufMruFile<cr>
+" FuzzyFinder
+let g:niffler_ignore_extensions = ['gif', 'jpg', 'png']
+let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor']
+map <leader>l :NifflerBuffer<cr>
+map <leader>o :Niffler .<cr>
+map <leader>t :NifflerTags %<cr>
+map <leader>T :NifflerTags<cr>
+map <leader>r :NifflerMRU<cr>
+
+" Echodoc
+let g:echodoc_enable_at_startup = 1
+
+" vim-notes
+let g:notes_directories = ['~/Documents/Notes']
+let g:notes_suffix = '.txt'
 
 " VimWiki
-let g:vimwiki_list = [{
-			\ 'path': '~/Documents/VimWiki/',
-			\ 'syntax': 'markdown',
-			\ 'ext': '.md'}]
-let g:vimwiki_hl_cb_checked = 1
-let g:vimwiki_table_mappings = 0
+" let g:vimwiki_list = [{
+" 			\ 'path': '~/Documents/VimWiki/',
+" 			\ 'syntax': 'markdown',
+" 			\ 'ext': '.md'}]
+" let g:vimwiki_hl_cb_checked = 1
+" let g:vimwiki_table_mappings = 0
 
 " }}}
 
