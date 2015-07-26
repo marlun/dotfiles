@@ -163,7 +163,11 @@ set autoindent
 set timeoutlen=500
 
 " Characters to use in 'list' mode
-set listchars=tab:▸\ ,trail:·,eol:¬,space:·
+if has('patch-7.4.710')
+	set listchars=tab:▸\ ,trail:·,eol:¬,space:·
+else
+	set listchars=tab:▸\ ,trail:·,eol:¬
+endif
 
 " Ctrl-A over 07 incmrements to 08
 set nrformats-=octal
