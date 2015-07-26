@@ -373,7 +373,11 @@ map <leader>r :NifflerMRU<cr>
 let g:echodoc_enable_at_startup = 1
 
 " vim-notes
-let g:notes_directories = ['~/Documents/Notes']
+if has('mac')
+	let g:notes_directories = ['~/Documents/Notes']
+else
+	let g:notes_directories = ['~/sync/Documents/Notes']
+endif
 let g:notes_suffix = '.txt'
 
 " VimWiki
