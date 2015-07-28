@@ -21,9 +21,8 @@ Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Shougo/echodoc'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
 Plug 'regedarek/ZoomWin'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
 if has('lua') && has('patch-7.3.885')
 	Plug 'Shougo/neocomplete'
@@ -32,7 +31,6 @@ else
 	Plug 'Shougo/neocomplcache.vim'
 endif
 
-" Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
 call plug#end()
 
@@ -158,10 +156,6 @@ set smarttab
 " Copy the indent from the current line when starting a new
 set autoindent
 
-" We're fast and don't need to wait a whole second for a mapping
-" or a key code
-set timeoutlen=500
-
 " Characters to use in 'list' mode
 if has('patch-7.4.710')
 	set listchars=tab:▸\ ,trail:·,eol:¬,space:·
@@ -185,27 +179,6 @@ endif
 " }}}
 " Functions --------------------------------------------------------------- {{{
 
-function! ToggleWrap()
-	if &wrap
-		if exists("g:toggle_wrap_tw")
-			let &textwidth = g:toggle_wrap_tw
-		endif
-		setlocal nowrap
-		nunmap <buffer> k
-		nunmap <buffer> j
-		nunmap <buffer> 0
-		nunmap <buffer> $
-	else
-		let g:toggle_wrap_tw = &textwidth
-		set textwidth=0
-		setlocal wrap linebreak nolist
-		noremap <buffer> <silent> k gk
-		noremap <buffer> <silent> j gj
-		noremap <buffer> <silent> 0 g0
-		noremap <buffer> <silent> $ g$
-	endif
-endfunction
-
 " }}}
 " Mappings & Abbrevations ------------------------------------------------ {{{
 
@@ -221,14 +194,6 @@ nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
 
 " Uppercase the current word in insert mode
 inoremap <c-^> <ESC>vbUgi
-
-" Make it easier to work with wrapped text
-noremap <silent> \w :call ToggleWrap()<CR>
-
-" Open the word under the cursor in OSX dictionary
-if has('mac')
-	nmap <silent> K :silent !open dict://<C-R><C-W><CR><Bar>:redraw!<CR>
-endif
 
 " On Swedish keyboards the [ and ] keys are not as easy to press as on
 " american layouts and if you want to prsss the Ctrl-], Ctrl-[ and Ctrl-\
@@ -357,10 +322,11 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#use_vimproc = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#max_list = 10
-let g:neocomplete#auto_completion_start_length = 3
 
-" Niflfer
+" Echodoc
+let g:echodoc_enable_at_startup = 1
+
+" Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png']
 let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor']
 map <leader>l :NifflerBuffer<cr>
@@ -369,25 +335,15 @@ map <leader>t :NifflerTags %<cr>
 map <leader>T :NifflerTags<cr>
 map <leader>r :NifflerMRU<cr>
 
-" Echodoc
-let g:echodoc_enable_at_startup = 1
-
-" vim-notes
-if has('mac')
-	let g:notes_directories = ['~/Documents/Notes']
-else
-	let g:notes_directories = ['~/sync/Documents/Notes']
-endif
-let g:notes_suffix = '.txt'
-
 " VimWiki
-" let g:vimwiki_list = [{
-" 			\ 'path': '~/Documents/VimWiki/',
-" 			\ 'syntax': 'markdown',
-" 			\ 'ext': '.md'}]
-" let g:vimwiki_hl_cb_checked = 1
-" let g:vimwiki_table_mappings = 0
-
-" }}}
+let wiki = {'syntax': 'markdown', 'ext': '.md'}
+if has('mac')
+	let wiki.path = '~/Documents/VimWiki/'
+else
+	let wiki.path = '~/sync/Documents/VimWiki'
+endif
+let g:vimwiki_list = [wiki]
+let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_table_mappings = 0
 
 " vim: foldmethod=marker
