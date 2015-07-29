@@ -1,11 +1,9 @@
-if [ -r ~/.bashrc ]; then
-	source ~/.bashrc
-fi
-
-export EDITOR=vim			# Set the default editor to vim
-export CLICOLOR=1			# Show colors on 'ls'
-export LESS="-R -x2"			# Show TAB as 2 spaces
-export MANWIDTH=78		# Set max widht to 78 characters in man
-export HISTCONTROL=ignoredups
-export PATH=~/bin:/usr/local/bin:$PATH
 export PS1="\w$ "
+export EDITOR=vim
+export CLICOLOR=1
+export LESS="-R -x2"
+export MANWIDTH=78
+
+if [ -f $(brew --prefix)/etc/bash_completion  ]; then
+	. $(brew --prefix)/etc/bash_completion
+fi
