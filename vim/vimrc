@@ -13,14 +13,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-fugitive'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'pgdouyon/vim-niffler'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'Shougo/echodoc'
 Plug 'regedarek/ZoomWin'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
@@ -43,7 +41,7 @@ syntax on
 " Load my own colorscheme if available but fallback
 " to one that comes with vim
 if findfile('colors/leya.vim', &rtp) != ''
-	colorscheme leya
+	colorscheme darth
 elseif findfile('colors/darth.vim', &rtp) != ''
 	colorscheme darth
 else
@@ -68,8 +66,7 @@ set directory=~/tmp,/var/tmp,/tmp
 set ignorecase smartcase
 
 " Enable an improved command completion menu
-set wildmenu
-set wildmode=longest:full,full
+set wildmode=list:longest,full
 set wildignorecase
 set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
 
@@ -115,13 +112,13 @@ set incsearch
 set statusline=%f " Filename
 set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
 set statusline+=%= " Switch to right side
-silent set statusline+=%{fugitive#head()}
+set statusline+=%{fugitive#head()}
 set statusline+=\ [
 set statusline+=%Y " File type
 set statusline+=/%{&ff} " File format
 set statusline+=/%{(&fenc==\"\"?&enc:&fenc)} " File encoding
 set statusline+=]
-set statusline+=[%v,%l/%L] " Cursor position
+set statusline+=[%l/%L:%v] " Cursor position
 
 " Makes it possible to have different cursor types for different modes.
 if exists('$TMUX')
@@ -156,6 +153,10 @@ set smarttab
 " Copy the indent from the current line when starting a new
 set autoindent
 
+" The current implementation of searching in included files can make the
+" search slow
+set complete-=i
+
 " Characters to use in 'list' mode
 if has('patch-7.4.710')
 	set listchars=tab:▸\ ,trail:·,eol:¬,space:·
@@ -170,11 +171,6 @@ set nrformats-=octal
 if v:version >= 704
 	set formatoptions+=j
 endif
-
-" Use ag to grep if available
-" if executable('ag')
-" 	set grepprg=ag\ --nogroup\ --nocolor\ --column
-" endif
 
 " }}}
 " Functions --------------------------------------------------------------- {{{
@@ -192,8 +188,9 @@ nnoremap <silent> <c-l> :nohlsearch<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
 nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
 
-" Uppercase the current word in insert mode
-inoremap <c-^> <ESC>vbUgi
+" Make it possible to hit ENTER when choosing an item form the completion
+" popup. Without it you need to hit Ctrl-y.
+inoremap <expr><CR> pumvisible()? "\<C-y>" : "\<CR>"
 
 " On Swedish keyboards the [ and ] keys are not as easy to press as on
 " american layouts and if you want to prsss the Ctrl-], Ctrl-[ and Ctrl-\
@@ -261,9 +258,6 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Make vim see javascript template files as html
 	autocmd BufNewFile,BufRead *.jst setlocal filetype=jst
 
-	" Set textwidth for README file to 80 chars
-	autocmd BufNewFile,BufRead README setlocal textwidth=78
-
 	" Enable spellchecking in git commit messages
 	autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 
@@ -273,9 +267,8 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" Up security for encrypted files
 	autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
 
-	" Don't want to fly around when writing e-mails
-	autocmd FileType MAIL let g:AutoPairsFlyMode = 0
-	autocmd FileType VIMWIKI setlocal tw=78
+	" Set textwidth for multiple filetypes
+	autocmd FileType MAIL,VIMWIKI,README setlocal textwidth=72
 
 	" Make sure editing crontab works in OS X
 	if has('mac')
@@ -305,9 +298,9 @@ let g:AutoPairsCenterLine = 0
 " Syntastic
 let g:syntastic_auto_jump=2
 let g:syntastic_auto_loc_list=1
-let g:syntastic_php_phpmd_post_args="text  ~/.vim/bundle/0/phpmdrs.xml"
 let g:syntastic_html_tidy_blocklevel_tags = ['a']
 let g:syntastic_html_tidy_quiet_messages = { "level": "warnings"  }
+let g:syntastic_php_phpmd_post_args = '~/Sources/dotfiles/phpmd.xml'
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -324,16 +317,11 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 1
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-e> neocomplete#cancel_popup()
-inoremap <expr><C-y> neocomplete#close_popup()
 inoremap <expr><C-l> neocomplete#complete_common_string()
-
-" Echodoc
-let g:echodoc_enable_at_startup = 1
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png']
-let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor']
+let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor', 'build']
 map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
@@ -341,14 +329,7 @@ map <leader>T :NifflerTags<cr>
 map <leader>r :NifflerMRU<cr>
 
 " VimWiki
-let wiki = {'syntax': 'markdown', 'ext': '.md'}
-if has('mac')
-	let wiki.path = '~/Documents/VimWiki/'
-else
-	let wiki.path = '~/sync/Documents/VimWiki'
-endif
-let g:vimwiki_list = [wiki]
-let g:vimwiki_hl_cb_checked = 1
-let g:vimwiki_table_mappings = 0
+let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
+let g:vimwiki_hl_cb_checked = 2
 
 " vim: foldmethod=marker
