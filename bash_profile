@@ -8,3 +8,11 @@ export MANWIDTH=78
 for f in ~/.bashrc.d/*; do
 	source $f;
 done
+
+# set PATH so it includes users private bin if it exists
+if [ -d "$HOME/bin"  ] ; then
+	PATH="$HOME/bin:$PATH"
+fi
+
+# Disable START/STOP signals
+stty -ixon -ixoff
