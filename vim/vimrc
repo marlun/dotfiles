@@ -188,10 +188,6 @@ nnoremap <silent> <c-l> :nohlsearch<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
 nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
 
-" Make it possible to hit ENTER when choosing an item form the completion
-" popup. Without it you need to hit Ctrl-y.
-inoremap <expr><CR> pumvisible()? "\<C-y>" : "\<CR>"
-
 " On Swedish keyboards the [ and ] keys are not as easy to press as on
 " american layouts and if you want to prsss the Ctrl-], Ctrl-[ and Ctrl-\
 " you'll have to press the following combinations:
@@ -281,6 +277,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" PHP
 	autocmd FileType PHP let b:commentary_format = '// %s'
 
+	" VimWiki
+	autocmd FileType vimwiki set foldlevel=2
+
 endif
 
 " }}}
@@ -309,6 +308,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetDirectories = ["snips"]
 let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
+map <leader>s :UltiSnipsEdit<cr>
 
 " Neocomplete
 let g:neocomplete#enable_at_startup = 1
@@ -321,7 +321,7 @@ inoremap <expr><C-l> neocomplete#complete_common_string()
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png']
-let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor', 'build']
+let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor', 'build', 'dist']
 map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
@@ -331,5 +331,7 @@ map <leader>r :NifflerMRU<cr>
 " VimWiki
 let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
 let g:vimwiki_hl_cb_checked = 2
+let g:vimwiki_table_auto_fmt = 0
+let g:vimwiki_folding = 'expr'
 
 " vim: foldmethod=marker
