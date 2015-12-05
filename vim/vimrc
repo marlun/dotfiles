@@ -21,6 +21,7 @@ Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'regedarek/ZoomWin'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'editorconfig/editorconfig-vim'
 
 if has('lua') && has('patch-7.3.885')
 	Plug 'Shougo/neocomplete'
