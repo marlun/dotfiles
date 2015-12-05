@@ -116,8 +116,6 @@ set statusline+=%= " Switch to right side
 set statusline+=%{fugitive#head()}
 set statusline+=\ [
 set statusline+=%Y " File type
-set statusline+=/%{&ff} " File format
-set statusline+=/%{(&fenc==\"\"?&enc:&fenc)} " File encoding
 set statusline+=]
 set statusline+=[%l/%L:%v] " Cursor position
 
@@ -260,9 +258,6 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	" Set textwidth to 80 when editing branch descriptions
 	autocmd BufNewFile,BufRead BRANCH_DESCRIPTION setlocal textwidth=78
-
-	" Up security for encrypted files
-	autocmd BufReadPost * if &key != "" | set noswapfile nowritebackup viminfo= nobackup noshelltemp history=0 secure | endif
 
 	" Set textwidth for multiple filetypes
 	autocmd FileType MAIL,VIMWIKI,README setlocal textwidth=72
