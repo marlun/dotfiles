@@ -22,6 +22,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'regedarek/ZoomWin'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'editorconfig/editorconfig-vim'
+Plug 'pangloss/vim-javascript'
+" Plug 'lambdatoast/elm.vim'
 
 if has('lua') && has('patch-7.3.885')
 	Plug 'Shougo/neocomplete'
@@ -56,7 +58,6 @@ set encoding=utf-8
 set clipboard=unnamed
 
 " Don't save swap-files for recovery
-" TODO evaulate if I should remove this
 set noswapfile
 
 " Move vim backup files
@@ -80,6 +81,9 @@ set secure
 
 " Add swedish as a recognized language when spellchecking
 set spelllang=en,sv
+
+" Add dictionary for completion
+set dictionary=/usr/share/dict/words
 
 " }}}
 " Interface ---------------------------------------------------------------- {{{
@@ -139,12 +143,15 @@ set backspace+=indent,eol,start
 " Disable line-wrapping
 set nowrap
 
-" Make a tab be 4 spaces both for read and when editing. Read about
-" 'softtabstop' to know what I mean. Set indentation to the same.
-let s:tabwidth = 2
-let &tabstop = s:tabwidth
-let &softtabstop = s:tabwidth
-let &shiftwidth = s:tabwidth
+" Make a tab be 2 spaces both for read and when editing. If 'shiftwidth' is
+" set to 0 it will use the same as 'tabstop'. If 'softtabstop' is set to -1 it
+" will use the same as 'shiftwidth'.
+set tabstop=2
+set shiftwidth=0
+set softtabstop=-1
+
+" Use spaces instead of tabs as default
+set expandtab
 
 " Tab in front of a line inserts blanks according to 'shiftwidth'
 set smarttab
@@ -186,26 +193,6 @@ let mapleader=' '
 nnoremap <silent> <c-l> :nohlsearch<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
 nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
-
-" On Swedish keyboards the [ and ] keys are not as easy to press as on
-" american layouts and if you want to prsss the Ctrl-], Ctrl-[ and Ctrl-\
-" you'll have to press the following combinations:
-"
-" Ctrl-] = Ctrl-å
-" Ctrl-[ = Ctrl-ä
-" Ctrl-\ = Ctrl-ö
-"
-" To make it more saner (I think) I also map the swedish keys to their
-" corresponding keys without the ctrl key.
-nmap å ]
-nmap ä [
-nmap ö \
-omap å ]
-omap ä [
-omap ö \
-xmap å ]
-xmap ä [
-xmap ö \
 
 " The second lines in the following mappings is for iTerm2 but for them to work
 " you need to create a mapping in iterm too so that it sends the correct escape
@@ -260,7 +247,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd BufNewFile,BufRead BRANCH_DESCRIPTION setlocal textwidth=78
 
 	" Set textwidth for multiple filetypes
-	autocmd FileType MAIL,VIMWIKI,README setlocal textwidth=72
+	autocmd FileType MAIL,VIMWIKI,README setlocal textwidth=78
 
 	" Make sure editing crontab works in OS X
 	if has('mac')
@@ -325,7 +312,10 @@ map <leader>T :NifflerTags<cr>
 map <leader>r :NifflerMRU<cr>
 
 " VimWiki
-let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
+let g:vimwiki_list = [{
+  \ 'path': '~/Documents/VimWiki/',
+  \ 'syntax': 'markdown',
+  \ 'ext': '.md' }]
 let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_table_auto_fmt = 0
 let g:vimwiki_folding = 'expr'
