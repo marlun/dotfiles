@@ -104,7 +104,7 @@ set laststatus=2
 set shortmess+=a
 
 " Don't highlight very long lines
-set synmaxcol=256
+set synmaxcol=150
 
 " Don't redraw while executing macros, registers, etc.
 set lazyredraw
