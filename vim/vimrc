@@ -203,21 +203,11 @@ nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
 " sequences. Read more here:
 " https://groups.google.com/d/msg/iterm2-discuss/VEiCSc5LCIs/U5fqrwNFm88J
 
-" Go to the end and add a semicolon
-inoremap <C-ENTER> <ESC>A;
-inoremap O2P <ESC>A;
-
 " Add a semicolon without moving the cursor and leaving insert mode
-inoremap <C-S-ENTER> <ESC>maA;<ESC>`aa
-inoremap O2R <ESC>maA;<ESC>`aa
+inoremap O2P <ESC>maA;<ESC>`aa
 
-" Add a new line below current line and go to it
-inoremap <S-ENTER> <ESC>o
-inoremap O2Q <ESC>o
-
-" Add a semicolon to the end and a new line below and go to it
-inoremap <D-ENTER> <ESC>A;<CR>
-inoremap O2S <ESC>A;<CR>
+" Go to the end and add a semicolon
+inoremap O2R <ESC>A;<ESC>
 
 " }}}
 " Automatic commands ------------------------------------------------------- {{{
