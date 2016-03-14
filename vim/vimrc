@@ -178,6 +178,10 @@ if v:version >= 704
 	set formatoptions+=j
 endif
 
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
 " }}}
 " Functions --------------------------------------------------------------- {{{
 
