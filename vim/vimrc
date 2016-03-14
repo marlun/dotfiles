@@ -23,7 +23,7 @@ Plug 'regedarek/ZoomWin'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kylef/apiblueprint.vim'
-" Plug 'lambdatoast/elm.vim'
+Plug 'wellle/targets.vim'
 
 if has('lua') && has('patch-7.3.885')
 	Plug 'Shougo/neocomplete'
