@@ -4,8 +4,8 @@
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'git@github.com:marlun/vim-marlun.git'
-Plug 'git@github.com:marlun/vim-starwars.git'
+Plug 'marlun/vim-marlun.git'
+Plug 'marlun/vim-starwars.git'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -14,18 +14,18 @@ Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-fugitive'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'jiangmiao/auto-pairs'
-Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'pgdouyon/vim-niffler'
 Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'regedarek/ZoomWin'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'editorconfig/editorconfig-vim'
-Plug 'kylef/apiblueprint.vim'
 Plug 'wellle/targets.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'kylef/apiblueprint.vim'
 
 if has('lua') && has('patch-7.3.885')
 	Plug 'Shougo/neocomplete'
