@@ -24,6 +24,8 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kylef/apiblueprint.vim'
 Plug 'wellle/targets.vim'
+Plug 'mattn/emmet-vim'
+Plug 'othree/yajs.vim'
 
 if has('lua') && has('patch-7.3.885')
 	Plug 'Shougo/neocomplete'
@@ -31,7 +33,6 @@ if has('lua') && has('patch-7.3.885')
 else
 	Plug 'Shougo/neocomplcache.vim'
 endif
-
 
 call plug#end()
 
@@ -317,5 +318,8 @@ let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_table_auto_fmt = 0
 let g:vimwiki_folding = 'expr'
 let g:vimwiki_global_ext = 0
+
+" vim-emmet
+let g:user_emmet_leader_key = '<C-e>'
 
 " vim: foldmethod=marker
