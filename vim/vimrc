@@ -24,7 +24,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'kylef/apiblueprint.vim'
 
 if has('lua') && has('patch-7.3.885')
@@ -118,10 +117,7 @@ set incsearch
 set statusline=%f " Filename
 set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
 set statusline+=%= " Switch to right side
-set statusline+=%{fugitive#head()}
-set statusline+=\ [
-set statusline+=%Y " File type
-set statusline+=]
+" set statusline+=%{fugitive#head()}\ 
 set statusline+=[%l/%L:%v] " Cursor position
 
 " Makes it possible to have different cursor types for different modes.
@@ -218,7 +214,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 	let autocommands_loaded = 1
 
 	" Auto-source config files when changed
-	autocmd BufWritePost .vimrc source %
+	autocmd BufWritePost vimrc source %
 
 	" Auto-source colorscheme when changed
 	autocmd BufWritePost leya.vim source %
