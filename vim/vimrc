@@ -25,6 +25,7 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
 Plug 'kylef/apiblueprint.vim'
+Plug 'wlangstroth/vim-racket'
 
 if has('lua') && has('patch-7.3.885')
 	Plug 'Shougo/neocomplete'
@@ -224,9 +225,10 @@ nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
 " https://groups.google.com/d/msg/iterm2-discuss/VEiCSc5LCIs/U5fqrwNFm88J
 
 " Add a semicolon without moving the cursor and leaving insert mode
+" (shift-enter)
 inoremap O2P <ESC>maA;<ESC>`aa
 
-" Go to the end and add a semicolon
+" Go to the end and add a semicolon (ctrl-enter)
 inoremap O2R <ESC>A;<ESC>
 
 " }}}
