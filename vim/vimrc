@@ -19,11 +19,13 @@ Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'regedarek/ZoomWin'
-Plug 'wellle/targets.vim'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
+
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+Plug 'wellle/targets.vim'
+
 Plug 'kylef/apiblueprint.vim'
 Plug 'wlangstroth/vim-racket'
 
@@ -42,36 +44,25 @@ call plug#end()
 " Enable syntax highlighting and choose colorscheme
 syntax on
 
-" Load my own colorscheme if available but fallback
-" to one that comes with vim
-if findfile('colors/leya.vim', &rtp) != ''
-	colorscheme darth
-elseif findfile('colors/darth.vim', &rtp) != ''
+" Load my own colorscheme if available but fallback to one that comes with vim
+if findfile('colors/darth.vim', &rtp) != ''
 	colorscheme darth
 else
 	colorscheme delek
 endif
 
-" Make sure vim uses UTF-8
+set wildignorecase
+set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
 set encoding=utf-8
-
-" Make the unnamed register the "* register
-set clipboard=unnamed
-
-" Don't save swap-files for recovery
 set noswapfile
-
-" Move vim backup files
 set directory=~/tmp,/var/tmp,/tmp
+
+" Use system clipboard (if supported)
+set clipboard=unnamed
 
 " To make it easier to search for things I make vim ignore case except when
 " the search pattern contains upper case characters
 set ignorecase smartcase
-
-" Enable an improved command completion menu
-set wildmode=list:longest,full
-set wildignorecase
-set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
 
 " Do upward search for tags file
 set tags=./tags;,tags;
@@ -89,37 +80,25 @@ set dictionary=/usr/share/dict/words
 " }}}
 " Interface ---------------------------------------------------------------- {{{
 
-" Allow putting buffers in the background
 set hidden
-
-" Allways show the mode that vim is in
-set noshowmode
-
-" Show partial commands as you type them.
 set showcmd
-
-" Always show a statusline
-set laststatus=2
-
-" Tell vim to use all abbrevations when showing messages
-set shortmess+=a
-
-" Don't highlight very long lines
-set synmaxcol=150
-
-" Don't redraw while executing macros, registers, etc.
-set lazyredraw
-
-" Highlight search matches and use incremental search
 set hlsearch
 set incsearch
+set lazyredraw
+set synmaxcol=150
+set shortmess+=a
+set laststatus=2
 
-" Make the statusline a lot more useful
+" First list all matches and complete till longest common string, then
+" complete to the next full match
+set wildmode=list:longest,full
+
+" Clean status line with only filename, flags and line:column. If you want
+" more information you can use Ctrl-g which I've added extra information to
 set statusline=%f " Filename
 set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
 set statusline+=%= " Switch to right side
-" set statusline+=%{fugitive#head()}\ 
-set statusline+=[%l/%L:%v] " Cursor position
+set statusline+=[%l:%v] " Cursor position
 
 " Makes it possible to have different cursor types for different modes.
 if exists('$TMUX')
@@ -133,33 +112,35 @@ endif
 " }}}
 " Editor ------------------------------------------------------------------- {{{
 
-" In vi the backspace key could normally only delete the text inserted in the
-" current edit session. I want the backspace key to be able to remove
-" everything so I add everything (see :h 'backspace')
 set backspace+=indent,eol,start
-
-" Disable line-wrapping
 set nowrap
-
-" Make a tab be 2 spaces both for read and when editing. If 'shiftwidth' is
-" set to 0 it will use the same as 'tabstop'. If 'softtabstop' is set to -1 it
-" will use the same as 'shiftwidth'.
-set tabstop=2
-set shiftwidth=0
-set softtabstop=-1
-
-" Use spaces instead of tabs as default
 set expandtab
-
-" Tab in front of a line inserts blanks according to 'shiftwidth'
 set smarttab
-
-" Copy the indent from the current line when starting a new
 set autoindent
+
+" Remove timeout from mappings and speed it up for key codes
+set notimeout
+set ttimeout
+set ttimeoutlen=10
 
 " The current implementation of searching in included files can make the
 " search slow
 set complete-=i
+
+" Ctrl-A over 07 incmrements to 08
+set nrformats-=octal
+
+" If we can we setup &ts, &sw and &sts so that we can only change tabstop and
+" everything else will adjust. If we can't we just use 2 spaces.
+if has('patch-7.3.693')
+  set tabstop=2
+  set shiftwidth=0
+  set softtabstop=-1
+else
+  set tabstop=2
+  set shiftwidth=2
+  set softtabstop=2
+endif
 
 " Characters to use in 'list' mode
 if has('patch-7.4.710')
@@ -168,14 +149,12 @@ else
 	set listchars=tab:▸\ ,trail:·,eol:¬
 endif
 
-" Ctrl-A over 07 incmrements to 08
-set nrformats-=octal
-
 " Where it makes sense, remove comment leader when joining lines
-if v:version >= 704
+if has('patch-7.3.541')
 	set formatoptions+=j
 endif
 
+" Use ag when running :grep
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
@@ -217,18 +196,22 @@ let mapleader=' '
 
 nnoremap <silent> <c-l> :nohlsearch<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
+
+" Show how to save a file that requires root permissions
 nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
 
-" The second lines in the following mappings is for iTerm2 but for them to work
-" you need to create a mapping in iterm too so that it sends the correct escape
-" sequences. Read more here:
+" Add filetype
+nnoremap <silent> <C-g> :file<Bar>echon ' [' &filetype '/' &fileencoding '/' &fileformat '] (' fugitive#head() ')'<CR>
+
+" For the following mappings to work you need to create a mapping in iTerm2 so
+" that it sends the correct escape sequences. Read more here:
 " https://groups.google.com/d/msg/iterm2-discuss/VEiCSc5LCIs/U5fqrwNFm88J
 
 " Add a semicolon without moving the cursor and leaving insert mode
-" (shift-enter)
+" (O2P = Shift-Enter)
 inoremap O2P <ESC>maA;<ESC>`aa
 
-" Go to the end and add a semicolon (ctrl-enter)
+" Go to the end and add a semicolon (O2R = Ctrl-Enter)
 inoremap O2R <ESC>A;<ESC>
 
 " }}}
