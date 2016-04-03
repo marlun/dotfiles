@@ -1,5 +1,8 @@
 config.vim
+.eslintcache
 .DS_Store
 .vimrc
 Session.vim
 tags
+tags.lock
+tags.temp
