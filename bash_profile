@@ -18,14 +18,7 @@ if [ -f /usr/local/share/bash-completion/bash_completion ]; then
 	. /usr/local/share/bash-completion/bash_completion
 fi
 
-# Z - fast directory switching
-. `brew --prefix`/etc/profile.d/z.sh
-
-# NVM - Node Version Manager
-export NVM_DIR="/Users/marlun/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[[ -r $NVM_DIR/bash_completion  ]] && . $NVM_DIR/bash_completion
-
-# Intelligent messages from THE cow
-# cowsay $(fortune -s)
-cowsay $(gshuf -n 1 ~/Documents/messages.txt)
+# Local customized path and environment settings, etc.
+if [ -f ~/.bash_local ]; then
+  . ~/.bash_local
+fi
