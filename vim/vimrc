@@ -29,12 +29,12 @@ Plug 'wellle/targets.vim'
 Plug 'kylef/apiblueprint.vim'
 Plug 'wlangstroth/vim-racket'
 
-if has('lua') && has('patch-7.3.885')
-	Plug 'Shougo/neocomplete'
-	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-else
-	Plug 'Shougo/neocomplcache.vim'
-endif
+" if has('lua') && has('patch-7.3.885')
+" 	Plug 'Shougo/neocomplete'
+" 	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" else
+" 	Plug 'Shougo/neocomplcache.vim'
+" endif
 
 call plug#end()
 
@@ -118,10 +118,9 @@ set expandtab
 set smarttab
 set autoindent
 
-" Remove timeout from mappings and speed it up for key codes
-set notimeout
-set ttimeout
-set ttimeoutlen=10
+" Make timouts shorter for both mappings and key codes
+" set timeoutlen=500
+" set ttimeoutlen=10
 
 " The current implementation of searching in included files can make the
 " search slow
@@ -195,6 +194,7 @@ iabbrev paied paid
 let mapleader=' '
 
 nnoremap <silent> <c-l> :nohlsearch<CR>
+nnoremap <silent> <Esc>u :set hlsearch!<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
 
 " Show how to save a file that requires root permissions
@@ -202,6 +202,9 @@ nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
 
 " Add filetype
 nnoremap <silent> <C-g> :file<Bar>echon ' [' &filetype '/' &fileencoding '/' &fileformat '] (' fugitive#head() ')'<CR>
+
+" Uppercase word before cursor
+noremap! <C-f> <ESC>gUiw`]a
 
 " For the following mappings to work you need to create a mapping in iTerm2 so
 " that it sends the correct escape sequences. Read more here:
@@ -271,8 +274,6 @@ endif
 runtime macros/matchit.vim
 
 " Auto-pairs
-let g:AutoPairsShortcutFastWrap = '<C-S-F>'
-let g:AutoPairsShortcutBackInsert = '<C-S-B>'
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsCenterLine = 0
 
