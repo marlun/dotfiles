@@ -1,5 +1,6 @@
 --quiet
 --exclude=.git
+--exclude=dist
 --exclude=.hg
 --exclude=log
 --exclude=tmp
