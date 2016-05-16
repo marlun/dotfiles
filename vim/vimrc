@@ -252,7 +252,10 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd BufNewFile,BufRead BRANCH_DESCRIPTION setlocal textwidth=78
 
 	" Set textwidth for multiple filetypes
-	autocmd FileType MAIL,VIMWIKI,README setlocal textwidth=78
+	autocmd FileType VIMWIKI,README setlocal textwidth=78
+
+  " Settings for writing mail
+	autocmd FileType MAIL setlocal textwidth=78 formatoptions+=aw spell
 
 	" Make sure editing crontab works in OS X
 	if has('mac')
