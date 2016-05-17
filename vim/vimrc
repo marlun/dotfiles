@@ -27,7 +27,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'wellle/targets.vim'
 
 Plug 'kylef/apiblueprint.vim'
-Plug 'wlangstroth/vim-racket'
+" Plug 'AndrewRadev/splitjoin.vim'
 
 " if has('lua') && has('patch-7.3.885')
 " 	Plug 'Shougo/neocomplete'
