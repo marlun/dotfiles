@@ -4,8 +4,11 @@
 
 call plug#begin('~/.vim/bundle')
 
+" Personal
 Plug 'marlun/vim-marlun'
 Plug 'marlun/vim-starwars'
+
+" Vim extensions
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -13,28 +16,31 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-fugitive'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'regedarek/ZoomWin'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
-Plug 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
+Plug 'vim-syntastic/syntastic'
+Plug 'neomake/neomake',
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'regedarek/ZoomWin'
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'sukima/xmledit', { 'for': ['html', 'smarty'] }
-
 Plug 'editorconfig/editorconfig-vim'
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
-Plug 'wellle/targets.vim'
+Plug 'itchyny/vim-gitbranch'
 
-Plug 'kylef/apiblueprint.vim'
-Plug 'wlangstroth/vim-racket'
+" Language support
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'sukima/xmledit'
+Plug 'ternjs/tern_for_vim'
+Plug 'pangloss/vim-javascript'
+Plug 'Quramy/vim-js-pretty-template'
+Plug 'alexlafroscia/postcss-syntax.vim'
 
-" if has('lua') && has('patch-7.3.885')
-" 	Plug 'Shougo/neocomplete'
-" 	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" else
-" 	Plug 'Shougo/neocomplcache.vim'
-" endif
+" Auto-completion
+if has('lua') && has('patch-7.3.885')
+	Plug 'Shougo/neocomplete'
+	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+else
+	Plug 'Shougo/neocomplcache.vim'
+endif
 
 call plug#end()
 
@@ -51,11 +57,13 @@ else
 	colorscheme delek
 endif
 
-set wildignorecase
-set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
 set encoding=utf-8
 set noswapfile
 set directory=~/tmp,/var/tmp,/tmp
+set wildignorecase
+set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
+set wildmenu
+set wildmode=longest:full,full
 
 " Use system clipboard (if supported)
 set clipboard=unnamed
@@ -82,12 +90,15 @@ set dictionary=/usr/share/dict/words
 
 set hidden
 set showcmd
-set hlsearch
+set noshowmode
+set nohlsearch
 set incsearch
 set lazyredraw
-set synmaxcol=150
+set synmaxcol=256
 set shortmess+=a
 set laststatus=2
+set incsearch
+set hlsearch
 
 " First list all matches and complete till longest common string, then
 " complete to the next full match
@@ -117,10 +128,10 @@ set nowrap
 set expandtab
 set smarttab
 set autoindent
-
-" Make timouts shorter for both mappings and key codes
-" set timeoutlen=500
-" set ttimeoutlen=10
+set completeopt-=preview
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 
 " The current implementation of searching in included files can make the
 " search slow
@@ -128,18 +139,6 @@ set complete-=i
 
 " Ctrl-A over 07 incmrements to 08
 set nrformats-=octal
-
-" If we can we setup &ts, &sw and &sts so that we can only change tabstop and
-" everything else will adjust. If we can't we just use 2 spaces.
-if has('patch-7.3.693')
-  set tabstop=2
-  set shiftwidth=0
-  set softtabstop=-1
-else
-  set tabstop=2
-  set shiftwidth=2
-  set softtabstop=2
-endif
 
 " Characters to use in 'list' mode
 if has('patch-7.4.710')
@@ -159,7 +158,17 @@ if executable('ag')
 endif
 
 " }}}
-" Functions --------------------------------------------------------------- {{{
+" Functions & Commands -------------------------------------------------- {{{
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made. Only define it when not
+" defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+                  \ | wincmd p | diffthis
+endif
+
+" Runs a shell command and shows the result on the command-line inside vim
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
   let isfirst = 1
@@ -178,15 +187,9 @@ function! s:RunShellCommand(cmdline)
     call add(words, word)
   endfor
   let expanded_cmdline = join(words)
-  " botright new
-  " setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-  " call setline(1, 'You entered:  ' . a:cmdline)
-  " call setline(2, 'Expanded to:  ' . expanded_cmdline)
-  " call append(line('$'), substitute(getline(2), '.', '=', 'g'))
   echom substitute(system(expanded_cmdline), '[[:cntrl:]]', '', 'g')
-  " silent execute '$read !'. expanded_cmdline
-  " 1
 endfunction
+
 " }}}
 " Mappings & Abbrevations ------------------------------------------------ {{{
 
@@ -200,14 +203,29 @@ nnoremap <silent> <c-l> :nohlsearch<CR>
 nnoremap <silent> <Esc>u :set hlsearch!<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
 
-" Show how to save a file that requires root permissions
-nnoremap <silent> <leader>W :echo ":w !sudo tee %"<CR>
+" Use Ctrl-n and Ctrl-p to move up and down in command-line history but use
+" what's before the cursor when searching
+cnoremap <c-n> <down>
+cnoremap <c-p> <up>
 
-" Add filetype
-nnoremap <silent> <C-g> :file<Bar>echon ' [' &filetype '/' &fileencoding '/' &fileformat '] (' fugitive#head() ')'<CR>
+" You can use <Up> to recall earlier commands from the history but I don't
+" like moving my hand down to the arrow-keys.
+cnoremap <C-o> <Up>
 
 " Uppercase word before cursor
-noremap! <C-f> <ESC>gUiw`]a
+inoremap <C-f> <ESC>gUiw`]a
+
+" CTRL-U in insert mode deletes a lot. Use CTRL-G u to first break undo, so
+" that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+" Add filetype
+nnoremap <silent> <C-g> :file<Bar>echon ' [' &filetype '/' &fileencoding '/' &fileformat '] (' gitbranch#name() ')'<CR>
+
+" Navigational mappings
+" nnoremap <leader>r :browse filter // oldfiles<S-Left><Left><Left>
+" nnoremap <leader>l :ls<CR>:b<Space>
+" nnoremap <leader>o :find<Space>
 
 " For the following mappings to work you need to create a mapping in iTerm2 so
 " that it sends the correct escape sequences. Read more here:
@@ -244,6 +262,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	" Make vim see javascript template files as html
 	autocmd BufNewFile,BufRead *.jst setlocal filetype=jst
+  if  exists(':JsPreTmpl')
+    autocmd FileType javascript JsPreTmpl html
+  endif
 
 	" Enable spellchecking in git commit messages
 	autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
@@ -252,10 +273,10 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd BufNewFile,BufRead BRANCH_DESCRIPTION setlocal textwidth=78
 
 	" Set textwidth for multiple filetypes
-	autocmd FileType VIMWIKI,README setlocal textwidth=78
+	autocmd FileType README* setlocal textwidth=78
 
   " Settings for writing mail
-	autocmd FileType MAIL setlocal textwidth=78 formatoptions+=aw spell
+	autocmd FileType MAIL setlocal textwidth=78 formatoptions=tqj spell
 
 	" Make sure editing crontab works in OS X
 	if has('mac')
@@ -269,7 +290,18 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd FileType PHP let b:commentary_format = '// %s'
 
 	" VimWiki
-	autocmd FileType vimwiki set foldlevel=2
+	autocmd FileType vimwiki setlocal foldlevel=2 textwidth=78
+
+	" Add syntax highlighting for the ESLint configuration file
+	autocmd BufNewFile,BufRead .eslintrc set filetype=json
+
+  " When editing a file, always jump to the last known cursor position.  Don't
+  " do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
 
 endif
 
@@ -284,14 +316,21 @@ let g:AutoPairsFlyMode = 1
 let g:AutoPairsCenterLine = 0
 
 " Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_auto_jump=2
-let g:syntastic_html_tidy_blocklevel_tags = ['a']
-let g:syntastic_html_tidy_quiet_messages = { "level": "warnings"  }
-let g:syntastic_php_phpmd_post_args = '~/Sources/dotfiles/phpmd.xml'
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list=1
+" let g:syntastic_auto_jump=2
+" let g:syntastic_html_tidy_blocklevel_tags = ['a']
+" let g:syntastic_html_tidy_quiet_messages = { "level": "warnings"  }
+" let g:syntastic_php_phpmd_post_args = '~/Sources/dotfiles/phpmd.xml'
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exec = 'eslint_d'
+
+" Neomake
+let g:neomake_javascript_enabled_makers = ['eslint_d']
+if has("autocmd") && !exists("neomake_autocommands_loaded")
+    let neomake_autocommands_loaded = 1
+    autocmd! BufWritePost,BufEnter *.js Neomake
+endif
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -312,12 +351,11 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-l> neocomplete#complete_common_string()
 
 " Niffler
-let g:niffler_ignore_extensions = ['gif', 'jpg', 'png']
+let g:niffler_ignore_extensions = ['gif', 'jpg', 'png', 'svg']
 let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor', 'build', 'dist']
 map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
-map <leader>T :NifflerTags<cr>
 map <leader>r :NifflerMRU<cr>
 
 " VimWiki
@@ -333,3 +371,4 @@ let g:vimwiki_global_ext = 0
 let g:user_emmet_leader_key = '<c-e>'
 
 " vim: foldmethod=marker
+
