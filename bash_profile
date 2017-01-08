@@ -10,6 +10,8 @@ export MANWIDTH=78
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 
+alias tree="tree -I node_modules"
+
 # Disable START/STOP signals
 stty -ixon -ixoff
 
