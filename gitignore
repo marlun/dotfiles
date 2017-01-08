@@ -1,6 +1,6 @@
-config.vim
-.eslintcache
 .DS_Store
+.eslintcache
+.tern-project
 .vimrc
 Session.vim
 tags
