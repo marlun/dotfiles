@@ -25,7 +25,9 @@ Plug 'vim-syntastic/syntastic'
 Plug 'neomake/neomake',
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'itchyny/vim-gitbranch'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+" Plug 'wellle/targets.vim'
+" Plug 'AndrewRadev/splitjoin.vim'
 
 " Language support
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
