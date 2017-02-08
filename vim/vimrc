@@ -15,6 +15,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-utils/vim-husk'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'regedarek/ZoomWin'
 Plug 'jiangmiao/auto-pairs'
@@ -135,7 +136,7 @@ set softtabstop=2
 
 " The current implementation of searching in included files can make the
 " search slow
-set complete-=i
+" set complete-=i
 
 " Ctrl-A over 07 incmrements to 08
 set nrformats-=octal
@@ -326,7 +327,7 @@ let g:AutoPairsCenterLine = 0
 " let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 " Neomake
-let g:neomake_javascript_enabled_makers = ['eslint_d']
+" let g:neomake_javascript_enabled_makers = ['eslint_d']
 if has("autocmd") && !exists("neomake_autocommands_loaded")
     let neomake_autocommands_loaded = 1
     autocmd! BufWritePost,BufEnter *.js Neomake
@@ -346,9 +347,6 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#use_vimproc = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_auto_select = 1
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-l> neocomplete#complete_common_string()
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png', 'svg']
@@ -366,6 +364,7 @@ let g:vimwiki_list = [{
 let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_table_auto_fmt = 0
 let g:vimwiki_global_ext = 0
+" let g:vimwiki_folding = 'syntax'
 
 " vim-emmet
 let g:user_emmet_leader_key = '<c-e>'
