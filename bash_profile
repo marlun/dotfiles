@@ -21,6 +21,6 @@ if [ -f /usr/local/share/bash-completion/bash_completion ]; then
 fi
 
 # Local customized path and environment settings, etc.
-if [ -f ~/.bash_local ]; then
-  . ~/.bash_local
+if [ -f ~/.bash_profile.local ]; then
+  . ~/.bash_profile.local
 fi
