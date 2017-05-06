@@ -21,26 +21,25 @@ Plug 'regedarek/ZoomWin'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
-Plug 'vim-syntastic/syntastic'
 Plug 'neomake/neomake',
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'itchyny/vim-gitbranch' " Shown on Ctrl-g
+Plug 'airblade/vim-gitgutter'
 
 " Language support
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'sukima/xmledit'
 Plug 'ternjs/tern_for_vim'
 Plug 'pangloss/vim-javascript'
-Plug 'Quramy/vim-js-pretty-template'
-Plug 'alexlafroscia/postcss-syntax.vim'
 
 " Auto-completion
-if has('lua') && has('patch-7.3.885')
-	Plug 'Shougo/neocomplete'
-	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-else
-	Plug 'Shougo/neocomplcache.vim'
-endif
+" if has('lua') && has('patch-7.3.885')
+" 	Plug 'Shougo/neocomplete'
+" 	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" else
+" 	Plug 'Shougo/neocomplcache.vim'
+" endif
 
 call plug#end()
 
@@ -61,7 +60,7 @@ set encoding=utf-8
 set noswapfile
 set directory=~/tmp,/var/tmp,/tmp
 set wildignorecase
-set wildignore+=DS_Store,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
+set wildignore+=DS_Store,tags,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
 set wildmenu
 set wildmode=longest:full,full
 
@@ -135,7 +134,7 @@ set softtabstop=2
 
 " The current implementation of searching in included files can make the
 " search slow
-" set complete-=i
+set complete-=i
 
 " Ctrl-A over 07 incmrements to 08
 set nrformats-=octal
@@ -246,7 +245,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 	let autocommands_loaded = 1
 
 	" Auto-source config files when changed
-	autocmd BufWritePost vimrc source %
+	" autocmd BufWritePost vimrc source %
 
 	" Auto-source colorscheme when changed
 	autocmd BufWritePost leya.vim source %
@@ -291,6 +290,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	" VimWiki
 	autocmd FileType vimwiki setlocal foldlevel=2 textwidth=78
+	autocmd FileType markdown setlocal foldlevel=1 textwidth=78
 
 	" Add syntax highlighting for the ESLint configuration file
 	autocmd BufNewFile,BufRead .eslintrc set filetype=json
@@ -307,6 +307,9 @@ endif
 
 " }}}
 " Plugin configurations ------------------------------------------------------- {{{
+
+" Configure default plugins
+let g:markdown_folding = 1
 
 " Matchit plugin comes with vim (see :e $VIMRUNTIME/macros/matchit.txt)
 runtime macros/matchit.vim
@@ -327,10 +330,10 @@ let g:AutoPairsCenterLine = 0
 
 " Neomake
 " let g:neomake_javascript_enabled_makers = ['eslint_d']
-if has("autocmd") && !exists("neomake_autocommands_loaded")
-    let neomake_autocommands_loaded = 1
-    autocmd! BufWritePost,BufEnter *.js Neomake
-endif
+" if has("autocmd") && !exists("neomake_autocommands_loaded")
+"     let neomake_autocommands_loaded = 1
+"     autocmd! BufWritePost,BufEnter *.js Neomake
+" endif
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -345,11 +348,12 @@ map <leader>s :UltiSnipsEdit<cr>
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#use_vimproc = 1
 let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#enable_auto_select = 0
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png', 'svg']
 let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor', 'build', 'dist']
+let g:niffler_fuzzy_char = ";"
 map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
@@ -363,7 +367,7 @@ let g:vimwiki_list = [{
 let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_table_auto_fmt = 0
 let g:vimwiki_global_ext = 0
-" let g:vimwiki_folding = 'syntax'
+let g:vimwiki_folding = 'list'
 
 " vim-emmet
 let g:user_emmet_leader_key = '<c-e>'
