@@ -14,7 +14,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-husk'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'regedarek/ZoomWin'
@@ -30,16 +29,7 @@ Plug 'airblade/vim-gitgutter'
 " Language support
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'sukima/xmledit'
-Plug 'ternjs/tern_for_vim'
 Plug 'pangloss/vim-javascript'
-
-" Auto-completion
-" if has('lua') && has('patch-7.3.885')
-" 	Plug 'Shougo/neocomplete'
-" 	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" else
-" 	Plug 'Shougo/neocomplcache.vim'
-" endif
 
 call plug#end()
 
@@ -167,28 +157,6 @@ if !exists(":DiffOrig")
                   \ | wincmd p | diffthis
 endif
 
-" Runs a shell command and shows the result on the command-line inside vim
-command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
-function! s:RunShellCommand(cmdline)
-  let isfirst = 1
-  let words = []
-  for word in split(a:cmdline)
-    if isfirst
-      let isfirst = 0  " don't change first word (shell command)
-    else
-      if word[0] =~ '\v[%#]'
-        let word = expand(word)
-      endif
-      if word[0] != '<'
-        let word = shellescape(word, 1)
-      endif
-    endif
-    call add(words, word)
-  endfor
-  let expanded_cmdline = join(words)
-  echom substitute(system(expanded_cmdline), '[[:cntrl:]]', '', 'g')
-endfunction
-
 " }}}
 " Mappings & Abbrevations ------------------------------------------------ {{{
 
@@ -244,38 +212,21 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	let autocommands_loaded = 1
 
-	" Auto-source config files when changed
-	" autocmd BufWritePost vimrc source %
-
 	" Auto-source colorscheme when changed
 	autocmd BufWritePost leya.vim source %
-
-	" Add default content when creating PHP files
-	autocmd BufNewFile *.php call setline(1, ['<?php', '', '']) | call setpos('.', [0, 3, 0, 0]) | startinsert
+	autocmd BufWritePost darth.vim source %
 
 	" Add dashes as part of keyword in CSS files
 	autocmd BufRead,BufNewFile CSS setlocal iskeyword+=-
 
-	" Make vim see Vagrantfile as a ruby file
-	autocmd BufRead,BufNewFile Vagrantfile setlocal filetype=ruby
-
-	" Make vim see javascript template files as html
-	autocmd BufNewFile,BufRead *.jst setlocal filetype=jst
-  if  exists(':JsPreTmpl')
-    autocmd FileType javascript JsPreTmpl html
-  endif
-
 	" Enable spellchecking in git commit messages
 	autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 
-	" Set textwidth to 80 when editing branch descriptions
-	autocmd BufNewFile,BufRead BRANCH_DESCRIPTION setlocal textwidth=78
-
 	" Set textwidth for multiple filetypes
-	autocmd FileType README* setlocal textwidth=78
+	autocmd FileType README*,MAIL setlocal textwidth=78
 
   " Settings for writing mail
-	autocmd FileType MAIL setlocal textwidth=78 formatoptions=tqj spell
+	autocmd FileType MAIL setlocal formatoptions=tqj spell
 
 	" Make sure editing crontab works in OS X
 	if has('mac')
@@ -287,10 +238,6 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	" PHP
 	autocmd FileType PHP let b:commentary_format = '// %s'
-
-	" VimWiki
-	autocmd FileType vimwiki setlocal foldlevel=2 textwidth=78
-	autocmd FileType markdown setlocal foldlevel=1 textwidth=78
 
 	" Add syntax highlighting for the ESLint configuration file
 	autocmd BufNewFile,BufRead .eslintrc set filetype=json
@@ -318,23 +265,6 @@ runtime macros/matchit.vim
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsCenterLine = 0
 
-" Syntastic
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list=1
-" let g:syntastic_auto_jump=2
-" let g:syntastic_html_tidy_blocklevel_tags = ['a']
-" let g:syntastic_html_tidy_quiet_messages = { "level": "warnings"  }
-" let g:syntastic_php_phpmd_post_args = '~/Sources/dotfiles/phpmd.xml'
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_exec = 'eslint_d'
-
-" Neomake
-" let g:neomake_javascript_enabled_makers = ['eslint_d']
-" if has("autocmd") && !exists("neomake_autocommands_loaded")
-"     let neomake_autocommands_loaded = 1
-"     autocmd! BufWritePost,BufEnter *.js Neomake
-" endif
-
 " UltiSnips
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -343,12 +273,6 @@ let g:UltiSnipsSnippetDirectories = ["snips"]
 let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
 map <leader>s :UltiSnipsEdit<cr>
-
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#use_vimproc = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_select = 0
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png', 'svg']
@@ -368,9 +292,6 @@ let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_table_auto_fmt = 0
 let g:vimwiki_global_ext = 0
 let g:vimwiki_folding = 'list'
-
-" vim-emmet
-let g:user_emmet_leader_key = '<c-e>'
 
 " vim: foldmethod=marker
 
