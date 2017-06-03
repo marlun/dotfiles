@@ -25,3 +25,6 @@ fi
 if [ -f ~/.config/profile ]; then
   . ~/.config/profile
 fi
+
+export LESS_TERMCAP_so=$'\E[30;43m'
+export LESS_TERMCAP_se=$'\E[39;49m'
