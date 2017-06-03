@@ -11,6 +11,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 
 alias tree="tree -I node_modules"
+alias ssh="TERM=screen-256color ssh"
 
 # Disable START/STOP signals
 stty -ixon -ixoff
