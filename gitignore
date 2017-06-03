@@ -2,6 +2,7 @@
 .eslintcache
 .tern-project
 .vimrc
+node_modules
 Session.vim
 tags
 tags.lock
