@@ -20,7 +20,8 @@ Plug 'regedarek/ZoomWin'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
-Plug 'neomake/neomake',
+" Plug 'neomake/neomake',
+Plug 'w0rp/ale'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/vim-gitbranch' " Shown on Ctrl-g
@@ -30,6 +31,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -80,7 +82,6 @@ set dictionary=/usr/share/dict/words
 set hidden
 set showcmd
 set noshowmode
-set nohlsearch
 set incsearch
 set lazyredraw
 set synmaxcol=256
@@ -189,6 +190,10 @@ inoremap <C-U> <C-G>u<C-U>
 " Add filetype
 nnoremap <silent> <C-g> :file<Bar>echon ' [' &filetype '/' &fileencoding '/' &fileformat '] (' gitbranch#name() ')'<CR>
 
+" Faster way to move between linting problems
+nnoremap ]e :lnext<CR>
+nnoremap [e :lprev<CR>
+
 " Navigational mappings
 " nnoremap <leader>r :browse filter // oldfiles<S-Left><Left><Left>
 " nnoremap <leader>l :ls<CR>:b<Space>
@@ -239,6 +244,9 @@ if has("autocmd") && !exists("autocommands_loaded")
 	" PHP
 	autocmd FileType PHP let b:commentary_format = '// %s'
 
+  " Markdown
+  autocmd FileType markdown setlocal foldlevel=1 textwidth=78
+
 	" Add syntax highlighting for the ESLint configuration file
 	autocmd BufNewFile,BufRead .eslintrc set filetype=json
 
@@ -282,6 +290,7 @@ map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
 map <leader>r :NifflerMRU<cr>
+map <leader>d :Niffler ~/Documents/Notes<cr>
 
 " VimWiki
 let g:vimwiki_list = [{
@@ -292,6 +301,9 @@ let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_table_auto_fmt = 0
 let g:vimwiki_global_ext = 0
 let g:vimwiki_folding = 'list'
+
+" GitGutter
+" let g:gitgutter_enabled = 0
 
 " vim: foldmethod=marker
 
