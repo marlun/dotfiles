@@ -32,6 +32,9 @@ set editor="vim +FixWhitespace"
 # Remove number column from default format and add weekday and time
 set index_format = "%Z %{%a %b %d %R} %-15.15L (%?l?%4l&%4c?) %s"
 
+# Auto view HTML inside mutt pager
+auto_view text/html
+
 # Keybindings
 bind pager k previous-line
 bind pager j next-line
