@@ -19,6 +19,7 @@ unset wait_key                    # skip message when return code is 0
 set fast_reply                    # don't ask just reply
 set include                       # include message replied to
 set pager_stop                    # don't move to next mail
+set pager_index_lines = 6         # show mini index in pager
 set delete                        # delete when I delete dammit
 set move                          # move read mail to archive
 set keep_flagged                  # don't move flagged mail to archive
