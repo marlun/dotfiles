@@ -20,7 +20,6 @@ Plug 'regedarek/ZoomWin'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
-" Plug 'neomake/neomake',
 Plug 'w0rp/ale'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'editorconfig/editorconfig-vim'
@@ -82,7 +81,6 @@ set dictionary=/usr/share/dict/words
 set hidden
 set showcmd
 set noshowmode
-set incsearch
 set lazyredraw
 set synmaxcol=256
 set shortmess+=a
