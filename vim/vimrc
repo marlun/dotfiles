@@ -25,6 +25,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/vim-gitbranch' " Shown on Ctrl-g
 Plug 'airblade/vim-gitgutter'
+Plug 'maxboisvert/vim-simple-complete'
 
 " Language support
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
