@@ -16,6 +16,7 @@ unset help                        # remove top help bar
 unset markers                     # don't add markers on wrapped lines
 unset confirmappend               # don't ask just move
 unset wait_key                    # skip message when return code is 0
+unset mark_old                    # don't mark mails as old, don't use it
 set fast_reply                    # don't ask just reply
 set include                       # include message replied to
 set pager_stop                    # don't move to next mail
