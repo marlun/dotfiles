@@ -5,6 +5,7 @@ export EDITOR=vim
 export CLICOLOR=1
 export LESS="-R -x2"
 export MANWIDTH=78
+export HISTCONTROL=ignoreboth:erasedups
 
 # XDG configuration
 export XDG_CONFIG_HOME=$HOME/.config
