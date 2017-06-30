@@ -31,7 +31,6 @@ Plug 'maxboisvert/vim-simple-complete'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
