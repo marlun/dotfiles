@@ -64,5 +64,14 @@ color header cyan default "^Subject:"   # highlight subject
 color quoted cyan default               # first level quotes
 color quoted1 blue default              # second level quotes
 
+# Color patchces (diffs)
+color body cyan default "^diff \-.*"
+color body cyan default "^index [a-f0-9].*"
+color body cyan default "^\-\-\- .*"
+color body cyan default "^[\+]{3} .*"
+color body green default "^[\+][^\+]+.*"
+color body red  default "^\-[^\-]+.*"
+color body brightblue default "^@@ .*"
+
 # Show mutt version on start
 push V
