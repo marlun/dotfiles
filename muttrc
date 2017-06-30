@@ -41,8 +41,8 @@ alternative_order text/plain text/html
 # Keybindings
 bind pager k previous-line
 bind pager j next-line
-bind pager,index \cu half-up
-bind pager,index \cd half-down
+bind pager \cu half-up
+bind pager \cd half-down
 
 # Theme (color <object> <foreground> <background> [pattern])
 color normal color250 color16           # default colors
