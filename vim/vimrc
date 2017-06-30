@@ -24,7 +24,6 @@ Plug 'w0rp/ale'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/vim-gitbranch' " Shown on Ctrl-g
-Plug 'airblade/vim-gitgutter'
 Plug 'maxboisvert/vim-simple-complete'
 
 " Language support
@@ -299,9 +298,6 @@ let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_table_auto_fmt = 0
 let g:vimwiki_global_ext = 0
 let g:vimwiki_folding = 'list'
-
-" GitGutter
-" let g:gitgutter_enabled = 0
 
 " vim: foldmethod=marker
 
