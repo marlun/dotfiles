@@ -9,3 +9,12 @@
 	helper = osxkeychain
 [core]
 	excludesfile = /Users/marlun/.gitignore
+[commit]
+	verbose = true
+[include]
+  path = ~/.gitconfig.local
+[merge]
+	conflictstyle = diff3
+  tool = vimdiff
+[mergetool]
+	prompt = false
