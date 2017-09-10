@@ -1,0 +1,4 @@
+image; open -W %s
+# application; open -W %s &
+application/*; mkdir -p /tmp/mutt \; cp %s /tmp/mutt \; open -W /tmp/mutt/$(basename %s) &
+text/html; w3m -dump -T text/html; copiousoutput;
