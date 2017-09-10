@@ -287,7 +287,7 @@ map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
 map <leader>r :NifflerMRU<cr>
-map <leader>d :Niffler ~/Documents/Notes<cr>
+map <leader>d :Niffler ~/Library/Mobile Documents/com~apple~CloudDocs/notes<cr>
 
 " VimWiki
 let g:vimwiki_list = [{
