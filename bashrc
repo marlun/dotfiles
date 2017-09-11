@@ -3,6 +3,7 @@ GIT_PS1_SHOWUPSTREAM="auto"
 
 export EDITOR=vim
 export CLICOLOR=1
+export LSCOLORS=Exfxcxdxbxegedabagacad
 export LESS="-R -x2"
 export MANWIDTH=78
 export HISTCONTROL=ignoreboth:erasedups
@@ -29,3 +30,4 @@ fi
 
 export LESS_TERMCAP_so=$'\E[30;43m'
 export LESS_TERMCAP_se=$'\E[39;49m'
+
