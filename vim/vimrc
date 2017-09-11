@@ -27,7 +27,6 @@ Plug 'itchyny/vim-gitbranch' " Shown on Ctrl-g
 Plug 'maxboisvert/vim-simple-complete'
 
 " Language support
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
 
