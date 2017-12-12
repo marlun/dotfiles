@@ -14,21 +14,17 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
-Plug 'vim-utils/vim-husk'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'regedarek/ZoomWin'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/vim-gitbranch' " Shown on Ctrl-g
-Plug 'maxboisvert/vim-simple-complete'
+" Plug 'Quramy/vim-js-pretty-template'
 
 " Language support
 Plug 'sukima/xmledit'
-Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
@@ -39,8 +35,9 @@ call plug#end()
 syntax on
 
 " Load my own colorscheme if available but fallback to one that comes with vim
-if findfile('colors/darth.vim', &rtp) != ''
-	colorscheme darth
+colorscheme kylo
+if findfile('colors/kylo.vim', &rtp) != ''
+	colorscheme kylo
 else
 	colorscheme delek
 endif
@@ -253,6 +250,11 @@ if has("autocmd") && !exists("autocommands_loaded")
     \ if line("'\"") >= 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
+
+  " Setup syntax highlighting for tagged template strings
+  " call jspretmpl#register_tag('html', 'html')
+  " call jspretmpl#register_tag('css', 'css')
+  " autocmd FileType javascript JsPreTmpl html
 
 endif
 
