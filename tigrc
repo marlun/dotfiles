@@ -1,3 +1,2 @@
-color title-focus white color26
-color title-blur white color243
-color cursor color16 color250
+color date cyan color16
+color cursor color16 color220 bold
