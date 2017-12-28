@@ -94,14 +94,23 @@ set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
 set statusline+=%= " Switch to right side
 set statusline+=[%l:%v] " Cursor position
 
-" Makes it possible to have different cursor types for different modes.
-if exists('$TMUX')
-	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-elseif !has("gui_running")
-	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" Makes it possible to have different cursor types for different modes:
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+silent !echo -ne "\033[2 q"
+if has("autocmd") && !exists("cursor_autocommands_loaded")
+	let cursor_autocommands_loaded = 1
+  autocmd VimLeave * silent !echo -ne "\033[2 q"
 endif
+" TODO Old implementation, remove later
+" if exists('$TMUX')
+" 	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+" 	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+" elseif !has("gui_running")
+" 	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" 	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" endif
 
 " }}}
 " Editor ------------------------------------------------------------------- {{{
