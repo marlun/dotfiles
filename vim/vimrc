@@ -196,6 +196,14 @@ nnoremap <silent> <C-g> :file<Bar>echon ' [' &filetype '/' &fileencoding '/' &fi
 nnoremap ]e :lnext<CR>
 nnoremap [e :lprev<CR>
 
+" Break up inserts into smaller undo-chunks
+inoremap . .<c-g>u
+inoremap , ,<c-g>u
+inoremap ? ?<c-g>u
+inoremap ! !<c-g>u
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
+
 " Navigational mappings
 " nnoremap <leader>r :browse filter // oldfiles<S-Left><Left><Left>
 " nnoremap <leader>l :ls<CR>:b<Space>
