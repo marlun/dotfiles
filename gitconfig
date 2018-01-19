@@ -1,6 +1,3 @@
-[user]
-	name = Martin Lundberg
-	email = martin.lundberg@gmail.com
 [color]
 	ui = true
 [push]
@@ -11,10 +8,12 @@
 	excludesfile = ~/.gitignore
 [commit]
 	verbose = true
-[include]
-  path = ~/.gitconfig.local
 [merge]
 	conflictstyle = diff3
   tool = vimdiff
 [mergetool]
 	prompt = false
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
+[includeIf "gitdir:~/code/"]
+    path = ~/code/.gitconfig
