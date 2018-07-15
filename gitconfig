@@ -17,3 +17,9 @@
     path = ~/work/.gitconfig
 [includeIf "gitdir:~/code/"]
     path = ~/code/.gitconfig
+[pager]
+	branch = off
+[alias]
+  open = !vim `~/Bin/git-open.sh`
+[diff "javascript"]
+  xfuncname = "^.*function.*$|^.*=>.*$"
