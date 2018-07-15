@@ -17,10 +17,16 @@ Plug 'tpope/vim-scriptease'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
+Plug 'andreyorst/SimpleSnippets.vim'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'wellle/targets.vim'
 " Plug 'maxboisvert/vim-simple-complete'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'mhinz/vim-signify'
+Plug 'moll/vim-node'
+Plug 'itchyny/vim-gitbranch'
 
 " Language support
 Plug 'sukima/xmledit'
@@ -195,6 +201,9 @@ nnoremap <silent> <C-g> :file<Bar>echon ' [' &filetype '/' &fileencoding '/' &fi
 nnoremap ]e :lnext<CR>
 nnoremap [e :lprev<CR>
 
+" Save using sudo if you don't have permission to save to a file
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
 " Break up inserts into smaller undo-chunks
 inoremap . .<c-g>u
 inoremap , ,<c-g>u
@@ -235,7 +244,10 @@ if has("autocmd") && !exists("autocommands_loaded")
 	autocmd BufRead,BufNewFile CSS setlocal iskeyword+=-
 
 	" Enable spellchecking in git commit messages
-	autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
+  autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
+
+	" Enable spellchecking in markdown
+	autocmd filetype text setlocal spell
 
 	" Set textwidth for multiple filetypes
 	autocmd FileType README*,MAIL setlocal textwidth=78
@@ -273,6 +285,9 @@ if has("autocmd") && !exists("autocommands_loaded")
   " call jspretmpl#register_tag('css', 'css')
   " autocmd FileType javascript JsPreTmpl html
 
+
+	" Set 'formatoptions' for journal
+	autocmd BufNewFile,BufRead journal.txt setlocal fo=t2an ts=4 sw=4 sts=4
 endif
 
 " }}}
