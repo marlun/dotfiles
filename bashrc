@@ -10,6 +10,9 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 export LESS="-R -x2"
 export MANWIDTH=78
 export HISTCONTROL=ignoreboth:erasedups
+# Unlimited bash history
+export HISTSIZE=-1
+export HISTFILESIZE=-1
 
 # XDG configuration
 export XDG_CONFIG_HOME=$HOME/.config
