@@ -21,5 +21,6 @@
 	branch = off
 [alias]
   open = !vim `~/Bin/git-open.sh`
+	changes = !git log --pretty=format:%s \"$1\".. | pbcopy && :
 [diff "javascript"]
   xfuncname = "^.*function.*$|^.*=>.*$"
