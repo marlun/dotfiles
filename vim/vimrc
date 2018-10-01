@@ -320,6 +320,7 @@ map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
 map <leader>r :NifflerMRU<cr>
 map <leader>d :Niffler ~/Library/Mobile Documents/com~apple~CloudDocs/notes<cr>
+map <leader>. :Niffler ~/code/dotfiles<cr>
 
 " VimWiki
 let g:vimwiki_list = [{
@@ -335,6 +336,8 @@ let g:vimwiki_folding = 'list'
 let g:ale_linters = {
 \   'javascript': ['standard'],
 \}
+nmap <silent> ]e <Plug>(ale_next)
+nmap <silent> [e <Plug>(ale_previous)
 
 " vim: foldmethod=marker
 
