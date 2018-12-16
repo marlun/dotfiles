@@ -39,13 +39,10 @@ call plug#end()
 " Enable syntax highlighting and choose colorscheme
 syntax on
 
-" Load my own colorscheme if available but fallback to one that comes with vim
-colorscheme kylo
-" if findfile('colors/kylo.vim', &rtp) != ''
-" 	colorscheme kylo
-" else
-" 	colorscheme delek
-" endif
+" Load my own colorscheme if available
+if findfile('colors/kylo.vim', &rtp) != ''
+	colorscheme kylo
+endif
 
 set encoding=utf-8
 set noswapfile
@@ -53,7 +50,26 @@ set directory=~/tmp,/var/tmp,/tmp
 set wildignorecase
 set wildignore+=DS_Store,tags,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
 set wildmenu
-set wildmode=longest:full,full
+set wildmode=list:longest,full
+set hidden
+set showcmd
+set noshowmode
+set lazyredraw
+set synmaxcol=256
+set shortmess+=a
+set laststatus=2
+set incsearch
+set hlsearch
+set backspace+=indent,eol,start
+set nowrap
+set expandtab
+set smarttab
+set autoindent
+set completeopt-=preview
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set thesaurus+=~/Documents/mthesaur.txt
 
 " Use system clipboard (if supported)
 set clipboard=unnamed
@@ -75,28 +91,6 @@ set spelllang=en,sv
 " Add dictionary for completion
 set dictionary=/usr/share/dict/words
 
-if executable("rg")
-  set grepprg=rg\ --vimgrep\ --no-heading
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
-
-" }}}
-" Interface ---------------------------------------------------------------- {{{
-
-set hidden
-set showcmd
-set noshowmode
-set lazyredraw
-set synmaxcol=256
-set shortmess+=a
-set laststatus=2
-set incsearch
-set hlsearch
-
-" First list all matches and complete till longest common string, then
-" complete to the next full match
-set wildmode=list:longest,full
-
 " Clean status line with only filename, flags and line:column. If you want
 " more information you can use Ctrl-g which I've added extra information to
 set statusline=%f " Filename
@@ -104,37 +98,23 @@ set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
 set statusline+=%= " Switch to right side
 set statusline+=[%l:%v] " Cursor position
 
-" Makes it possible to have different cursor types for different modes:
-if exists('$TMUX')
-	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-elseif !has("gui_running")
-	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-let &t_Cs = "\e[4:3m"
-let &t_Ce = "\e[4:0m"
-
-" }}}
-" Editor ------------------------------------------------------------------- {{{
-
-set backspace+=indent,eol,start
-set nowrap
-set expandtab
-set smarttab
-set autoindent
-set completeopt-=preview
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-
 " The current implementation of searching in included files can make the
 " search slow
 set complete-=i
 
 " Ctrl-A over 07 incmrements to 08
 set nrformats-=octal
+
+" Use ag when running :grep
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+" Use rip-grep as grepping program if available
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 
 " Characters to use in 'list' mode
 if has('patch-7.4.710')
@@ -148,10 +128,16 @@ if has('patch-7.3.541')
 	set formatoptions+=j
 endif
 
-" Use ag when running :grep
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+" Makes it possible to have different cursor types for different modes:
+if exists('$TMUX')
+	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+elseif !has("gui_running")
+	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
 
 " }}}
 " Functions & Commands -------------------------------------------------- {{{
@@ -270,14 +256,6 @@ if has("autocmd") && !exists("autocommands_loaded")
 
 	" Add syntax highlighting for the ESLint configuration file
 	autocmd BufNewFile,BufRead .eslintrc set filetype=json
-
-  " When editing a file, always jump to the last known cursor position.  Don't
-  " do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
 
   " Setup syntax highlighting for tagged template strings
   " call jspretmpl#register_tag('html', 'html')
