@@ -21,6 +21,10 @@ export HOMEBREW_INSTALL_CLEANUP=1
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 
+# Aliases
+alias beep="afplay /System/Library/Sounds/Glass.aiff"
+alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
+
 # Bash completion
 if [ -f /usr/local/share/bash-completion/bash_completion ]; then
 	. /usr/local/share/bash-completion/bash_completion
