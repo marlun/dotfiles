@@ -14,6 +14,9 @@ export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=-1
 export HISTFILESIZE=-1
 
+# Tell homebrew to automaticallt run cleanup periodically
+export HOMEBREW_INSTALL_CLEANUP=1
+
 # XDG configuration
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
