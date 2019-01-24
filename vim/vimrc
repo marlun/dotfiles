@@ -320,5 +320,8 @@ let g:ale_linters = {
 nmap <silent> ]e <Plug>(ale_next)
 nmap <silent> [e <Plug>(ale_previous)
 
+" Signify
+let g:signify_realtime = 1
+
 " vim: foldmethod=marker
 
