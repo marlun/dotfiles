@@ -24,8 +24,8 @@ Plug 'wellle/targets.vim'
 Plug 'mhinz/vim-signify'
 Plug 'moll/vim-node'
 Plug 'itchyny/vim-gitbranch'
-Plug 'tpope/vim-fugitive'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Language support
 Plug 'sukima/xmledit'
@@ -41,7 +41,7 @@ syntax on
 
 " Load my own colorscheme if available
 if findfile('colors/kylo.vim', &rtp) != ''
-	colorscheme kylo
+  colorscheme kylo
 endif
 
 set encoding=utf-8
@@ -121,23 +121,23 @@ endif
 
 " Characters to use in 'list' mode
 if has('patch-7.4.710')
-	set listchars=tab:▸\ ,trail:·,eol:¬,space:·
+  set listchars=tab:▸\ ,trail:·,eol:¬,space:·
 else
-	set listchars=tab:▸\ ,trail:·,eol:¬
+  set listchars=tab:▸\ ,trail:·,eol:¬
 endif
 
 " Where it makes sense, remove comment leader when joining lines
 if has('patch-7.3.541')
-	set formatoptions+=j
+  set formatoptions+=j
 endif
 
 " Makes it possible to have different cursor types for different modes:
 if exists('$TMUX')
-	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 elseif !has("gui_running")
-	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
@@ -221,52 +221,57 @@ inoremap O2R <ESC>A;<ESC>
 
 if has("autocmd") && !exists("autocommands_loaded")
 
-	let autocommands_loaded = 1
+  let autocommands_loaded = 1
 
-	" Auto-source colorscheme when changed
-	autocmd BufWritePost leya.vim source %
-	autocmd BufWritePost darth.vim source %
-	autocmd BufWritePost kylo.vim source %
+  " Auto-source colorscheme when changed
+  autocmd BufWritePost leya.vim source %
+  autocmd BufWritePost darth.vim source %
+  autocmd BufWritePost kylo.vim source %
 
-	" Add dashes as part of keyword in CSS files
-	autocmd BufRead,BufNewFile CSS setlocal iskeyword+=-
+  " Add dashes as part of keyword in CSS files
+  autocmd BufRead,BufNewFile CSS setlocal iskeyword+=-
 
-	" Enable spellchecking in git commit messages
+  " Enable spellchecking in git commit messages
   autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 
-	" Enable spellchecking in markdown
-	autocmd filetype text setlocal spell
+  " Enable spellchecking in markdown
+  autocmd filetype text setlocal spell
 
-	" Set textwidth for multiple filetypes
-	autocmd FileType README*,MAIL setlocal textwidth=78
+  " Set textwidth for multiple filetypes
+  autocmd FileType README*,MAIL setlocal textwidth=78
 
   " Settings for writing mail
-	autocmd FileType MAIL setlocal formatoptions=tqj spell
+  autocmd FileType MAIL setlocal formatoptions=tqj spell
 
-	" Make sure editing crontab works in OS X
-	if has('mac')
-		autocmd FileType crontab set nobackup nowritebackup
-	endif
+  " Make sure editing crontab works in OS X
+  if has('mac')
+    autocmd FileType crontab set nobackup nowritebackup
+  endif
 
-	" Add smarty gettext tags to surround
-	autocmd FileType smarty let b:surround_103 = "{t}\r{/t}"
+  " Add smarty gettext tags to surround
+  autocmd FileType smarty let b:surround_103 = "{t}\r{/t}"
 
-	" PHP
-	autocmd FileType PHP let b:commentary_format = '// %s'
+  " PHP
+  autocmd FileType PHP let b:commentary_format = '// %s'
 
   " Markdown
   autocmd FileType markdown setlocal foldlevel=1 textwidth=78
 
-	" Add syntax highlighting for the ESLint configuration file
-	autocmd BufNewFile,BufRead .eslintrc set filetype=json
+  " Add syntax highlighting for the ESLint configuration file
+  autocmd BufNewFile,BufRead .eslintrc set filetype=json
 
   " Setup syntax highlighting for tagged template strings
   " call jspretmpl#register_tag('html', 'html')
   " call jspretmpl#register_tag('css', 'css')
   " autocmd FileType javascript JsPreTmpl html
 
-	" Set 'formatoptions' for journal
-	autocmd BufNewFile,BufRead journal.txt setlocal fo=t2an ts=4 sw=4 sts=4
+  " Set 'formatoptions' for journal
+  autocmd BufNewFile,BufRead journal.txt setlocal fo=t2an ts=4 sw=4 sts=4
+
+  " Settings for todo
+  autocmd BufRead TODO.md setlocal ts=2 sw=2 sts=2 foldlevel=1
+  autocmd BufRead TODO.md nnoremap <buffer> <CR> A  <C-R>=strftime("%F")<CR><ESC>ddGp<C-O>
+
 endif
 
 " }}}
