@@ -265,7 +265,6 @@ if has("autocmd") && !exists("autocommands_loaded")
   " call jspretmpl#register_tag('css', 'css')
   " autocmd FileType javascript JsPreTmpl html
 
-
 	" Set 'formatoptions' for journal
 	autocmd BufNewFile,BufRead journal.txt setlocal fo=t2an ts=4 sw=4 sts=4
 endif
@@ -315,8 +314,9 @@ let g:vimwiki_folding = 'list'
 
 " ALE
 let g:ale_linters = {
-\   'javascript': ['standard'],
+\   'javascript': ['standard', 'tsserver'],
 \}
+let g:ale_javascript_tsserver_use_global = 1
 nmap <silent> ]e <Plug>(ale_next)
 nmap <silent> [e <Plug>(ale_previous)
 
