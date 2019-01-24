@@ -81,6 +81,9 @@ set ignorecase smartcase
 " Do upward search for tags file
 set tags=./tags;,tags;
 
+" Remove /usr/include from default 'path' since I've never used this
+set path-=/usr/include
+
 " Try safe (:h secure) source of project specific .vimrc file
 set exrc
 set secure
