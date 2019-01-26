@@ -1,8 +1,17 @@
-# Load default account and setup folder hooks for loading specific config files
-set folder = ~/.mail/Work
-source ~/.config/mutt/work/conf
-# folder-hook "~/.mail/Personal" "source ~/.config/mutt/personal/conf"
-# folder-hook "~/.mail/Work" "source ~/.config/mutt/work/conf"
+# Core setup
+set folder = ~/Mail
+source $XDG_CONFIG_HOME/mutt/mailboxes
+source $XDG_CONFIG_HOME/mutt/conf
+set spoolfile = +INBOX
+set postponed = +drafts
+set mbox = +archive
+set record = +sent
+set trash = +trash
+
+# Setup signature and alias files
+set signature = $XDG_CONFIG_HOME/mutt/sig
+set alias_file = $XDG_CONFIG_HOME/mutt/aliases
+source $XDG_CONFIG_HOME/mutt/aliases
 
 # Cache folders, using these will speed up mutt
 set header_cache = $XDG_CACHE_HOME/mutt
@@ -77,3 +86,6 @@ push V
 
 # 'L' performs a notmuch query, showing only the results
 macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+
+# Edit then source the aliases file (\e means ESC)
+macro index \ea "!vim ~/.config/mutt/aliases\n:source ~/.config/mutt/aliases\n"
