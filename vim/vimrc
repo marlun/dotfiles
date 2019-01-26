@@ -277,9 +277,6 @@ endif
 " }}}
 " Plugin configurations ------------------------------------------------------- {{{
 
-" Configure default plugins
-let g:markdown_folding = 1
-
 " Matchit plugin comes with vim (see :e $VIMRUNTIME/macros/matchit.txt)
 runtime macros/matchit.vim
 
