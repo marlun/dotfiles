@@ -11,20 +11,12 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 export LESS="-R -x2"
 export MANWIDTH=78
 export HISTCONTROL=ignoreboth:erasedups
-# Unlimited bash history
 export HISTSIZE=-1
 export HISTFILESIZE=-1
-
-# Tell homebrew to automaticallt run cleanup periodically
-export HOMEBREW_INSTALL_CLEANUP=1
 
 # XDG configuration
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
-
-# Aliases
-alias beep="afplay /System/Library/Sounds/Glass.aiff"
-alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 
 # Bash completion
 if [ -f /usr/local/share/bash-completion/bash_completion ]; then
