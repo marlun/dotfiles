@@ -16,9 +16,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'jiangmiao/auto-pairs'
-Plug 'pgdouyon/vim-niffler'
-Plug 'SirVer/ultisnips'
-Plug 'w0rp/ale'
+" Plug 'pgdouyon/vim-niffler'
+" Plug 'SirVer/ultisnips'
+" Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'wellle/targets.vim'
 Plug 'mhinz/vim-signify'
@@ -26,10 +26,12 @@ Plug 'moll/vim-node'
 Plug 'itchyny/vim-gitbranch'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'rhysd/git-messenger.vim'
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 
 " Language support
 Plug 'sukima/xmledit'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
@@ -132,15 +134,15 @@ if has('patch-7.3.541')
 endif
 
 " Makes it possible to have different cursor types for different modes:
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-elseif !has("gui_running")
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-let &t_Cs = "\e[4:3m"
-let &t_Ce = "\e[4:0m"
+" if exists('$TMUX')
+"   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+" elseif !has("gui_running")
+"   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" endif
+" let &t_Cs = "\e[4:3m"
+" let &t_Ce = "\e[4:0m"
 
 " }}}
 " Functions & Commands -------------------------------------------------- {{{
@@ -285,13 +287,13 @@ let g:AutoPairsFlyMode = 1
 let g:AutoPairsCenterLine = 0
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsSnippetDirectories = ["snips"]
-let g:UltiSnipsNoPythonWarning = 1
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
-map <leader>s :UltiSnipsEdit<cr>
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" let g:UltiSnipsSnippetDirectories = ["snips"]
+" let g:UltiSnipsNoPythonWarning = 1
+" let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
+" map <leader>s :UltiSnipsEdit<cr>
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png', 'svg']
@@ -325,5 +327,18 @@ nmap <silent> [e <Plug>(ale_previous)
 " Signify
 let g:signify_realtime = 1
 
-" vim: foldmethod=marker
+" COC
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+" vim: foldmethod=marker
