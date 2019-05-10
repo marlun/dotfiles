@@ -5,7 +5,7 @@ GIT_PS1_SHOWUPSTREAM="auto"
 stty -ixon -ixoff
 
 export PATH="$HOME/Bin:$PATH"
-export EDITOR=vim
+export EDITOR=nvim
 export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
 export LESS="-R -x2"
