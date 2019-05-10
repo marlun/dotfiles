@@ -27,3 +27,5 @@ fi
 if [ -f ~/.config/bashrc ]; then
   . ~/.config/bashrc
 fi
+
+export PATH="/usr/local/sbin:$PATH"
