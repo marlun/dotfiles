@@ -15,8 +15,8 @@
 	prompt = false
 [includeIf "gitdir:~/work/"]
     path = ~/work/.gitconfig
-[includeIf "gitdir:~/code/"]
-    path = ~/code/.gitconfig
+[includeIf "gitdir:~/Code/"]
+    path = ~/Code/.gitconfig
 [pager]
 	branch = off
 [alias]
