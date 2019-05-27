@@ -21,14 +21,13 @@ Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'wellle/targets.vim'
-Plug 'mhinz/vim-signify'
 Plug 'moll/vim-node'
 Plug 'itchyny/vim-gitbranch'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'rhysd/git-messenger.vim'
-" Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
-Plug 'morhetz/gruvbox'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/async.vim'
 
 " Language support
 Plug 'sukima/xmledit'
@@ -269,6 +268,9 @@ if has("autocmd") && !exists("autocommands_loaded")
   " call jspretmpl#register_tag('css', 'css')
   " autocmd FileType javascript JsPreTmpl html
 
+  " Autocomplete using language server for JavaScrtip
+	autocmd FileType javascript setlocal omnifunc=lsp#complete
+
   " Set 'formatoptions' for journal
   autocmd BufNewFile,BufRead journal.txt setlocal fo=t2an ts=4 sw=4 sts=4
 
@@ -319,9 +321,8 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_folding = 'list'
 
 " ALE
-let g:ale_linters = {
-\   'javascript': ['tsserver'],
-\}
+let g:ale_linters = { 'javascript': ['standard'] }
+let g:ale_fixers = { 'javascript': ['standard'] }
 nmap <silent> ]e <Plug>(ale_next)
 nmap <silent> [e <Plug>(ale_previous)
 
@@ -329,5 +330,18 @@ nmap <silent> [e <Plug>(ale_previous)
 let g:signify_realtime = 1
 let g:signify_cursorhold_normal = 0
 let g:signify_cursorhold_insert = 0
+
+" vim-lsp
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'javascript support using typescript-language-server',
+        \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+        \ 'whitelist': ['javascript', 'javascript.jsx']
+        \ })
+endif
+let g:lsp_highlights_enabled = 0
+nmap <CR> <plug>(lsp-definition)
+nmap <F2> <plug>(lsp-rename)
 
 " vim: foldmethod=marker
