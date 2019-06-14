@@ -18,7 +18,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'wellle/targets.vim'
 Plug 'moll/vim-node'
@@ -32,6 +32,7 @@ Plug 'prabirshrestha/async.vim'
 " Language support
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -340,7 +341,8 @@ if executable('typescript-language-server')
         \ 'whitelist': ['javascript', 'javascript.jsx']
         \ })
 endif
-let g:lsp_highlights_enabled = 0
+" let g:lsp_highlights_enabled = 0
+let g:lsp_signs_enabled = 1
 nmap <CR> <plug>(lsp-definition)
 nmap <F2> <plug>(lsp-rename)
 
