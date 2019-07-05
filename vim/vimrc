@@ -18,7 +18,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
 Plug 'SirVer/ultisnips'
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'wellle/targets.vim'
 Plug 'moll/vim-node'
@@ -26,8 +26,8 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'rhysd/git-messenger.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/async.vim'
 
 " Language support
 Plug 'sukima/xmledit'
@@ -322,6 +322,7 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_folding = 'list'
 
 " ALE
+let g:ale_virtualtext_cursor = 1
 let g:ale_linters = { 'javascript': ['standard'] }
 let g:ale_fixers = { 'javascript': ['standard'] }
 nmap <silent> ]e <Plug>(ale_next)
