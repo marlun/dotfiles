@@ -13,9 +13,11 @@
   tool = vimdiff
 [mergetool]
 	prompt = false
-[includeIf "gitdir:~/work/"]
-    path = ~/work/.gitconfig
+[includeIf "gitdir:~/Work/"]
+    path = ~/Work/.gitconfig
 [includeIf "gitdir:~/Code/"]
+    path = ~/Code/.gitconfig
+[includeIf "gitdir:~/.vim/"]
     path = ~/Code/.gitconfig
 [pager]
 	branch = off
