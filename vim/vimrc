@@ -71,7 +71,6 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set thesaurus+=~/Documents/mthesaur.txt
-set undofile
 
 " Use system clipboard (if supported)
 set clipboard=unnamed
