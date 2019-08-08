@@ -18,10 +18,10 @@ export HISTFILESIZE=-1
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 
-# Bash completion
-if [ -f /usr/local/share/bash-completion/bash_completion ]; then
-	. /usr/local/share/bash-completion/bash_completion
-fi
+# Bash completion for homebrew v1
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+# Bash completion for homebrew v2
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # Local customized path and environment settings, etc.
 if [ -f ~/.config/bashrc ]; then
