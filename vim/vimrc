@@ -154,6 +154,10 @@ if !exists(":DiffOrig")
                   \ | wincmd p | diffthis
 endif
 
+if !exists(":Diary")
+  command Diary execute 'e' '~/Library/Mobile Documents/com~apple~CloudDocs/notes/notes/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
+endif
+
 " }}}
 " Mappings & Abbrevations ------------------------------------------------ {{{
 
@@ -200,6 +204,9 @@ inoremap ? ?<c-g>u
 inoremap ! !<c-g>u
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
+
+" Simple way to write notes for the current date
+nnoremap <silent> <F3> :Diary<CR>
 
 " Navigational mappings
 " nnoremap <leader>r :browse filter // oldfiles<S-Left><Left><Left>
