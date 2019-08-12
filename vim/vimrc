@@ -21,9 +21,7 @@ Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'wellle/targets.vim'
-Plug 'moll/vim-node'
 Plug 'itchyny/vim-gitbranch'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'rhysd/git-messenger.vim'
 
@@ -31,6 +29,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'moll/vim-node'
 
 call plug#end()
 
