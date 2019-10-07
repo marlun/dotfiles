@@ -14,6 +14,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-fugitive'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
@@ -24,6 +25,7 @@ Plug 'wellle/targets.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'rhysd/git-messenger.vim'
+Plug 'michaeljsmith/vim-indent-object'
 
 " Language support
 Plug 'sukima/xmledit'
@@ -48,7 +50,7 @@ set encoding=utf-8
 set noswapfile
 set directory=~/tmp,/var/tmp,/tmp
 set wildignorecase
-set wildignore+=DS_Store,tags,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*
+set wildignore+=DS_Store,tags,*/node_modules/*,*/smarty/*,*/tiny_mce/*,*/bower_components/*,*/vendor/*
 set wildmenu
 set wildmode=list:longest,full
 set hidden
@@ -154,7 +156,7 @@ if !exists(":DiffOrig")
 endif
 
 if !exists(":Diary")
-  command Diary execute 'e' '~/Library/Mobile Documents/com~apple~CloudDocs/notes/notes/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
+  command Diary execute 'e' '~/Library/Mobile Documents/com~apple~CloudDocs/Documents/notes/notes/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
 endif
 
 " }}}
@@ -223,6 +225,10 @@ inoremap O2P <ESC>maA;<ESC>`aa
 " Go to the end and add a semicolon (O2R = Ctrl-Enter)
 inoremap O2R <ESC>A;<ESC>
 
+if has('nvim')
+  nnoremap <F12> :vs<bar>:term tig<CR>i
+endif
+
 " }}}
 " Automatic commands ------------------------------------------------------- {{{
 
@@ -280,7 +286,7 @@ if has("autocmd") && !exists("autocommands_loaded")
 
   " Settings for todo
   autocmd BufRead TODO.md setlocal ts=2 sw=2 sts=2 foldlevel=1
-  autocmd BufRead TODO.md nnoremap <buffer> <CR> A  <C-R>=strftime("%F")<CR><ESC>ddGp<C-O>
+  autocmd BufRead TODO.md nnoremap <silent> <buffer> <CR> A  <C-R>=strftime("%F")<CR><ESC>ddGp<C-O>
 
 endif
 
@@ -311,7 +317,7 @@ map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
 map <leader>r :NifflerMRU<cr>
-map <leader>d :Niffler ~/Library/Mobile Documents/com~apple~CloudDocs/notes<cr>
+map <leader>d :Niffler ~/Library/Mobile Documents/com~apple~CloudDocs/Documents/notes<cr>
 map <leader>. :Niffler ~/code/dotfiles<cr>
 
 " ALE
