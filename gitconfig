@@ -22,7 +22,7 @@
 [pager]
 	branch = off
 [alias]
-  open = !vim `~/Bin/git-open.sh`
+  open = !nvim `~/Bin/git-open.sh`
 	changes = !git log --pretty=format:%s \"$1\".. | pbcopy && :
 	hchanges = !git log --pretty=format:\"%h %s\" \"$1\".. | pbcopy && :
 [diff "javascript"]
