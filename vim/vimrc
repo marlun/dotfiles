@@ -156,7 +156,7 @@ if !exists(":DiffOrig")
 endif
 
 if !exists(":Diary")
-  command Diary execute 'e' '~/Library/Mobile Documents/com~apple~CloudDocs/Documents/notes/notes/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
+  command Diary execute 'e' '~/Documents/notes/notes/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
 endif
 
 " }}}
@@ -324,6 +324,7 @@ map <leader>. :Niffler ~/code/dotfiles<cr>
 let g:ale_virtualtext_cursor = 1
 let g:ale_linters = { 'javascript': ['standard'] }
 let g:ale_fixers = { 'javascript': ['standard'] }
+let g:ale_javascript_standard_options = '--env browser'
 nmap <silent> ]e <Plug>(ale_next)
 nmap <silent> [e <Plug>(ale_previous)
 
