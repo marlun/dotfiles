@@ -26,6 +26,7 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'tyru/open-browser.vim'
 
 " Language support
 Plug 'sukima/xmledit'
@@ -334,5 +335,10 @@ nmap <silent> [e <Plug>(ale_previous)
 let g:signify_realtime = 1
 let g:signify_cursorhold_normal = 0
 let g:signify_cursorhold_insert = 0
+
+" Open browser
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " vim: foldmethod=marker
