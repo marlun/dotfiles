@@ -24,14 +24,12 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'wellle/targets.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'rhysd/git-messenger.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tyru/open-browser.vim'
 
 " Language support
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
 Plug 'moll/vim-node'
 
 call plug#end()
