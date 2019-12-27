@@ -39,12 +39,11 @@ set sort = threads
 set editor="vim +FixWhitespace"
 
 # Remove number column from default format and add weekday and time
-set index_format = "%Z %{%a %F %R} %-15.15L (%?l?%4l&%4c?) %s"
-# set index_format = "%Z %{%a %b %d %R} %-15.15L (%?l?%4l&%4c?) %s"
+ set index_format = "%Z %{%a %F %R} %-20.20L %s"
 
 # Auto view HTML inside mutt pager but prefer text
-auto_view text/html
-alternative_order text/plain text/html
+auto_view text/calendar text/html
+alternative_order text/calendar text/plain text/html
 
 # Keybindings
 bind pager k previous-line
@@ -83,6 +82,9 @@ color body brightblue default "^@@ .*"
 
 # Show mutt version on start
 push V
+
+set query_command = "echo; grep -i %s ~/.mutt/addrs"
+bind editor <Tab> complete-query
 
 # 'L' performs a notmuch query, showing only the results
 macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
