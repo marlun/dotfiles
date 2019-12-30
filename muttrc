@@ -1,7 +1,7 @@
 # Core setup
-set folder = ~/Mail
-source $XDG_CONFIG_HOME/mutt/mailboxes
-source $XDG_CONFIG_HOME/mutt/conf
+set folder = ~/Documents/Mail
+source $XDG_CONFIG_HOME/neomutt/mailboxes
+source $XDG_CONFIG_HOME/neomutt/conf
 set spoolfile = +INBOX
 set postponed = +drafts
 set mbox = +archive
@@ -9,14 +9,14 @@ set record = +sent
 set trash = +trash
 
 # Setup signature and alias files
-set signature = $XDG_CONFIG_HOME/mutt/sig
-set alias_file = $XDG_CONFIG_HOME/mutt/aliases
-source $XDG_CONFIG_HOME/mutt/aliases
+set signature = $XDG_CONFIG_HOME/neomutt/sig
+set alias_file = $XDG_CONFIG_HOME/neomutt/aliases
+source $XDG_CONFIG_HOME/neomutt/aliases
 
 # Cache folders, using these will speed up mutt
-set header_cache = $XDG_CACHE_HOME/mutt
-set message_cachedir = $XDG_CACHE_HOME/mutt
-set tmpdir = $XDG_CACHE_HOME/mutt
+set header_cache = $XDG_CACHE_HOME/neomutt
+set message_cachedir = $XDG_CACHE_HOME/neomutt
+set tmpdir = $XDG_CACHE_HOME/neomutt
 
 # Options
 unset help                        # remove top help bar
@@ -39,7 +39,7 @@ set sort = threads
 set editor="vim +FixWhitespace"
 
 # Remove number column from default format and add weekday and time
- set index_format = "%Z %{%a %F %R} %-20.20L %s"
+set index_format = "%Z %{%a %F %R} %-20.20L %s"
 
 # Auto view HTML inside mutt pager but prefer text
 auto_view text/calendar text/html
@@ -80,14 +80,15 @@ color body green default "^[\+][^\+]+.*"
 color body red  default "^\-[^\-]+.*"
 color body brightblue default "^@@ .*"
 
-# Show mutt version on start
-push V
-
-set query_command = "echo; grep -i %s ~/.mutt/addrs"
+# Keep address book in a simple text file and grep for addresses
+set query_command = "echo; grep -i %s ~/.neomutt/newaddr"
 bind editor <Tab> complete-query
 
 # 'L' performs a notmuch query, showing only the results
-macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+macro index L <vfolder-from-query> "Search mailbox"
 
 # Edit then source the aliases file (\e means ESC)
-macro index \ea "!vim ~/.config/mutt/aliases\n:source ~/.config/mutt/aliases\n"
+macro index \ea "!vim ~/.config/neomutt/aliases\n:source ~/.config/neomutt/aliases\n"
+
+# Show mutt version on start
+push V
