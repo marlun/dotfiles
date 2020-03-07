@@ -1,5 +1,5 @@
 # Core setup
-set folder = ~/Documents/Mail
+set folder = ~/Mail
 source $XDG_CONFIG_HOME/neomutt/mailboxes
 source $XDG_CONFIG_HOME/neomutt/conf
 set spoolfile = +INBOX
@@ -34,6 +34,7 @@ set keep_flagged                  # don't move flagged mail to archive
 set realname = "Martin Lundberg"
 set wrap = 78
 set sort = threads
+set timeout = 30
 
 # Remove pesky trailing whitespaces from mail
 set editor="vim +FixWhitespace"
