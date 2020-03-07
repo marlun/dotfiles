@@ -26,6 +26,7 @@ Plug 'itchyny/vim-gitbranch'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tyru/open-browser.vim'
+Plug 'regedarek/ZoomWin'
 
 " Language support
 Plug 'sukima/xmledit'
@@ -41,8 +42,8 @@ call plug#end()
 syntax on
 
 " Load my own colorscheme if available
-if findfile('colors/kylo.vim', &rtp) != ''
-  colorscheme kylo
+if findfile('colors/leya.vim', &rtp) != ''
+  colorscheme leya
 endif
 
 set encoding=utf-8
@@ -156,8 +157,9 @@ if !exists(":DiffOrig")
                   \ | wincmd p | diffthis
 endif
 
-if !exists(":Diary")
-  command Diary execute 'e' '~/Documents/notes/notes/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
+if !exists(":Week")
+  command Month execute 'e' '~/Documents/notes/notes/' . strftime('%Y') . '/' . strftime('%Y-%m') . '.md'
+  command Year execute 'e' '~/Documents/notes/notes/' . strftime('%Y') . '.md'
 endif
 
 " }}}
@@ -206,9 +208,6 @@ inoremap ? ?<c-g>u
 inoremap ! !<c-g>u
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
-
-" Simple way to write notes for the current date
-nnoremap <silent> <F3> :Diary<CR>
 
 " Navigational mappings
 " nnoremap <leader>r :browse filter // oldfiles<S-Left><Left><Left>
@@ -287,12 +286,14 @@ if has("autocmd") && !exists("autocommands_loaded")
 
   " Settings for todo
   autocmd BufRead TODO.md setlocal ts=2 sw=2 sts=2 foldlevel=1
-  autocmd BufRead TODO.md nnoremap <silent> <buffer> <CR> A  <C-R>=strftime("%F")<CR><ESC>ddGp<C-O>
 
 endif
 
 " }}}
 " Plugin configurations ------------------------------------------------------- {{{
+
+" Concealing quotes in JSON files is just annoying
+let g:vim_json_conceal = 0
 
 " Matchit plugin comes with vim (see :e $VIMRUNTIME/macros/matchit.txt)
 runtime macros/matchit.vim
