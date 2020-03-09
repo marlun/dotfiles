@@ -82,7 +82,7 @@ color body red  default "^\-[^\-]+.*"
 color body brightblue default "^@@ .*"
 
 # Keep address book in a simple text file and grep for addresses
-set query_command = "echo; grep -i %s ~/.neomutt/newaddr"
+set query_command = "echo; grep -i %s ~/.config/neomutt/newaddr"
 bind editor <Tab> complete-query
 
 # 'L' performs a notmuch query, showing only the results
