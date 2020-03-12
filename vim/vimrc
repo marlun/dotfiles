@@ -22,7 +22,6 @@ Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'wellle/targets.vim'
-Plug 'itchyny/vim-gitbranch'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tyru/open-browser.vim'
@@ -195,7 +194,7 @@ inoremap <C-f> <ESC>gUiw`]a
 inoremap <C-U> <C-G>u<C-U>
 
 " Add filetype
-nnoremap <silent> <C-g> :file<Bar>echon ' [' &filetype '/' &fileencoding '/' &fileformat '] (' gitbranch#name() ')'<CR>
+nnoremap <silent> <C-g> :file<Bar>echon ' [' &filetype '/' &fileencoding '/' &fileformat ']'<CR>
 
 " Faster way to move between linting problems
 nnoremap ]e :lnext<CR>
