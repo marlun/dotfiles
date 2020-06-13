@@ -22,10 +22,11 @@ Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'wellle/targets.vim'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tyru/open-browser.vim'
 Plug 'regedarek/ZoomWin'
+Plug 'pechorin/any-jump.vim'
+Plug 'ludovicchabant/vim-gutentags'
 
 " Language support
 Plug 'sukima/xmledit'
