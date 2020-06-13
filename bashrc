@@ -1,9 +1,5 @@
-PROMPT_COMMAND='__git_ps1 "\w" "\\\$ " "(%s)"'
-GIT_PS1_SHOWUPSTREAM="auto"
-
-# Disable START/STOP signals
-stty -ixon -ixoff
-
+export LC_ALL=en_US.UTF-8
+export LC_LANG=en_US.UTF-8
 export PATH="$HOME/Bin:$PATH"
 export EDITOR=vim
 export CLICOLOR=1
@@ -13,6 +9,13 @@ export MANWIDTH=78
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=-1
 export HISTFILESIZE=-1
+
+# Git prompt
+PROMPT_COMMAND='__git_ps1 "\w" "\\\$ " "(%s)"'
+GIT_PS1_SHOWUPSTREAM="auto"
+
+# Disable START/STOP signals
+stty -ixon -ixoff
 
 # XDG configuration
 export XDG_CONFIG_HOME=$HOME/.config
