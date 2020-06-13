@@ -159,9 +159,9 @@ if !exists(":DiffOrig")
                   \ | wincmd p | diffthis
 endif
 
-if !exists(":Week")
-  command Month execute 'e' '~/Documents/notes/notes/' . strftime('%Y') . '/' . strftime('%Y-%m') . '.md'
-  command Year execute 'e' '~/Documents/notes/notes/' . strftime('%Y') . '.md'
+" Used to write a journal
+if !exists(":Write")
+  command Write execute 'e' '~/Documents/notes/commitments/journal/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
 endif
 
 " }}}
@@ -176,6 +176,7 @@ let mapleader=' '
 nnoremap <silent> <c-l> :nohlsearch<CR>
 nnoremap <silent> <Esc>u :set hlsearch!<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
+nnoremap <silent> <leader>w :Write<CR>
 
 " Use Ctrl-n and Ctrl-p to move up and down in command-line history but use
 " what's before the cursor when searching
