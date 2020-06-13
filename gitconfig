@@ -29,3 +29,5 @@
   xfuncname = "^.*function.*$|^.*=>.*$"
 [diff]
 	noprefix = true
+[pull]
+	rebase = true
