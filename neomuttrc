@@ -1,17 +1,10 @@
-# Core setup
-set folder = ~/Mail
-source $XDG_CONFIG_HOME/neomutt/mailboxes
-source $XDG_CONFIG_HOME/neomutt/conf
-set spoolfile = +INBOX
-set postponed = +drafts
-set mbox = +archive
-set record = +sent
-set trash = +trash
+# Folder hooks for different accounts
+folder-hook Personal source $XDG_CONFIG_HOME/neomutt/personal/neomuttrc
+folder-hook Work source $XDG_CONFIG_HOME/neomutt/work/neomuttrc
 
-# Setup signature and alias files
-set signature = $XDG_CONFIG_HOME/neomutt/sig
-set alias_file = $XDG_CONFIG_HOME/neomutt/aliases
-source $XDG_CONFIG_HOME/neomutt/aliases
+# Default folders
+set folder = ~/Mail
+set spoolfile = +Work/INBOX
 
 # Cache folders, using these will speed up mutt
 set header_cache = $XDG_CACHE_HOME/neomutt
@@ -81,15 +74,11 @@ color body green default "^[\+][^\+]+.*"
 color body red  default "^\-[^\-]+.*"
 color body brightblue default "^@@ .*"
 
-# Keep address book in a simple text file and grep for addresses
-set query_command = "echo; grep -i %s ~/.config/neomutt/newaddr"
-bind editor <Tab> complete-query
-
 # 'L' performs a notmuch query, showing only the results
 macro index L <vfolder-from-query> "Search mailbox"
 
-# Edit then source the aliases file (\e means ESC)
-macro index \ea "!vim ~/.config/neomutt/aliases\n:source ~/.config/neomutt/aliases\n"
+macro index,pager <f1> '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/neomutt/work/neomuttrc<enter><change-folder>!<enter>'
+macro index,pager <f2> '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/neomutt/personal/neomuttrc<enter><change-folder>!<enter>'
 
 # Show mutt version on start
 push V
