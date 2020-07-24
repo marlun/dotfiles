@@ -229,6 +229,9 @@ inoremap O2P <ESC>maA;<ESC>`aa
 " Go to the end and add a semicolon (O2R = Ctrl-Enter)
 inoremap O2R <ESC>A;<ESC>
 
+" Copy the filename to clipboad on a Mac
+nnoremap <silent> <leader>c :let @*=expand("%:p")<CR>
+
 if has('nvim')
   nnoremap <F12> :vs<bar>:term tig<CR>i
 endif
