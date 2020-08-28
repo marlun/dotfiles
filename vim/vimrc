@@ -248,6 +248,9 @@ if has("autocmd") && !exists("autocommands_loaded")
   autocmd BufWritePost darth.vim source %
   autocmd BufWritePost kylo.vim source %
 
+  " Insert date header when starting a new journal entry
+  autocmd BufNewFile */journal/** exe "normal i# " . strftime("%F") . "\n\n" | startinsert
+
   " Add dashes as part of keyword in CSS files
   autocmd BufRead,BufNewFile CSS setlocal iskeyword+=-
 
