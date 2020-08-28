@@ -331,6 +331,7 @@ map <leader>. :Niffler ~/code/dotfiles<cr>
 
 " ALE
 let g:ale_virtualtext_cursor = 1
+let g:ale_hover_cursor = 0
 let g:ale_linters = { 'javascript': ['standard'] }
 let g:ale_fixers = { 'javascript': ['standard'] }
 let g:ale_javascript_standard_options = '--env browser'
