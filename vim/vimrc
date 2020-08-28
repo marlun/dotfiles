@@ -15,23 +15,20 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-fugitive'
-Plug 'bronson/vim-trailing-whitespace'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
-Plug 'SirVer/ultisnips'
 Plug 'w0rp/ale'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tyru/open-browser.vim'
 Plug 'regedarek/ZoomWin'
 Plug 'pechorin/any-jump.vim'
-Plug 'ludovicchabant/vim-gutentags'
 
 " Language support
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
+" Plug 'fatih/vim-go'
 
 call plug#end()
 
