@@ -22,7 +22,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 
 # Bash completion for homebrew v1
-export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+# export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 # Bash completion for homebrew v2
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
