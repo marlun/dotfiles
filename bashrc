@@ -30,5 +30,3 @@ export XDG_CACHE_HOME=$HOME/.cache
 if [ -f ~/.config/bashrc ]; then
   . ~/.config/bashrc
 fi
-
-export PATH="/usr/local/sbin:$PATH"
