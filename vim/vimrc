@@ -255,9 +255,6 @@ if has("autocmd") && !exists("autocommands_loaded")
   " Enable spellchecking in git commit messages
   autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 
-  " Enable spellchecking in markdown
-  autocmd filetype text setlocal spell
-
   " Set textwidth for multiple filetypes
   autocmd FileType README*,MAIL setlocal textwidth=78
 
@@ -276,7 +273,7 @@ if has("autocmd") && !exists("autocommands_loaded")
   autocmd FileType PHP let b:commentary_format = '// %s'
 
   " Markdown
-  autocmd FileType markdown setlocal foldlevel=1 textwidth=78
+  autocmd FileType markdown setlocal foldlevel=1 textwidth=78 spell
 
   " Add syntax highlighting for the ESLint configuration file
   autocmd BufNewFile,BufRead .eslintrc set filetype=json
