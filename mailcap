@@ -1,4 +1,5 @@
 image; open -W %s
 application/*; mkdir -p /tmp/mutt \; cp %s /tmp/mutt \; open -W /tmp/mutt/$(basename %s) &
-text/html; w3m -dump -T text/html; copiousoutput;
+text/html; elinks -dump -default-mime-type text/html; copiousoutput;
+# text/html; w3m -dump -T text/html; copiousoutput;
 text/calendar; ~/Bin/dump-ical.py %s; copiousoutput;
