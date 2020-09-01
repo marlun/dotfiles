@@ -23,6 +23,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'tyru/open-browser.vim'
 Plug 'regedarek/ZoomWin'
 Plug 'pechorin/any-jump.vim'
+Plug 'SirVer/ultisnips'
 
 " Language support
 Plug 'sukima/xmledit'
