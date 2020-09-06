@@ -24,6 +24,7 @@ Plug 'tyru/open-browser.vim'
 Plug 'regedarek/ZoomWin'
 Plug 'pechorin/any-jump.vim'
 Plug 'SirVer/ultisnips'
+Plug 'metakirby5/codi.vim'
 
 " Language support
 Plug 'sukima/xmledit'
