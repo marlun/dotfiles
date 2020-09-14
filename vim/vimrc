@@ -21,7 +21,6 @@ Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'tyru/open-browser.vim'
-Plug 'regedarek/ZoomWin'
 Plug 'pechorin/any-jump.vim'
 Plug 'SirVer/ultisnips'
 Plug 'metakirby5/codi.vim'
@@ -177,6 +176,7 @@ nnoremap <silent> <c-l> :nohlsearch<CR>
 nnoremap <silent> <Esc>u :set hlsearch!<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
 nnoremap <silent> <leader>w :Write<CR>
+nnoremap <c-w>T :tabnew %<CR>
 
 " Use Ctrl-n and Ctrl-p to move up and down in command-line history but use
 " what's before the cursor when searching
