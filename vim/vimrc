@@ -340,12 +340,19 @@ map <leader>. :Niffler ~/code/dotfiles<cr>
 
 " ALE
 let g:ale_virtualtext_cursor = 1
-let g:ale_hover_cursor = 0
+" let g:ale_hover_cursor = 0
 let g:ale_linters = { 'javascript': ['standard'] }
-let g:ale_fixers = { 'javascript': ['standard'] }
+let g:ale_fixers = {
+\   'typescript': ['prettier'],
+\   'typescriptreact': ['prettier'],
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
 let g:ale_javascript_standard_options = '--env browser'
 nmap <silent> ]e <Plug>(ale_next)
 nmap <silent> [e <Plug>(ale_previous)
+nnoremap <F3> :ALERename<CR>
 
 " Signify
 let g:signify_realtime = 1
