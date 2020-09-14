@@ -329,7 +329,7 @@ map <leader>s :UltiSnipsEdit<cr>
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png', 'svg']
-let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor', 'build', 'dist', 'coverage', 'journal']
+let g:niffler_ignore_dirs = ['cache', 'node_modules', 'templates_c', 'vendor', 'build', 'dist', 'coverage', 'journal', 'cdn']
 let g:niffler_fuzzy_char = ";"
 map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
