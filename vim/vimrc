@@ -43,8 +43,8 @@ call plug#end()
 syntax on
 
 " Load my own colorscheme if available
-if findfile('colors/kylo.vim', &rtp) != ''
-  colorscheme kylo
+if findfile('colors/leya.vim', &rtp) != ''
+  colorscheme leya
 endif
 
 set encoding=utf-8
