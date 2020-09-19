@@ -47,6 +47,11 @@ if findfile('colors/leya.vim', &rtp) != ''
   colorscheme leya
 endif
 
+" Make sure needed folders exist
+if !isdirectory($HOME."/.vim/undo")
+  echoerr "undodir does not exist"
+endif
+
 set encoding=utf-8
 set noswapfile
 set directory=~/tmp,/var/tmp,/tmp
@@ -73,6 +78,8 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set thesaurus+=~/Documents/mthesaur.txt
+set undodir=~/.vim/undo
+set undofile
 
 " Use system clipboard (if supported)
 set clipboard=unnamed
