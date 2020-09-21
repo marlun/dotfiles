@@ -6,3 +6,4 @@ nvim/spell/*.spl
 tags
 vim/.netrwhist
 vim/bundle
+vim/undo
