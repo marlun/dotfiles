@@ -26,6 +26,7 @@ Plug 'tyru/open-browser.vim'
 Plug 'pechorin/any-jump.vim'
 Plug 'SirVer/ultisnips'
 Plug 'metakirby5/codi.vim'
+Plug 'bronson/vim-trailing-whitespace'
 " Plug 'dhruvasagar/vim-table-mode'
 
 " Language support
