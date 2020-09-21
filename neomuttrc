@@ -30,6 +30,10 @@ set sort = threads
 set timeout = 30
 set sleep_time = 0                # Don't pause when switching between folders
 
+# Remove '#' from the default quote regex because it colored C import
+# statements in e-mails with diffs
+set quote_regex = "^([ \t]*[|>:}])+"
+
 # Remove number column from default format and add weekday and time
 set index_format = "%Z %{%a %F %R} %-30.30L %s"
 
@@ -62,6 +66,10 @@ color index color231 color196 ~D        # deleted mail
 color header cyan default "^Subject:"   # highlight subject
 color quoted color111 default            # first level quotes
 color quoted1 color35 default           # second level quotes
+# Color patchces (diffs)
+color body green default "^[\+][^\+]+.*"
+color body red  default "^\-[^\-]+.*"
+color body magenta default "^@@ .*"
 
 # 'L' performs a notmuch query, showing only the results
 macro index L <vfolder-from-query> "Search mailbox"
