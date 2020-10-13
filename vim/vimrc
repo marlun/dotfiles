@@ -47,8 +47,8 @@ call plug#end()
 syntax on
 
 " Load my own colorscheme if available
-if findfile('colors/leya.vim', &rtp) != ''
-  colorscheme leya
+if findfile('colors/kylo.vim', &rtp) != ''
+  colorscheme kylo
 endif
 
 " Make sure needed folders exist
