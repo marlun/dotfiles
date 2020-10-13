@@ -27,12 +27,15 @@ Plug 'pechorin/any-jump.vim'
 Plug 'SirVer/ultisnips'
 Plug 'metakirby5/codi.vim'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'airblade/vim-gitgutter'
 " Plug 'dhruvasagar/vim-table-mode'
+" Plug 'vim-utils/vim-troll-stopper'
 
 " Language support
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
+Plug 'jparise/vim-graphql'
 " Plug 'fatih/vim-go'
 
 call plug#end()
