@@ -84,6 +84,7 @@ set softtabstop=2
 set thesaurus+=~/Documents/mthesaur.txt
 set undodir=~/.vim/undo
 set undofile
+set updatetime=100
 
 " Use system clipboard (if supported)
 set clipboard=unnamed
