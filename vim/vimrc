@@ -313,13 +313,6 @@ if has("autocmd") && !exists("autocommands_loaded")
 endif
 
 " }}}
-" Neovim specifics ------------------------------------------------------- {{{
-if has('nvim')
-  set inccommand=nosplit
-  nnoremap <F12> :vs<bar>:term tig<CR>i
-endif
-
-" }}}
 " Plugin configurations ------------------------------------------------------- {{{
 
 " Concealing quotes in JSON files is just annoying
