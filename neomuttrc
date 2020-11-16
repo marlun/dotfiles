@@ -55,7 +55,7 @@ color prompt default default            # command prompt
 color message default default           # mutt messages
 color error color231 color196           # mutt errors
 color hdrdefault color241 default       # mail headers
-color attachment color232 green         # attachment bars
+color attachment color232 color239      # attachment bars
 color markers blue default              # wrapped line markers
 color tree blue default                 # wrapped line markers
 color index red default ~F              # flagged mail
