@@ -54,7 +54,8 @@ source ~/.config/neomutt/darkthemerc
 # 'L' performs a notmuch query, showing only the results
 macro index L <vfolder-from-query> "Search mailbox"
 bind index,pager = entire-thread
-macro index A "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all new as read"
+macro index \'a "<tag-pattern>~N<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all new as read"
+macro index \'c '<tag-pattern>~b"pushed new commits"<enter><tag-prefix><delete-message><untag-pattern>.<enter>' "cleanup gitlab rebases"
 
 macro index,pager <f1> '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/neomutt/work/neomuttrc<enter><change-folder>!<enter>'
 macro index,pager <f2> '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/neomutt/personal/neomuttrc<enter><change-folder>!<enter>'
