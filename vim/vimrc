@@ -13,30 +13,33 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-scriptease'
 Plug 'jiangmiao/auto-pairs'
 Plug 'pgdouyon/vim-niffler'
 Plug 'w0rp/ale'
-Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-indent'
+Plug 'sgur/vim-textobj-parameter'
 Plug 'tyru/open-browser.vim'
-Plug 'pechorin/any-jump.vim'
-Plug 'SirVer/ultisnips'
-Plug 'metakirby5/codi.vim'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'airblade/vim-gitgutter'
-" Plug 'dhruvasagar/vim-table-mode'
-" Plug 'vim-utils/vim-troll-stopper'
+Plug 'wellle/targets.vim'
+Plug 'SirVer/ultisnips'
+Plug 'samoshkin/vim-mergetool'
+Plug 'pechorin/any-jump.vim'
+Plug 'suy/vim-context-commentstring'
+" Plug 'junegunn/fzf'
+" Plug 'vim-airline/vim-airline'
+" Plug 'simnalamburt/vim-mundo'
+" Plug 'metakirby5/codi.vim'
 
 " Language support
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'jparise/vim-graphql'
-" Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 call plug#end()
 
@@ -47,8 +50,10 @@ call plug#end()
 syntax on
 
 " Load my own colorscheme if available
-if findfile('colors/kylo.vim', &rtp) != ''
+if system('date +%H') > 19 || system('date +%H') < 08
   colorscheme kylo
+else
+  colorscheme leya
 endif
 
 " Make sure needed folders exist
@@ -81,10 +86,14 @@ set completeopt-=preview
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set thesaurus+=~/Documents/mthesaur.txt
 set undodir=~/.vim/undo
 set undofile
 set updatetime=100
+set title
+set titlestring=vim(%t)
+
+" Use last window when jumping to errors from quickfix window
+set switchbuf=uselast
 
 " Use system clipboard (if supported)
 set clipboard=unnamed
@@ -114,6 +123,7 @@ set dictionary=/usr/share/dict/words
 set statusline=%f " Filename
 set statusline+=\ %m%r%w " Modified, Readonly and Preview flags
 set statusline+=%= " Switch to right side
+set statusline+=%{FugitiveStatusline()}
 set statusline+=[%l:%v] " Cursor position
 
 " The current implementation of searching in included files can make the
@@ -130,7 +140,7 @@ endif
 
 " Use rip-grep as grepping program if available
 if executable("rg")
-  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepprg=rg\ --vimgrep\ --no-heading\ $*
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
@@ -175,7 +185,7 @@ endif
 
 " Used to write a journal
 if !exists(":Write")
-  command Write execute 'e' '~/Documents/notes/commitments/journal/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
+  command Write execute 'e' '~/Documents/notes/home/journal/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
 endif
 
 " }}}
@@ -192,6 +202,7 @@ nnoremap <silent> <Esc>u :set hlsearch!<CR>
 nnoremap <silent> <leader>- :set nolist!<CR>
 nnoremap <silent> <leader>w :Write<CR>
 nnoremap <c-w>T :tabnew %<CR>
+" nnoremap <silent> K :grep <C-R><C-W><CR>
 
 " Use Ctrl-n and Ctrl-p to move up and down in command-line history but use
 " what's before the cursor when searching
@@ -227,24 +238,11 @@ inoremap ! !<c-g>u
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
 
-" Navigational mappings
-" nnoremap <leader>r :browse filter // oldfiles<S-Left><Left><Left>
-" nnoremap <leader>l :ls<CR>:b<Space>
-" nnoremap <leader>o :find<Space>
+" Show how to copy the filename to clipboad on a Mac
+nnoremap <silent> <leader>c :let @*=expand("%:p")
 
-" For the following mappings to work you need to create a mapping in iTerm2 so
-" that it sends the correct escape sequences. Read more here:
-" https://groups.google.com/d/msg/iterm2-discuss/VEiCSc5LCIs/U5fqrwNFm88J
-
-" Add a semicolon without moving the cursor and leaving insert mode
-" (O2P = Shift-Enter)
-inoremap O2P <ESC>maA;<ESC>`aa
-
-" Go to the end and add a semicolon (O2R = Ctrl-Enter)
-inoremap O2R <ESC>A;<ESC>
-
-" Copy the filename to clipboad on a Mac
-nnoremap <silent> <leader>c :let @*=expand("%:p")<CR>
+" Yank but remove indentation
+vnoremap gy 103<gvyu
 
 " }}}
 " Automatic commands ------------------------------------------------------- {{{
@@ -257,9 +255,6 @@ if has("autocmd") && !exists("autocommands_loaded")
   autocmd BufWritePost leya.vim source %
   autocmd BufWritePost darth.vim source %
   autocmd BufWritePost kylo.vim source %
-
-  " Insert date header when starting a new journal entry
-  autocmd BufNewFile */journal/** exe "normal i# " . strftime("%F") . "\n\n" | startinsert
 
   " Add dashes as part of keyword in CSS files
   autocmd BufRead,BufNewFile CSS setlocal iskeyword+=-
@@ -285,7 +280,7 @@ if has("autocmd") && !exists("autocommands_loaded")
   autocmd FileType PHP let b:commentary_format = '// %s'
 
   " Markdown
-  autocmd FileType markdown setlocal foldlevel=1 textwidth=78 spell
+  autocmd FileType markdown setlocal foldlevel=1 textwidth=78
 
   " Add syntax highlighting for the ESLint configuration file
   autocmd BufNewFile,BufRead .eslintrc set filetype=json
@@ -301,6 +296,9 @@ if has("autocmd") && !exists("autocommands_loaded")
   " Set 'formatoptions' for journal
   autocmd BufNewFile,BufRead journal.txt setlocal fo=t2an ts=4 sw=4 sts=4
 
+  " Insert date header when starting a new journal entry
+  autocmd BufNewFile */journal/** exe "normal i# " . strftime("%F") . "\n\n" | startinsert
+
   " Settings for todo
   autocmd BufRead TODO.md setlocal ts=2 sw=2 sts=2 foldlevel=1
 
@@ -314,6 +312,10 @@ endif
 
 " }}}
 " Plugin configurations ------------------------------------------------------- {{{
+
+" Enable netrw banner so that tpope/vinegar doesn't hide it. I like the fact
+" that I can see the path when navigating
+let g:netrw_banner = 1
 
 " Concealing quotes in JSON files is just annoying
 let g:vim_json_conceal = 0
@@ -329,10 +331,8 @@ let g:AutoPairsCenterLine = 0
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsSnippetDirectories = ["snips"]
+let g:UltiSnipsSnippetDirectories = ["~/.vim/bundle/vim-marlun/snips"]
 let g:UltiSnipsNoPythonWarning = 1
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-marlun/snips"
-map <leader>s :UltiSnipsEdit<cr>
 
 " Niffler
 let g:niffler_ignore_extensions = ['gif', 'jpg', 'png', 'svg']
@@ -346,25 +346,39 @@ map <leader>d :Niffler ~/Library/Mobile Documents/com~apple~CloudDocs/Documents/
 map <leader>. :Niffler ~/code/dotfiles<cr>
 
 " ALE
-let g:ale_virtualtext_cursor = 1
-" let g:ale_hover_cursor = 0
-let g:ale_linters = { 'javascript': ['standard'] }
+let g:ale_lsp_show_message_severity = 'information'
+let g:ale_lsp_suggestions = 1
+let g:ale_completion_enabled = 1
+let g:ale_completion_delay = 50
+let g:ale_fix_on_save = 1
+let g:ale_hover_cursor = 1
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '●'
+let g:ale_linters = {
+\   'graphql': [],
+\   'javascript': ['eslint'],
+\   'typescriptreact': ['eslint', 'tsserver'],
+\}
 let g:ale_fixers = {
 \   'typescript': ['prettier'],
 \   'typescriptreact': ['prettier'],
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
 \}
-let g:ale_fix_on_save = 1
-let g:ale_javascript_standard_options = '--env browser'
 nmap <silent> ]e <Plug>(ale_next)
 nmap <silent> [e <Plug>(ale_previous)
 nnoremap <F3> :ALERename<CR>
+nnoremap <silent> <leader>u :ALEFindReferences<CR>
+nnoremap <leader>i :ALEDetail<CR>
+nnoremap <leader>h :ALEHover<CR>
 
 " Signify
-let g:signify_realtime = 1
-let g:signify_cursorhold_normal = 0
-let g:signify_cursorhold_insert = 0
+let g:signify_disable_by_default = 1
+let g:signify_sign_change = '~'
+map <leader>s :SignifyToggle<cr>
+
+" Targets
+call targets#mappings#extend({'a': {'argument': [{'o': '[{([]', 'c': '[])}]', 's': ','}]}})
 
 " Open browser
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
@@ -372,6 +386,10 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 " FixWhitespace
-let g:extra_whitespace_ignored_filetypes = ['help']
+let g:extra_whitespace_ignored_filetypes = ['help', 'git', 'Mundo']
+
+" Mergetool
+let g:mergetool_layout = 'mr'
+let g:mergetool_prefer_revision = 'local'
 
 " vim: foldmethod=marker
