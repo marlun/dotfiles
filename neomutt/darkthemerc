@@ -1,0 +1,21 @@
+# Dark theme for neomutt
+# Theme (color <object> <foreground> <background> [pattern])
+color normal color250 color16           # default colors
+color status white color26              # status bars
+color indicator color16 color220        # selected item
+color prompt default color16            # command prompt
+color message default color16           # mutt messages
+color error color231 color196           # mutt errors
+color hdrdefault color241 color16       # mail headers
+color attachment color241 color16      # attachment bars
+color markers blue color16              # wrapped line markers
+color tree blue color16                 # wrapped line markers
+color signature color250 color16
+color index red color16 ~F              # flagged mail
+color index brightgreen color16 ~N      # new mail
+color index green color16 ~O            # new mail
+color index color16 cyan ~T             # tagged mail
+color index color231 color196 ~D        # deleted mail
+color quoted color150 color16            # first level quotes
+color quoted1 color153 color16           # second level quotes
+color header color183 color16 "^Subject:"   # highlight subject

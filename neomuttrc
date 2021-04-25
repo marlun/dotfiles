@@ -47,29 +47,9 @@ bind pager j next-line
 bind pager \cu half-up
 bind pager \cd half-down
 
-# Theme (color <object> <foreground> <background> [pattern])
-color normal color250 color16           # default colors
-color status white color26              # status bars
-color indicator color16 color220        # selected item
-color prompt default default            # command prompt
-color message default default           # mutt messages
-color error color231 color196           # mutt errors
-color hdrdefault color241 default       # mail headers
-color attachment color232 color239      # attachment bars
-color markers blue default              # wrapped line markers
-color tree blue default                 # wrapped line markers
-color index red default ~F              # flagged mail
-color index brightgreen default ~N      # new mail
-color index green default ~O            # new mail
-color index color16 cyan ~T             # tagged mail
-color index color231 color196 ~D        # deleted mail
-color header cyan default "^Subject:"   # highlight subject
-color quoted color111 default            # first level quotes
-color quoted1 color35 default           # second level quotes
-# Color patchces (diffs)
-color body green default "^[\+][^\+]+.*"
-color body red  default "^\-[^\-]+.*"
-color body magenta default "^@@ .*"
+# Light theme before 18 and dark theme after
+# source `TIME=$(date +%H) FILE=$XDG_CONFIG_HOME/neomutt/lightthemerc; if [ $TIME -ge 16 ]; then FILE=$XDG_CONFIG_HOME/neomutt/darkthemerc;fi; echo "$FILE"`
+source ~/.config/neomutt/darkthemerc
 
 # 'L' performs a notmuch query, showing only the results
 macro index L <vfolder-from-query> "Search mailbox"

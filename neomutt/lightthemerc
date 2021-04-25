@@ -1,0 +1,21 @@
+# Light theme for neomutt
+# color <object> <foreground> <background> [pattern]
+color normal color16 color15
+color status color15 color26
+color indicator color16 color220
+color prompt color16 color15
+color message color16 color15
+color error color15 color196
+color hdrdefault color130 color15
+color attachment color27 color15
+color markers blue color15 # wrapped line markers
+color tree color16 color15
+color signature color16 color15
+color index red color15 ~F
+color index color28 color15 ~N
+color index color28 color15 ~O
+color index color16 cyan ~T
+color index color15 color196 ~D
+color quoted color28 color15
+color quoted1 color93 color15
+color header color93 color15 "^Subject:"   # highlight subject
