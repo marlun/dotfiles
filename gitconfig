@@ -27,8 +27,6 @@
 	hchanges = !git log --pretty=format:\"%h %s\" \"$1\".. | pbcopy && :
 [diff "javascript"]
   xfuncname = "^.*function.*$|^.*=>.*$"
-[diff]
-	noprefix = true
 [pull]
 	rebase = true
 [init]
