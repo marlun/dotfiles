@@ -32,7 +32,7 @@ set sleep_time = 0                # Don't pause when switching between folders
 
 # Remove '#' from the default quote regex because it colored C import
 # statements in e-mails with diffs
-set quote_regex = "^([ \t]*[|>:}])+"
+set quote_regex = "^([ \t]*[>])+"
 
 # Remove number column from default format and add weekday and time
 set index_format = "%Z %{%a %F %R} %-30.30L %s"
