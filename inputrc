@@ -11,7 +11,3 @@ set mark-symlinked-directories on
 
 # Didn't get this to work, not sure if I understand
 set skip-completed-text on
-
-# Keybindings
-Control-j: menu-complete
-Control-k: menu-complete-backward
