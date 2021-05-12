@@ -27,8 +27,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'wellle/targets.vim'
 Plug 'SirVer/ultisnips'
 Plug 'samoshkin/vim-mergetool'
-Plug 'pechorin/any-jump.vim'
-Plug 'suy/vim-context-commentstring'
+" Plug 'pechorin/any-jump.vim'
 " Plug 'junegunn/fzf'
 " Plug 'vim-airline/vim-airline'
 " Plug 'simnalamburt/vim-mundo'
@@ -53,7 +52,7 @@ syntax on
 if system('date +%H') > 19 || system('date +%H') < 08
   colorscheme kylo
 else
-  colorscheme leya
+  colorscheme kylo
 endif
 
 " Make sure needed folders exist
@@ -93,7 +92,7 @@ set title
 set titlestring=vim(%t)
 
 " Use last window when jumping to errors from quickfix window
-set switchbuf=uselast
+" set switchbuf=uselast
 
 " Use system clipboard (if supported)
 set clipboard=unnamed
@@ -185,7 +184,11 @@ endif
 
 " Used to write a journal
 if !exists(":Write")
-  command Write execute 'e' '~/Documents/notes/home/journal/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
+  if has('mac')
+    command Write execute 'e' '~/Documents/notes/home/journal/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
+  else
+    command Write execute 'e' '~/sync/notes/home/journal/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
+  endif
 endif
 
 " }}}
@@ -342,8 +345,12 @@ map <leader>l :NifflerBuffer<cr>
 map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
 map <leader>r :NifflerMRU<cr>
-map <leader>d :Niffler ~/Library/Mobile Documents/com~apple~CloudDocs/Documents/notes<cr>
 map <leader>. :Niffler ~/code/dotfiles<cr>
+if has('mac')
+  map <leader>d :Niffler ~/Library/Mobile Documents/com~apple~CloudDocs/Documents/notes<cr>
+else
+  map <leader>d :Niffler ~/sync/notes<cr>
+endif
 
 " ALE
 let g:ale_lsp_show_message_severity = 'information'
