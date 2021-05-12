@@ -2,8 +2,6 @@
 	ui = true
 [push]
 	default = current
-[credential]
-	helper = osxkeychain
 [core]
 	excludesfile = ~/.gitignore
 [commit]
@@ -13,6 +11,10 @@
   tool = vimdiff
 [mergetool]
 	prompt = false
+[includeIf "gitdir:~/src/"]
+    path = ~/src/.gitconfig
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
 [includeIf "gitdir:~/Work/"]
     path = ~/Work/.gitconfig
 [includeIf "gitdir:~/Code/"]
