@@ -1,3 +1,2 @@
-color date cyan color16
 color cursor color16 color220 bold
 bind generic y @bash -c "echo -n `echo %(commit) | cut -c 1-7` | pbcopy" # copy (yank) commid hash to clipboard (truncated to 7 chars)
