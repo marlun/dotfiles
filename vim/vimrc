@@ -27,6 +27,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'wellle/targets.vim'
 Plug 'SirVer/ultisnips'
 Plug 'samoshkin/vim-mergetool'
+
 " Plug 'pechorin/any-jump.vim'
 " Plug 'junegunn/fzf'
 " Plug 'vim-airline/vim-airline'
@@ -356,7 +357,7 @@ endif
 let g:ale_lsp_show_message_severity = 'information'
 let g:ale_lsp_suggestions = 1
 let g:ale_completion_enabled = 1
-let g:ale_completion_delay = 50
+let g:ale_completion_delay = 10
 let g:ale_fix_on_save = 1
 let g:ale_hover_cursor = 1
 let g:ale_sign_error = '●'
