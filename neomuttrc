@@ -29,6 +29,10 @@ set wrap = 78
 set sort = threads
 set timeout = 30
 set sleep_time = 0                # Don't pause when switching between folders
+set ts_enabled
+set ts_status_format = "neomutt%?n?*?"
+set mail_check_stats
+set mail_check_stats_interval = 15
 
 # Remove '#' from the default quote regex because it colored C import
 # statements in e-mails with diffs
