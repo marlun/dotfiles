@@ -28,12 +28,6 @@ Plug 'wellle/targets.vim'
 Plug 'SirVer/ultisnips'
 Plug 'samoshkin/vim-mergetool'
 
-" Plug 'pechorin/any-jump.vim'
-" Plug 'junegunn/fzf'
-" Plug 'vim-airline/vim-airline'
-" Plug 'simnalamburt/vim-mundo'
-" Plug 'metakirby5/codi.vim'
-
 " Language support
 Plug 'sukima/xmledit'
 Plug 'pangloss/vim-javascript'
@@ -90,7 +84,7 @@ set undodir=~/.vim/undo
 set undofile
 set updatetime=100
 set title
-set titlestring=vim(%t)
+set titlestring=vim
 
 " Use last window when jumping to errors from quickfix window
 " set switchbuf=uselast
@@ -365,11 +359,7 @@ map <leader>o :Niffler .<cr>
 map <leader>t :NifflerTags %<cr>
 map <leader>r :NifflerMRU<cr>
 map <leader>. :Niffler ~/code/dotfiles<cr>
-if has('mac')
-  map <leader>d :Niffler ~/Library/Mobile Documents/com~apple~CloudDocs/Documents/notes<cr>
-else
-  map <leader>d :Niffler ~/sync/notes<cr>
-endif
+map <leader>d :Niffler ~/sync/notes<cr>
 
 " ALE
 let g:ale_lsp_show_message_severity = 'information'
@@ -383,6 +373,7 @@ let g:ale_sign_warning = '●'
 let g:ale_linters = {
 \   'graphql': [],
 \   'javascript': ['eslint'],
+\   'json': ['jq'],
 \   'typescriptreact': ['eslint', 'tsserver'],
 \}
 let g:ale_fixers = {
