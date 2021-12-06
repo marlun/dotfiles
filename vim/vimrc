@@ -185,12 +185,28 @@ endif
 
 " Used to write a journal
 if !exists(":Write")
-  if has('mac')
-    command Write execute 'e' '~/Documents/notes/home/journal/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
-  else
-    command Write execute 'e' '~/sync/notes/home/journal/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
-  endif
+  command Write execute 'e' '~/sync/notes/home/journal/' . strftime('%Y') . '/' . strftime('%Y-%m-%d') . '.md'
 endif
+
+" When working with yarn2, jumping to definitions will open a zip file
+" with a path similar to: `.yarn/cache/@package.zip/node_modules/.../file.js`,
+" which can be opened by neovim if the string is massaged a little bit.
+function! OpenZippedFile(f)
+  " get number of new (empty) buffer
+  let l:b = bufnr('%')
+  " construct full path
+  let l:f = substitute(a:f, '.zip/', '.zip::', '')
+  let l:f = substitute(l:f, '.yarn/.*/cache/', '.yarn/cache/', '')
+  let l:f = substitute(l:f, '^', 'zipfile:', '')
+  " swap back to original buffer
+  b #
+  " delete new one
+  exe 'bd! ' . l:b
+  " open buffer with correct path
+  sil exe 'e ' . l:f
+  " read in zip data
+  call zip#Read(l:f, 1)
+endfunction
 
 " }}}
 " Mappings & Abbrevations ------------------------------------------------ {{{
@@ -312,6 +328,8 @@ if has("autocmd") && !exists("autocommands_loaded")
     au BufWritePre,FileWritePre * call mkdir(expand('<afile>:p:h'), 'p')
   endif
 
+  " Fix for working with yarn2 zero-install dependencies
+  au BufReadCmd *.yarn/*cache/*.zip/* call OpenZippedFile(expand('<afile>'))
 endif
 
 " }}}
