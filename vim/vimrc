@@ -258,6 +258,9 @@ nnoremap <silent> <leader>c :let @*=expand("%:p")
 " Yank but remove indentation
 vnoremap gy 103<gvyu
 
+" Visually highlight without jumping
+nnoremap <leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
 " }}}
 " Automatic commands ------------------------------------------------------- {{{
 
@@ -388,6 +391,7 @@ nnoremap <F3> :ALERename<CR>
 nnoremap <silent> <leader>u :ALEFindReferences<CR>
 nnoremap <leader>i :ALEDetail<CR>
 nnoremap <leader>h :ALEHover<CR>
+nnoremap gd :ALEGoToTypeDefinition<CR>
 
 " Signify
 let g:signify_disable_by_default = 1
