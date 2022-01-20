@@ -13,7 +13,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 
 # Git prompt
-PROMPT_COMMAND='__git_ps1 "\w" "\\\$ " "(%s)"'
+# PROMPT_COMMAND='__git_ps1 "\w" "\\\$ " "(%s)"'
+PROMPT_COMMAND='__git_ps1 "\\033[;38;5;150m\w" "\\\$ \\033[0m" "(%s)"'
 GIT_PS1_SHOWUPSTREAM="auto"
 
 # Disable START/STOP signals
@@ -23,4 +24,3 @@ stty -ixon -ixoff
 if [ -f ~/.config/bashrc ]; then
   . ~/.config/bashrc
 fi
-
